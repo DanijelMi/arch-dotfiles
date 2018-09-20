@@ -1,3 +1,4 @@
+##### MINIMALIST LAYOUT - START ########### COPY EVERYTHING EXCEPT COMMENT LINES #################################
 {
   "keymaps": {
     ":": { "type": "command.show" },
@@ -42,3 +43,4 @@
   "blacklist": [
   ]
 }
+################### MINIMALIST LAYOUT - END  ####################################################################
