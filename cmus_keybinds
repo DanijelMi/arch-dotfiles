@@ -1,0 +1,16 @@
+Dependencies: pgrep, cmus, cmus-remote
+
+Play/pause/launch cmus:
+if ! pgrep -x cmus ; then konsole -e cmus ; else cmus-remote -u ; fi
+
+Next Track
+cmus-remote -n
+
+Previous Track
+cmus-remote -r
+
+Volume up
+cmus-remote -v +5%
+
+Volume Down
+cmus-remote -v -5%
