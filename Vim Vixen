@@ -1,14 +1,11 @@
-##### MINIMALIST LAYOUT - START ########### COPY EVERYTHING EXCEPT COMMENT LINES #################################
 {
   "keymaps": {
     ":": { "type": "command.show" },
     "o": { "type": "command.show.open", "alter": false },
     "O": { "type": "command.show.open", "alter": true },
     "b": { "type": "command.show.buffer" },
-    "gg": { "type": "scroll.top" },
-    "G": { "type": "scroll.bottom" },
-    "f": { "type": "follow.start", "newTab": false },
-    "F": { "type": "follow.start", "newTab": true },
+    "<": { "type": "follow.start", "newTab": false },
+    ">": { "type": "follow.start", "newTab": true },
     "<S-Esc>": { "type": "addon.toggle.enabled" }
   },
   "search": {
@@ -30,4 +27,3 @@
   "blacklist": [
   ]
 }
-################### MINIMALIST LAYOUT - END  ####################################################################
