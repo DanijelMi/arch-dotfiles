@@ -1,0 +1,11 @@
+# Open Konsole - MOD+r
+"konsole"
+  Mod4 + r
+
+# Lock Screen KDE - MOD+l
+"bash -c "loginctl lock-session""
+  Mod4 + l
+  
+# Open Dolphin file manager - MOD+e
+"dolphin"
+  Mod4 + e

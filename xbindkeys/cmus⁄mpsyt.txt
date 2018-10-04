@@ -1,0 +1,27 @@
+# Toggle cmus/mpsyt player - CTRL+Numpad5
+"bash -c "if pgrep -x cmus ; then cmus-remote -u ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key space ; else konsole -e cmus ; fi""
+  Control + KP_Begin
+  
+# Next track in cmus - CTRL+Numpad6
+"cmus-remote -n"
+  Control + KP_Right
+  
+# Previous track in cmus - CTRL+Numpad4
+"cmus-remote -r"
+  Control + KP_Left
+  
+# Volume up in cmus/mpsyt - ALT+ScrollUp
+"bash -c "if pgrep -x cmus ; then cmus-remote -v +5% ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key 0 ; fi""
+  Alt+Mod2+b:4
+
+# Volume up in cmus/mpsyt - ALT+ScrollDown
+"bash -c "if pgrep -x cmus ; then cmus-remote -v -5% ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key 9 ; fi""
+  Alt+Mod2+b:5
+
+# Seek forward in cmus - CTRL+Numpad9
+"cmus-remote --seek +5"
+  Control + KP_Prior
+
+# Seek backward in cmus - CTRL+Numpad7
+"cmus-remote --seek -5"
+  Control + KP_Home

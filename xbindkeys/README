@@ -1,0 +1,11 @@
+Dependencies: pgrep
+* cmus - music player
+* mpsyt - youtube player
+* cmus-remote - allows control of cmus instance over commands
+* xdotool - allows manipulation of most linux windows managers (confirmed on KDE)
+* xbindkeys - Allows binding keys, easy to standardize across systems
+
+Just copy over (and modify if needed) the desired shortcuts, categorised in files.
+Copy to your xbindkeys config file (ex. ~/.xbindkeysrc).
+
+To install and configure xbindkeys and other dependencies, look online as it varies between distros.
