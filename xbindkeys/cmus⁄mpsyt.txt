@@ -18,10 +18,10 @@
 "bash -c "if pgrep -x cmus ; then cmus-remote -v -5% ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key 9 ; fi""
   Alt+Mod2+b:5
 
-# Seek forward in cmus - CTRL+Numpad9
-"cmus-remote --seek +5"
+# Seek forward in cmus/mpsyt - CTRL+Numpad9
+"bash -c "if pgrep -x cmus ; then cmus-remote --seek +5 ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key Right ; fi""
   Control + KP_Prior
 
-# Seek backward in cmus - CTRL+Numpad7
-"cmus-remote --seek -5"
+# Seek backward in cmus/mpsyt - CTRL+Numpad7
+"bash -c "if pgrep -x cmus ; then cmus-remote --seek -5 ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key Left ; fi""
   Control + KP_Home
