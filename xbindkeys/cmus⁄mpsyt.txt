@@ -14,7 +14,7 @@
 "bash -c "if pgrep -x cmus ; then cmus-remote -v +5% ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key 0 ; fi""
   Alt+Mod2+b:4
 
-# Volume up in cmus/mpsyt - ALT+ScrollDown
+# Volume down in cmus/mpsyt - ALT+ScrollDown
 "bash -c "if pgrep -x cmus ; then cmus-remote -v -5% ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key 9 ; fi""
   Alt+Mod2+b:5
 
