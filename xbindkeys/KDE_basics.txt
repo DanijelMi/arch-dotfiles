@@ -9,3 +9,11 @@
 # Open Dolphin file manager - MOD+e
 "dolphin"
   Mod4 + e
+
+# Master volume up
+"bash -c "amixer set Master 5%+""
+  Control+Alt+b:4
+  
+# Master volume down
+"bash -c "amixer set Master 5%-""
+  Control+Alt+b:5
