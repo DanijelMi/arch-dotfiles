@@ -8,6 +8,7 @@ alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax hi
 alias ethspeed="python2.7 /usr/local/bin/speedometer/speedometer.py -r enp2s0"
 alias wifispeed="python2.7 /usr/local/bin/speedometer/speedometer.py -r wlp3s0"
 alias accesspoint="sudo create_ap wlp3s0 ens2s0 Arch_DM devetosam09 &" 
+alias accesspoint_kill="sudo create_ap --stop wlp3s0"
 
 # # ex - archive extractor
 # # usage: ex <file>
