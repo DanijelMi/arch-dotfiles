@@ -4,8 +4,8 @@
     "o": { "type": "command.show.open", "alter": false },
     "O": { "type": "command.show.open", "alter": true },
     "b": { "type": "command.show.buffer" },
-    "<": { "type": "follow.start", "newTab": false },
-    ">": { "type": "follow.start", "newTab": true },
+    "\\": { "type": "follow.start", "newTab": false },
+    "|": { "type": "follow.start", "newTab": true },
     "<S-Esc>": { "type": "addon.toggle.enabled" }
   },
   "search": {
