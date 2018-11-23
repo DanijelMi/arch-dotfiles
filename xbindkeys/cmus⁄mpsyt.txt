@@ -25,3 +25,7 @@
 # Seek backward in cmus/mpsyt - CTRL+Numpad7
 "bash -c "if pgrep -x cmus ; then cmus-remote --seek -5 ; elif pgrep -x mpsyt ; then xdotool search --name mpsyt key Left ; fi""
   Control + KP_Home
+  
+# Send a space keystroke to an unfocused firefox window
+"xdotool search --onlyvisible --name firefox key space"
+  Control + space
