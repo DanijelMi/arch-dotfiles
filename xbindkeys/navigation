@@ -7,5 +7,6 @@
   Control + space
 
 # rofi navigation
-"rofi -combi-modi window,drun -show combi -modi combi"
+"rofi -combi-modi window,drun -show combi -modi combi -show-icons -auto-select -sidebar-mode"
   alt + space
+  
