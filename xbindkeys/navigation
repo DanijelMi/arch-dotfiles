@@ -1,0 +1,11 @@
+# Screenshot rectangular area of screen - PRINTSCREEN
+"spectacle -r"
+  Print
+
+# Send a space keystroke to an unfocused window
+"xdotool search --onlyvisible --name firefox key space"
+  Control + space
+
+# rofi navigation
+"rofi -combi-modi window,drun -show combi -modi combi"
+  alt + space
