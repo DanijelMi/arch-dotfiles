@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
-#DanijelM
+# Author: Danijel Milosevic
+# Dependencies: Rofi
+# Initial menu command 
 SCRIPT="rofi -dmenu -i -p Power Options -width 10 -lines 5"
+# Parameters to be displayed
 OPTIONS="Lock\nShutdown\nReboot\nSuspend\nHibernate"
+# Menu called on confirmation
 CONFIRMSCRIPT="rofi -dmenu -i -p Confirm -width 8 -lines 2"
+# Parameters to be displayed on confirmation
 CONFIRMOPTIONS="Yes\nNo"
+# If an additional argument is called with the script, append an extra option in the menu
 if [ ${#1} -gt 0 ]; then
     OPTIONS="Exit WM\n$OPTIONS"
 fi
+# Call of the initial menu 
 SELECTION=`echo -e $OPTIONS | $SCRIPT | awk '{print $1}'`
-
+# If selected option is not null
 if [ ${#SELECTION} -gt 0 ]
 then
-    
     if [ $SELECTION = "Shutdown" ] || [ $SELECTION = "Reboot" ]
     then
         CONFIRMSELECTION=`echo -e $CONFIRMOPTIONS | $CONFIRMSCRIPT | awk '{print $1}'`
@@ -30,6 +36,7 @@ then
         fi
     else
         case $SELECTION  in
+            # The custom case that evals the additional argument as a command on its own
             Exit)
                 eval $1
                 ;;
