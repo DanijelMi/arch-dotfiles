@@ -4,34 +4,43 @@
 pcall(require, "luarocks.loader")
 
 -- Load standard awesome libraries --
---local gears = require("gears") 		-- ???
+local gears = require("gears") 		-- ???
 local awful = require("awful") 		-- Standard awesome library
 local autofocus = require("awful.autofocus")	-- Widget and layout library
 local rules = require("awful.rules")			-- Set rules on startup etc
 local beautiful = require("beautiful")	-- Theme handling library
 local naughty = require("naughty")	-- Notification library
-require("error")			-- Error notify (local) ?
+--require("error")			-- Error notify (local) ?
 socket = require("socket")		-- For acquiring hostname
---local wibox = require("wibox")		-- Notification library
---local menubar = require("menubar")	-- ??
---local hotkeys_popup = require("awful.hotkeys_popup")
+local wibox = require("wibox")		-- Notification library
+local menubar = require("menubar")	-- ??
+local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
 -- Awesome Configuration
+AWESOME_THEME = '/themes/molokai/theme.lua'
+AWESOME_CONFDIR = awful.util.getdir('config')
 HOSTNAME = socket.dns.gethostname()
 CMD_LOCK = 'slock'
+HOMEDIR = os.getenv('HOME')
 modkey = "Mod4"
 terminal = "st"
 
+WALLPAPER_DIR = HOMEDIR .. '/Images/wallpaper'
+
 -- Per-machine configuration switch
-if HOSTNAME = 'danijelomni' then
+if HOSTNAME == 'danijelomni' then
 	BROWSER = 'firefox'	-- this is just an example
+end
 
 -- Init theme
 beautiful.init(AWESOME_CONFDIR .. AWESOME_THEME)
 
+local WALLPAPER_CMD = "find " .. WALLPAPER_DIR
+	.. " -type f -regextype posix-extended -iregex '.*(png|jpg)$' -print0"
+	.. " | shuf -n1 -z | xargs -0 feh --bg-scale"
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -68,42 +77,33 @@ editor_cmd = terminal .. " -e " .. editor
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
     awful.layout.suit.fair,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.top,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
     awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
+--    awful.layout.suit.floating,
+--    awful.layout.suit.tile.left,
+--    awful.layout.suit.tile.bottom,
+--    awful.layout.suit.spiral,
+--    awful.layout.suit.max,
+--    awful.layout.suit.max.fullscreen,
+--    awful.layout.suit.magnifier,
+--    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
+
+if HOSTNAME == 'danijelomni' then
+	layouts = {
+		awful.layout.suit.tile.right,
+		awful.layout.suit.tile.bottom,
+		awful.layout.suit.spiral,
+		awful.layout.suit,
+	}
+end
 -- }}}
-
--- {{{ Menu
--- Create a launcher widget and a main menu
-myawesomemenu = {
-   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end },
-}
-
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
 
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -133,6 +133,9 @@ local taglist_buttons = gears.table.join(
                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
                 )
+
+-- EXTERNAL CONFIGS
+require("topbar")
 
 local tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
@@ -228,7 +231,6 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -519,46 +521,6 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
-end)
-
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    awful.titlebar(c) : setup {
-        { -- Left
-            awful.titlebar.widget.iconwidget(c),
-            buttons = buttons,
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        { -- Right
-            awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
-            awful.titlebar.widget.closebutton    (c),
-            layout = wibox.layout.fixed.horizontal()
-        },
-        layout = wibox.layout.align.horizontal
-    }
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
