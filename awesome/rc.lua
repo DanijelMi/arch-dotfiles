@@ -237,9 +237,13 @@ end)
 awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 -- }}}
 
-require("keybinds")
+require("keybinds")	-- Integrates the keybinds.lua file
+
+require("rules")
+--[[
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
+
 awful.rules.rules = {
     -- All clients will match this rule.
     { rule = { },
@@ -267,6 +271,7 @@ awful.rules.rules = {
           properties = { maximized = true } },
 }
 -- }}}
+--]]
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
