@@ -181,13 +181,13 @@ globalkeys = my_table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+            os.execute(string.format("amixer -q set %s 4%%+", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume up", group = "hotkeys"}),
     awful.key({ altkey }, "Down",
         function ()
-            os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+            os.execute(string.format("amixer -q set %s 4%%-", beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "volume down", group = "hotkeys"}),
@@ -219,7 +219,7 @@ globalkeys = my_table.join(
         {description = "mpc toggle", group = "widgets"}),
     awful.key({ altkey, "Control" }, "Down",
         function ()
-            os.execute("mpc stop")
+            os.execute("mpcs stop")
             beautiful.mpd.update()
         end,
         {description = "mpc stop", group = "widgets"}),
