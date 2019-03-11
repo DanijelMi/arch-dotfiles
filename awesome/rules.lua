@@ -22,8 +22,8 @@ awful.rules.rules = {
     -- Set Firefox to always map on the first tag on screen 1.
     -- Also force non-maximized and non-floating for tiling compatability
     { rule = { class = "Firefox" },
-        properties = { maximized = false, floating = false, screen = 1, tag = awful.util.tagnames[1] } },
-      --properties = { screen = 1, tag = awful.util.tagnames[1] } },
+        properties = { maximized = false, floating = false } },
+--        properties = { maximized = false, floating = false, screen = 1, tag = awful.util.tagnames[1] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
