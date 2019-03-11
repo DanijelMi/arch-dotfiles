@@ -100,14 +100,14 @@ guieditor    = "atom"
 scrlocker    = "slock"
 
 awful.util.terminal = terminal
---awful.util.tagnames = { "1", "2", "3", "4", "5" } -- Redundant cuz it exists in theme
+--awful.util.tagnames = { "1", "2", "3", "4", "5" } -- Redundant since it exists in theme
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.top,
+    lain.layout.centerwork,
     awful.layout.suit.fair,
     awful.layout.suit.spiral,
-    lain.layout.centerwork,
-    awful.layout.suit.floating,
+    --awful.layout.suit.floating,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
