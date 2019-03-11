@@ -25,12 +25,14 @@ fdisk /dev/sdX	#
 	a {NUM}	# sets bootable flag, select boot partition
 	w 	# writes all changes 
 mkswap /dev/sdaX 	# Do this for swap partition
+swapon /dev/sdaX	# X is the swap partition
 mkfs.ext4 /dev/sdaX	# Do this for other partitions (boot, root, and home)
 
 mount /dev/sdaX /mnt		# X is / (root) partition
 mkdir /mnt/home
 mount /dev/sdaX /mnt/home	# X is the home partition
-swapon /dev/sdaX		# X is the swap partition
+mkdir /mnt/boot
+mount /dev/sdaX /mnt/boot	# X is the boot partition
 
 pacman -Sy archlinux-keyring
 pacstrap /mnt base base-devel	# install basic packages into target system before chroot
