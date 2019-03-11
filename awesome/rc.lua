@@ -103,13 +103,13 @@ awful.util.terminal = terminal
 --awful.util.tagnames = { "1", "2", "3", "4", "5" } -- Redundant since it exists in theme
 awful.layout.layouts = {
     awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
     awful.layout.suit.tile.top,
     lain.layout.centerwork,
     awful.layout.suit.fair,
     awful.layout.suit.spiral,
     --awful.layout.suit.floating,
     --awful.layout.suit.fair.horizontal,
-    awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
