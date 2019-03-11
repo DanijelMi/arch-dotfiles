@@ -109,7 +109,7 @@ awful.layout.layouts = {
     awful.layout.suit.spiral,
     --awful.layout.suit.floating,
     --awful.layout.suit.fair.horizontal,
-    --awful.layout.suit.tile.left,
+    awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
     --awful.layout.suit.spiral.dwindle,
     --awful.layout.suit.max,
