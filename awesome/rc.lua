@@ -102,12 +102,12 @@ scrlocker    = "slock"
 awful.util.terminal = terminal
 --awful.util.tagnames = { "1", "2", "3", "4", "5" } -- Redundant cuz it exists in theme
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.spiral,
     lain.layout.centerwork,
+    awful.layout.suit.floating,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.tile.left,
     --awful.layout.suit.tile.bottom,
