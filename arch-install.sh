@@ -68,5 +68,10 @@ passwd USER
 mkdir /home/USER
 chown -R /home/USER USER
 
+pacman -S openssh
+systemctl start sshd
+systemctl enable sshd 
+
+
 
 
