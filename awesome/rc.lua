@@ -97,6 +97,7 @@ editor       = os.getenv("EDITOR") or "nvim"
 gui_editor   = "gvim"
 browser      = "firefox"
 guieditor    = "atom"
+filebrowser  = "st ranger"
 scrlocker    = "slock"
 
 awful.util.terminal = terminal
