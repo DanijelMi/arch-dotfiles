@@ -59,3 +59,14 @@ grub-mkconfig -o /boot/grub/grub.cfg
 exit
 umount -R /mnt
 reboot
+
+systemctl start NetworkManager # After relogging
+systemctl enable NetworkManager 
+
+useradd USER
+passwd USER
+mkdir /home/USER
+chown -R /home/USER USER
+
+
+
