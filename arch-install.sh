@@ -53,3 +53,9 @@ echo MYHOSTNAME > /etc/hostname	# Create hostname file
 127.0.1.1	MYHOSTNAME.localdomain MYHOSTNAME
 
 passwd		# set root password
+pacman -S grub
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+exit
+umount -R /mnt
+reboot
