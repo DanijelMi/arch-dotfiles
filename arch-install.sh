@@ -38,7 +38,7 @@ mount /dev/sdaX /mnt/boot	# X is the boot partition
 
 pacman -Sy archlinux-keyring
 pacstrap /mnt base base-devel	# install basic packages into target system before chroot
-getfstab -U /mnt >> /mnt/etc/fstab	# generate fstab file
+genfstab -U /mnt >> /mnt/etc/fstab	# generate fstab file
 arch-chroot /mnt		# chroot into install target
 ln -sf /usr/share/zoneinfo/Europe/Belgrade /etc/localtime	# Set timezone
 hwclock --systohc		# generate /etc/adjtime
