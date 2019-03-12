@@ -37,7 +37,7 @@ mount /dev/sdaX /mnt/home	# X is the home partition
 mount /dev/sdaX /mnt/boot	# X is the boot partition
 
 pacman -Sy archlinux-keyring
-pacstrap /mnt base base-devel	# install basic packages into target system before chroot
+pacstrap /mnt base base-devel networkmanager openssh	# install basic packages into target system before chroot
 genfstab -U /mnt >> /mnt/etc/fstab	# generate fstab file
 arch-chroot /mnt		# chroot into install target
 ln -sf /usr/share/zoneinfo/Europe/Belgrade /etc/localtime	# Set timezone
@@ -45,7 +45,7 @@ hwclock --systohc		# generate /etc/adjtime
 # Uncomment en_US.UTF-8 UTF-8 and other needed locales in /etc/locale.gen and generate them with: 
 locale-gen
 # Set the lang variable in /etc/locale.conf accordingly, for example:
-LANG=en_US.UTF-8
+echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo MYHOSTNAME > /etc/hostname	# Create hostname file
 # Add matching entries to /etc/hosts
 127.0.0.1	localhost
