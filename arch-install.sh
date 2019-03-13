@@ -58,4 +58,7 @@ shutdown now
 ip link set INTERFACE up
 systemctl start dhcpd
 pacman -S networkmanager openssh
+useradd username
+passwd
+
 
