@@ -24,41 +24,63 @@ fdisk /dev/sdX	#
 	# Do above process 4 times
 	a {NUM}	# sets bootable flag, select boot partition
 	w 	# writes all changes 
+
 mkswap /dev/sdaX 	# Do this for swap partition
 swapon /dev/sdaX	# X is the swap partition
+
 mkfs.ext4 /dev/sdaX	# Do this for other partitions (boot, root, and home)
 
 mount /dev/sdaX /mnt		# X is / (root) partition
 mkdir /mnt/home
-mount /dev/sdaX /mnt/home	# X is the home partition
 mkdir /mnt/boot
+mount /dev/sdaX /mnt/home	# X is the home partition
 mount /dev/sdaX /mnt/boot	# X is the boot partition
 
 pacman -Sy archlinux-keyring
-pacstrap /mnt base base-devel	# install basic packages into target system before chroot
+pacstrap /mnt base base-devel networkmanager openssh	# install basic packages into target system before chroot
 genfstab -U /mnt >> /mnt/etc/fstab	# generate fstab file
 arch-chroot /mnt		# chroot into install target
 ln -sf /usr/share/zoneinfo/Europe/Belgrade /etc/localtime	# Set timezone
 hwclock --systohc		# generate /etc/adjtime
 # Uncomment en_US.UTF-8 UTF-8 and other needed locales in /etc/locale.gen and generate them with: 
 locale-gen
+# Set the lang variable in /etc/locale.conf accordingly, for example:
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 echo MYHOSTNAME > /etc/hostname	# Create hostname file
 # Add matching entries to /etc/hosts
 127.0.0.1	localhost
 ::1		localhost
 127.0.1.1	MYHOSTNAME.localdomain MYHOSTNAME
-passwd
+
+passwd		# set root password
 pacman -S grub
-grub-install --recheck /dev/sda
+grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 exit
 umount -R /mnt
+<<<<<<< HEAD
 shutdown now
 ip link set INTERFACE up
 systemctl start dhcpd
 pacman -S networkmanager openssh
 useradd username
 passwd
+=======
+reboot
+
+systemctl start NetworkManager # After relogging
+systemctl enable NetworkManager 
+
+useradd USER
+passwd USER
+mkdir /home/USER
+chown -R /home/USER USER
+
+pacman -S openssh
+systemctl start sshd
+systemctl enable sshd 
+
+
+>>>>>>> 2062285cb7b92ddcb6dff37704128ee9e6d4c307
 
 

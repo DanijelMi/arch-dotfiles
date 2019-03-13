@@ -261,6 +261,9 @@ globalkeys = my_table.join(
               {description = "run browser", group = "launcher"}),
     awful.key({ modkey }, "a", function () awful.spawn(guieditor) end,
               {description = "run gui editor", group = "launcher"}),
+    awful.key({ modkey }, "e", function () awful.spawn(filebrowser) end,
+              {description = "run file browser", group = "launcher"}),
+
 
     -- Default
     --[[ Menubar

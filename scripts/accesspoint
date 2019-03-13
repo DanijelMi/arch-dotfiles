@@ -1,7 +1,0 @@
-#!/bin/bash
-package=create_ap
-if pacman -Qs $package > /dev/null ; then
-  create_ap $wl_if $eth_if Arch_DM devetosam09 &
-else
-  echo "The package $package is not installed, install it with your package manager"
-fi
