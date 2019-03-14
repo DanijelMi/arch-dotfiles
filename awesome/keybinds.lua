@@ -280,8 +280,7 @@ globalkeys = my_table.join(
     -- alternatively use rofi, a dmenu-like application with more features
     -- check https://github.com/DaveDavenport/rofi for more details
     awful.key({ modkey }, "r", function ()
-            os.execute(string.format("rofi -show run -theme dmenu -terminal st",
-            'run', 'dmenu'))
+            os.execute("rofi -show combi -terminal st")
         end,
         {description = "show rofi", group = "launcher"})
     --[[ Prompt
