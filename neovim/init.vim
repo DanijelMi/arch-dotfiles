@@ -6,6 +6,9 @@ Plug 'tpope/vim-sensible'
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 
+" Markdown (github) highligher
+Plug 'gabrielelana/vim-markdown'
+
 " Any valid git URL is allowed
 " Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
