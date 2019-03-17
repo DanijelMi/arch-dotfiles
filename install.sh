@@ -4,8 +4,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 declare -a dotpaths
 
 dotpaths=(
-"awesomec:~/.config/awesomea" 
-"neovim:~/.config/nvima" 
+"awesomea:~/.config/awesome" 
+"neovim:~/.config/nvim" 
 ".bashrc:~/.bashrc" 
 )
 
@@ -14,12 +14,16 @@ do
    paths_split=(${i//:/ })	# seperates each dotpath entry into an array seperated by :
 #   echo "ln -srf $PWD/${paths_split[0]} ${paths_split[1]}"
 	while true; do
+		# expand tildes into full paths
+		paths_split[1]="${paths_split[1]/#\~/$HOME}"
+#		echo ${paths_split[1]}
 		# Checks if the source file/directory exists
-		if [ ! -f $DIR/${paths_split[0]} ] && [ ! -d $DIR/${paths_split[0]} ]; then
+		if [ ! -e $DIR/${paths_split[0]} ]; then
 		    echo "Error: $DIR/${paths_split[0]} does not exist"
 		    break;
-		fi
-		if [ -f ${paths_split[1]} ]; then
+		# Check if target already exists
+		elif [ -e ${paths_split[1]} ]; 
+		then
 		    echo "Warning: ${paths_split[1]} already exists"
 		    break;
 		fi
@@ -27,7 +31,7 @@ do
 		case $yn in
 			[Yy]* ) echo "Yes!"; break;;
 			[Nn]* ) echo "No!"; break ;;
-			* ) echo "Please answer yes or no.";;
+			* ) echo "Invalid answer";;
 		esac
 	   sleep 1
 	done
