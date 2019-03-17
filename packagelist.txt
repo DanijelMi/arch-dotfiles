@@ -10,4 +10,5 @@ nnn
 networkmanager
 neovim
 pycharm
-
+transmission-qt
+transmission-cli
