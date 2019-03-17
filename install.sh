@@ -41,7 +41,7 @@ Do you want to overwrite/skip/overwrite with backup (y/N/b)? " yn
 					    break;;
 				    [Nn]* ) break;;
 				    [Bb]* ) cp -r ${paths_split[1]} ${paths_split[1]}-BACKUP;
-					    echo "Original file backed up as ${paths_split[1]} ${paths_split[1]}-BACKUP";
+					    echo "Original file backed up as ${paths_split[1]}-BACKUP";
 				    	    rm -rf ${paths_split[1]}; 
 					    ln -sf $DIR/${paths_split[0]} ${paths_split[1]}; 
 					    break;;
