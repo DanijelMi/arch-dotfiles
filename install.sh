@@ -6,14 +6,16 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 declare -a dotpaths
 
-#####    DEFINE YOUR SYMLINKS HERE #############
+#####  DEFINE YOUR SYMLINKS HERE  ############
 # FORMAT: "PATH_TO_REPO_CONFIG:PATH_IN_SYSTEM"
 dotpaths=(
-"awesome:~/.config/awesome1" 
-"neovim:~/.config/nvim" 
+"awesome:~/.config/awesome" 
+"neovim/init.vim:~/.config/nvim/init.vim" 
 ".bashrc:~/.bashrc" 
+".zshrc:~/.zshrc" 
+".zshrc:~/.zshrc" 
 )
-################################################
+########  END OF CONFIGURATION  ##############
 
 for i in "${dotpaths[@]}"
 do
