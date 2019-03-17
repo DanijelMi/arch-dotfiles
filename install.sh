@@ -13,6 +13,7 @@ dotpaths=(
 "neovim/init.vim:~/.config/nvim/init.vim" 
 ".bashrc:~/.bashrc" 
 ".zshrc:~/.zshrc" 
+"rofi/config.rasi:~/.config/rofi/config.rasi"
 )
 ########  END OF CONFIGURATION  ##############
 
