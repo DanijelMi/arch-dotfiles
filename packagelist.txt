@@ -12,3 +12,5 @@ neovim
 pycharm
 transmission-qt
 transmission-cli
+steam
+tmux
