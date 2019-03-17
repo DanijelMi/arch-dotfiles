@@ -14,3 +14,5 @@ transmission-qt
 transmission-cli
 steam
 tmux
+gparted
+smplayer
