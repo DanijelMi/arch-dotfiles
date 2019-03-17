@@ -9,10 +9,10 @@ declare -a dotpaths
 #####  DEFINE YOUR SYMLINKS HERE  ############
 # FORMAT: "PATH_TO_REPO_CONFIG:PATH_IN_SYSTEM"
 dotpaths=(
+"awesome:~/1/2/3/file"
 "awesome:~/.config/awesome" 
 "neovim/init.vim:~/.config/nvim/init.vim" 
 ".bashrc:~/.bashrc" 
-".zshrc:~/.zshrc" 
 ".zshrc:~/.zshrc" 
 )
 ########  END OF CONFIGURATION  ##############
@@ -53,7 +53,8 @@ Do you want to overwrite/skip/overwrite with backup (y/N/b)? " yn
 		read -p "Symlink \"$DIR/${paths_split[0]} into ${paths_split[1]}\"(Y/n)? " yn
 	    	if [ ${#yn} == 0 ] ; then yn="Y" ; fi # Sets the default option
 		case $yn in
-			[Yy]* ) ln -sf $DIR/${paths_split[0]} ${paths_split[1]}; break;;
+			[Yy]* ) mkdir -p `dirname ${paths_split[1]}`;
+				ln -sf $DIR/${paths_split[0]} ${paths_split[1]}; break;;
 			[Nn]* ) break;;
 			* ) echo "Invalid answer";;
 		esac
