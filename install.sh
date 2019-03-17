@@ -18,7 +18,6 @@ dotpaths=(
 for i in "${dotpaths[@]}"
 do
    paths_split=(${i//:/ })	# seperates each dotpath entry into an array seperated by :
-#   echo "ln -srf $PWD/${paths_split[0]} ${paths_split[1]}"
 	while true; do
 		# expand tildes into full paths
 		paths_split[1]="${paths_split[1]/#\~/$HOME}"
@@ -32,32 +31,30 @@ do
 		then
 		    while true; do
 			    read -p "${paths_split[1]} already exists!
-Do you want to overwrite/skip/overwrite with backup (y/n/B)? " yn
-			    if [ ${#yn} == 0 ] ; then yn="B" ; fi
+Do you want to overwrite/skip/overwrite with backup (y/N/b)? " yn
+			    if [ ${#yn} == 0 ] ; then yn="N" ; fi # Sets the default option
 			    case $yn in
-				    [Yy]* ) echo Overwrtie; break;;
-				    [Nn]* ) echo Skip; break;;
-				    [Bb]* ) echo Backup; break;;
+				    [Yy]* ) rm -rf ${paths_split[1]};
+					    ln -sf $DIR/${paths_split[0]} ${paths_split[1]};
+					    break;;
+				    [Nn]* ) break;;
+				    [Bb]* ) cp -r ${paths_split[1]} ${paths_split[1]}-BACKUP;
+					    echo "Original file backed up as ${paths_split[1]} ${paths_split[1]}-BACKUP";
+				    	    rm -rf ${paths_split[1]}; 
+					    ln -sf $DIR/${paths_split[0]} ${paths_split[1]}; 
+					    break;;
 				    * ) echo Invalid answer;;
 		    esac
 		    done
 		    break;
 		fi
 		read -p "Symlink \"$DIR/${paths_split[0]} into ${paths_split[1]}\"(Y/n)? " yn
-	    	if [ ${#yn} == 0 ] ; then yn="Y" ; fi
+	    	if [ ${#yn} == 0 ] ; then yn="Y" ; fi # Sets the default option
 		case $yn in
-			[Yy]* ) echo ln -srf $PWD/${paths_split[0]} ${paths_split[1]}; break;;
-			[Nn]* ) echo "No!"; break ;;
+			[Yy]* ) ln -sf $DIR/${paths_split[0]} ${paths_split[1]}; break;;
+			[Nn]* ) break;;
 			* ) echo "Invalid answer";;
 		esac
 	   sleep 1
 	done
 done
-#while true; do
-#    read -p "Do you wish to install this program?" yn
-#    case $yn in
-#        [Yy]* ) make install; break;;
-#        [Nn]* ) exit;;
-#        * ) echo "Please answer yes or no.";;
-#    esac
-#done
