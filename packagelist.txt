@@ -1,0 +1,13 @@
+base
+base-devel
+firefox
+rofi
+mpd
+ncmpcpp
+st
+ranger
+nnn
+networkmanager
+neovim
+pycharm
+

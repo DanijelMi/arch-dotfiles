@@ -9,7 +9,6 @@ declare -a dotpaths
 #####  DEFINE YOUR SYMLINKS HERE  ############
 # FORMAT: "PATH_TO_REPO_CONFIG:PATH_IN_SYSTEM"
 dotpaths=(
-"awesome:~/1/2/3/file"
 "awesome:~/.config/awesome" 
 "neovim/init.vim:~/.config/nvim/init.vim" 
 ".bashrc:~/.bashrc" 
