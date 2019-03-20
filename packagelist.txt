@@ -16,3 +16,4 @@ steam
 tmux
 gparted
 smplayer
+nm-connection-editor
