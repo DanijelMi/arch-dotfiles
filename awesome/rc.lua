@@ -11,7 +11,7 @@ ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table,
 
 gears         = require("gears")
 awful         = require("awful")
-                      require("awful.autofocus")
+	        require("awful.autofocus")
 wibox         = require("wibox")
 beautiful     = require("beautiful")
 naughty       = require("naughty")
@@ -85,6 +85,7 @@ browser      = "firefox"
 guieditor    = "gvim"
 filebrowser  = "st ranger"
 scrlocker    = "slock"
+pinger       = "st ping 1.1.1.1 -i 0.2"
 
 awful.util.terminal = terminal
 awful.layout.layouts = {

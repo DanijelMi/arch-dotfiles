@@ -263,6 +263,8 @@ globalkeys = my_table.join(
               {description = "run gui editor", group = "launcher"}),
     awful.key({ modkey }, "e", function () awful.spawn(filebrowser) end,
               {description = "run file browser", group = "launcher"}),
+    awful.key({ modkey }, "p", function () awful.spawn(pinger) end,
+              {description = "ping for connection", group = "launcher"}),
 
 
     awful.key({ modkey }, "r", function ()
