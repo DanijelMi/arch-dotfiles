@@ -4,19 +4,22 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" PUT ALL PLUGINS BETWEEN plug#begin AND plug#end
+" NAMES ARE 'AUTHOR/REPO_NAME' ON GITHUB REPO
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'junegunn/vim-easy-align'      " Shorthand notation
 Plug 'airblade/vim-gitgutter'       " Shows signs for line modifications if file is in a git repo
 Plug 'Yggdroot/indentLine'          " Visual indicator of line indent level
-Plug 'gabrielelana/vim-markdown'    " Markdown (github) highligher
-Plug 'google/vim-searchindex'       " Search pattern count
+Plug 'google/vim-searchindex'       " / Search pattern count
 Plug 'sjl/badwolf'                  " vim colorscheme
-Plug 'ctrlpvim/ctrlp.vim'           " fuzzy file and buffer finder
 Plug 'tomtom/tcomment_vim'          " comment line with gc
+Plug 'tpope/vim-surround'           " Surround words with symbols: cs"' ysiw} yss[
+" Plug 'junegunn/vim-easy-align'      " Shorthand notation
+" Plug 'gabrielelana/vim-markdown'    " Markdown (github) highligher
+" Plug 'ctrlpvim/ctrlp.vim'           " fuzzy file and buffer finder
+" Plug 'junegunn/goyo.vim'            " Clean, distraction-free non-code writing
     
 call plug#end()
-
 
 " GENERAL OPTIONS
 set backspace=indent,eol,start	" Backspace over indentation, line breaks, and insertion start
