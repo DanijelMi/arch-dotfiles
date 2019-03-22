@@ -17,3 +17,6 @@ tmux
 gparted
 smplayer
 xorg-xbacklight
+nm-connection-editor
+zathura
+zathura-pdf-mupdf

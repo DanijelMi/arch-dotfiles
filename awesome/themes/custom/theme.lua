@@ -178,7 +178,7 @@ theme.volume = lain.widget.alsa({
 
 -- Weather
 theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
+    city_id = 785756, -- openweathermap.org city id (785756 - Smederevo)
     settings = function()
         units = math.floor(weather_now["main"]["temp"])
         widget:set_markup(" " .. units .. " ")
