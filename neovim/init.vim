@@ -8,13 +8,15 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'junegunn/vim-easy-align'      " Shorthand notation
 Plug 'airblade/vim-gitgutter'       " Shows signs for line modifications if file is in a git repo
+Plug 'Yggdroot/indentLine'          " Visual indicator of line indent level
 Plug 'gabrielelana/vim-markdown'    " Markdown (github) highligher
 Plug 'google/vim-searchindex'       " Search pattern count
 Plug 'sjl/badwolf'                  " vim colorscheme
 Plug 'ctrlpvim/ctrlp.vim'           " fuzzy file and buffer finder
-Plug 'tomtom/tcomment_vim'          " comment line
-
+Plug 'tomtom/tcomment_vim'          " comment line with gc
+    
 call plug#end()
+
 
 " GENERAL OPTIONS
 set backspace=indent,eol,start	" Backspace over indentation, line breaks, and insertion start
@@ -77,9 +79,9 @@ set undofile                    " Maintain undo history of files between session
 set undodir=~/.cache/neovim     " Set directory where to store persistent undo information
 
 " FOLDING OPTIONS
+set nofoldenable	        " Disable initally folded file. zi to fold/unfold
 set foldmethod=indent   " Fold based on indentation levels
 set foldnestmax=3       " Only fold up to three nested levels
-set foldenable	        " Enable folding
 
 
 
