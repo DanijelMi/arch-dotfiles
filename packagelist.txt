@@ -17,3 +17,5 @@ tmux
 gparted
 smplayer
 nm-connection-editor
+zathura
+zathura-pdf-mupdf
