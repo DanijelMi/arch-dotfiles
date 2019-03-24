@@ -70,10 +70,10 @@ set smartcase           " Automatically switch search to case-sensitive when sea
 
 " FORCE TO LEARN VIM NAVIGATION
 set mouse=			    " disable mouse
-noremap <Up> <Nop>      " Disable up arrow key
-noremap <Down> <Nop>    " Disable down arrow key
-noremap <Left> <Nop>    " Disable left arrow key
-noremap <Right> <Nop>   " Disable right arrow key
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
 " DIRECTORY-RELATED OPTIONS
 set backupdir=~/.cache/neovim   " Backup file directory

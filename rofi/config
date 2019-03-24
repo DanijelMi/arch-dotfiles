@@ -1,17 +1,35 @@
-rofi.bw: 25
 rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi
 rofi.font: hack 14
 rofi.width: 60
 rofi.lines: 10
 rofi.columns: 3
-rofi.combi-modi: window,run,ssh
+rofi.modi: drun,window,ssh
+rofi.combi-modi: window,drun,ssh
+rofi.sidebar-mode: true
+rofi.auto-select: false
+rofi.location: 0
+rofi.yoffset: -200
+rofi.fixed-num-lines: false
+rofi.show-icons: true
+rofi.fake-transparency: true
+rofi.click-to-exit: true
+rofi.display-window: Switch 
+rofi.display-run: Run
+rofi.display-ssh: SSH
+rofi.display-drun: App
+rofi.display-combi: All
+rofi.combi-hide-mode-prefix: false
+rofi.filter: 
+rofi.drun-show-actions: true
+/*rofi.separator-style: "dash"*/
+/*rofi.dpi: -1*/
+/*rofi.threads: 0*/
+/*rofi.scroll-method: 0*/
+/*rofi.fake-background: "screenshot"*/
+/*rofi.max-history-size: 25*/
 
-/*rofi.location: 0*/
-/*rofi.padding: 5*/
-/*rofi.yoffset: 0*/
-/*rofi.xoffset: 0*/
-/*rofi.fixed-num-lines: true*/
-/*rofi.show-icons: false*/
+
+/*rofi.cycle: false*/
 /*rofi.terminal: "rofi-sensible-terminal"*/
 /*rofi.ssh-client: "ssh"*/
 /*rofi.ssh-command: "{terminal} -e {ssh-client} {host}"*/
@@ -22,53 +40,17 @@ rofi.combi-modi: window,run,ssh
 /*rofi.window-match-fields: "all"*/
 /*rofi.icon-theme: */
 /*rofi.drun-match-fields: "name,generic,exec,categories"*/
-/*rofi.drun-show-actions: false*/
 /*rofi.drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]"*/
 /*rofi.disable-history: false*/
 /*rofi.sort: false*/
 /*rofi.sorting-method: */
-/*rofi.case-sensitive: false*/
-/*rofi.cycle: true*/
-/*rofi.sidebar-mode: false*/
 /*rofi.eh: 1*/
-/*rofi.auto-select: false*/
 /*rofi.parse-hosts: false*/
 /*rofi.parse-known-hosts: true*/
-/*rofi.combi-modi: "window,run"*/
 /*rofi.matching: "normal"*/
 /*rofi.tokenize: true*/
-/*rofi.m: "-5"*/
-/*rofi.line-margin: 2*/
-/*rofi.line-padding: 1*/
-/*rofi.filter: */
-/*rofi.separator-style: "dash"*/
-/*rofi.hide-scrollbar: false*/
-/*rofi.fullscreen: false*/
-/*rofi.fake-transparency: false*/
-/*rofi.dpi: -1*/
-/*rofi.threads: 0*/
-/*rofi.scrollbar-width: 8*/
-/*rofi.scroll-method: 0*/
-/*rofi.fake-background: "screenshot"*/
-/*rofi.window-format: "{w}    {i}{c}   {t}"*/
-/*rofi.click-to-exit: true*/
-/*rofi.show-match: true*/
-/*rofi.theme: */
-/*rofi.color-normal: */
-/*rofi.color-urgent: */
-/*rofi.color-active: */
-/*rofi.color-window: */
-/*rofi.max-history-size: 25*/
-/*rofi.combi-hide-mode-prefix: false*/
 /*rofi.matching-negate-char: '-' /* unsupported */*/
-/*rofi.pid: "/run/user/1000/rofi.pid"*/
-/*rofi.display-window: */
-/*rofi.display-windowcd: */
-/*rofi.display-run: */
-/*rofi.display-ssh: */
-/*rofi.display-drun: */
-/*rofi.display-combi: */
-/*rofi.display-keys: */
+
 /*rofi.kb-primary-paste: "Control+V,Shift+Insert"*/
 /*rofi.kb-secondary-paste: "Control+v,Insert"*/
 /*rofi.kb-clear-line: "Control+w"*/
@@ -133,11 +115,3 @@ rofi.combi-modi: window,run,ssh
 /*rofi.kb-select-8: "Super+8"*/
 /*rofi.kb-select-9: "Super+9"*/
 /*rofi.kb-select-10: "Super+0"*/
-/*rofi.ml-row-left: "ScrollLeft"*/
-/*rofi.ml-row-right: "ScrollRight"*/
-/*rofi.ml-row-up: "ScrollUp"*/
-/*rofi.ml-row-down: "ScrollDown"*/
-/*rofi.me-select-entry: "MousePrimary"*/
-/*rofi.me-accept-entry: "MouseDPrimary"*/
-/*rofi.me-accept-custom: "Control+MouseDPrimary"*/
-/*rofi.modi: window,run,ssh*/

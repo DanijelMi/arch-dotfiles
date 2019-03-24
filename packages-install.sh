@@ -37,3 +37,5 @@ nm-connection-editor    # GUI for NetworkManager connections
 zathura             # Document reader
 zathura-pdf-mupdf   # Dependency for viewing PDFS, EPUBS, there are other alternatives
 samba       # For SMB client/server
+remmina     # Mainly for RDP
+freerdp     # Dependency for remmina
