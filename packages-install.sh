@@ -36,3 +36,4 @@ xorg-xbacklight     # Adds control of backlight
 nm-connection-editor    # GUI for NetworkManager connections
 zathura             # Document reader
 zathura-pdf-mupdf   # Dependency for viewing PDFS, EPUBS, there are other alternatives
+samba       # For SMB client/server
