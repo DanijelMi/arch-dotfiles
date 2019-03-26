@@ -40,3 +40,6 @@ samba       # For SMB client/server
 remmina     # Mainly for RDP
 freerdp     # Dependency for remmina
 tig         # TUI for git directories
+slock       # Add screen locking
+scrot       # CLI screenshot tool
+go          # For building go-lang based projects
