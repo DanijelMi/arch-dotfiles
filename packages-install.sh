@@ -39,3 +39,4 @@ zathura-pdf-mupdf   # Dependency for viewing PDFS, EPUBS, there are other altern
 samba       # For SMB client/server
 remmina     # Mainly for RDP
 freerdp     # Dependency for remmina
+tig         # TUI for git directories

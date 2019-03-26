@@ -1,25 +1,38 @@
+" Handcrafted config by Danijel Milosevic. I've spent too much time in here.
+" Auto-installs vim-plug for neovim
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
-
 " PUT ALL PLUGINS BETWEEN plug#begin AND plug#end
 " NAMES ARE 'AUTHOR/REPO_NAME' ON GITHUB REPO
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'sjl/badwolf'                  " vim colorscheme
 Plug 'airblade/vim-gitgutter'       " Shows signs for line modifications if file is in a git repo
 Plug 'Yggdroot/indentLine'          " Visual indicator of line indent level
 Plug 'google/vim-searchindex'       " / Search pattern count
-Plug 'sjl/badwolf'                  " vim colorscheme
+Plug 'jiangmiao/auto-pairs'         " Spawn pair of brackets, quotes, etc
 Plug 'tomtom/tcomment_vim'          " comment line with gc
 Plug 'tpope/vim-surround'           " Surround words with symbols: cs"' ysiw} yss[
+Plug 'vim-airline/vim-airline'      " Pretty, lightweight status line
+Plug 'vim-airline/vim-airline-themes'      " Themes for airline status line
+Plug 'ctrlpvim/ctrlp.vim'           " Fuzzy file/buffer finder
+Plug 'python-mode/python-mode', { 'branch': 'develop' } " Full python IDE
+Plug 'elzr/vim-json'                " JSON highlighting
 " Plug 'junegunn/vim-easy-align'      " Shorthand notation
 " Plug 'gabrielelana/vim-markdown'    " Markdown (github) highligher
 " Plug 'ctrlpvim/ctrlp.vim'           " fuzzy file and buffer finder
 " Plug 'junegunn/goyo.vim'            " Clean, distraction-free non-code writing
     
 call plug#end()
+"PLUG OPTIONS
+    let g:airline_theme='badwulf'    " Status line color scheme. :AirlineTheme <TAB>
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
+    let g:airline#extensions#tabline#formatter = 'default'
+
 
 " GENERAL OPTIONS
 set backspace=indent,eol,start	" Backspace over indentation, line breaks, and insertion start
@@ -31,8 +44,8 @@ map <F7> :checktime<CR> " Binds F7 to re-read file in case it changed. "autoread
 set confirm             " Display confirmation dialog when closing an unsaved file
 set formatoptions+=j    " Delete comment characters when joining lines
 set hidden              " Hides buffers instead of closing them. Enables having unwritten changes and also opening a new file without being forced to write or undo your changes first
-set history=500
-set undolevels=500
+set history=500         " How many commands are saved
+set undolevels=500      " How many undo steps are saved
 set complete=.,w,b,u,t  " Where to look for CTRL-P suggestion while in INSERT mode
 
 " VISUAL OPTIONS
@@ -86,7 +99,8 @@ set nofoldenable	        " Disable initally folded file. zi to fold/unfold
 set foldmethod=indent   " Fold based on indentation levels
 set foldnestmax=3       " Only fold up to three nested levels
 
-
-
-
-
+" FASTER WINDOW-SWITCHING
+map <C-H> <C-W>h
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
