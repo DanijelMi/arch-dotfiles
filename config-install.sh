@@ -14,6 +14,7 @@ dotpaths=(
 ".bashrc:~/.bashrc" 
 ".zshrc:~/.zshrc" 
 "rofi/config:~/.config/rofi/config"
+"scripts/glitch-lock.sh:/usr/local/bin/glitch-lock"
 )
 ########  END OF CONFIGURATION  ##############
 
