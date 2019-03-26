@@ -14,9 +14,23 @@ dotpaths=(
 ".bashrc:~/.bashrc" 
 ".zshrc:~/.zshrc" 
 "rofi/config:~/.config/rofi/config"
-"scripts/glitch-lock.sh:/usr/local/bin/glitch-lock"
+"scripts/glitch-lock.sh:~/.local/bin/glitch-lock"
 )
 ########  END OF CONFIGURATION  ##############
+
+# Check if the script is run as root. It is likely that the user does not want to do this
+if [[ $EUID -eq 0 ]]; then
+    while true; do
+        read -p "WARNING: are you sure you want to install these settings to the ROOT user? (y/N)" yn
+        if [ ${#yn} == 0 ] ; then yn="N" ; fi # Sets the default option
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) exit 0;;
+            * ) echo Invalid answer;;
+    esac
+    done
+    break;
+fi
 
 for i in "${dotpaths[@]}"
 do
