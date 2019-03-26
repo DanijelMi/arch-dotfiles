@@ -21,6 +21,7 @@ Plug 'vim-airline/vim-airline-themes'      " Themes for airline status line
 Plug 'ctrlpvim/ctrlp.vim'           " Fuzzy file/buffer finder
 Plug 'python-mode/python-mode', { 'branch': 'develop' } " Full python IDE
 Plug 'elzr/vim-json'                " JSON highlighting
+Plug 'tpope/vim-fugitive'           " Git controls inside vim
 " Plug 'junegunn/vim-easy-align'      " Shorthand notation
 " Plug 'gabrielelana/vim-markdown'    " Markdown (github) highligher
 " Plug 'ctrlpvim/ctrlp.vim'           " fuzzy file and buffer finder
