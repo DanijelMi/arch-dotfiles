@@ -84,7 +84,7 @@ editor       = os.getenv("EDITOR") or "nvim"
 browser      = "firefox"
 guieditor    = "gvim"
 filebrowser  = "st ranger"
-scrlocker    = "slock"
+scrlocker    = "glitch-lock"
 pinger       = "st ping 1.1.1.1 -i 0.2"
 
 awful.util.terminal = terminal

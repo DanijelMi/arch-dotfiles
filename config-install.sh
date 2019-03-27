@@ -14,7 +14,7 @@ dotpaths=(
 ".bashrc:~/.bashrc" 
 ".zshrc:~/.zshrc" 
 "rofi/config:~/.config/rofi/config"
-"scripts/glitch-lock.sh:~/.local/bin/glitch-lock"
+"scripts/glitch-lock.sh:/bin/glitch-lock"
 )
 ########  END OF CONFIGURATION  ##############
 
@@ -29,7 +29,6 @@ if [[ $EUID -eq 0 ]]; then
             * ) echo Invalid answer;;
     esac
     done
-    break;
 fi
 
 for i in "${dotpaths[@]}"
