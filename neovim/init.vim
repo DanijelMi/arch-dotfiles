@@ -19,7 +19,7 @@ Plug 'tpope/vim-surround'           " Surround words with symbols: cs"' ysiw} ys
 Plug 'vim-airline/vim-airline'      " Pretty, lightweight status line
 Plug 'vim-airline/vim-airline-themes'      " Themes for airline status line
 Plug 'ctrlpvim/ctrlp.vim'           " Fuzzy file/buffer finder
-Plug 'python-mode/python-mode', { 'branch': 'develop' } " Full python IDE
+Plug 'python-mode/python-mode', { 'branch': 'develop' ,'for': 'python' } " Full python IDE
 Plug 'elzr/vim-json'                " JSON highlighting
 Plug 'tpope/vim-fugitive'           " Git controls inside vim
 " Plug 'junegunn/vim-easy-align'      " Shorthand notation
@@ -29,10 +29,12 @@ Plug 'tpope/vim-fugitive'           " Git controls inside vim
     
 call plug#end()
 "PLUG OPTIONS
-    let g:airline_theme='badwulf'    " Status line color scheme. :AirlineTheme <TAB>
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
-    let g:airline#extensions#tabline#formatter = 'default'
+    let g:pymode_options = 1
+    let g:pymode_trim_whitespaces = 1
+"    let g:airline_theme='badwulf'    " Status line color scheme. :AirlineTheme <TAB>
+"    let g:airline#extensions#tabline#left_sep = ' '
+"    let g:airline#extensions#tabline#left_alt_sep = '|'
+"    let g:airline#extensions#tabline#formatter = 'default'
 
 
 " GENERAL OPTIONS
