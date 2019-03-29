@@ -18,13 +18,14 @@ exit 0
 base
 base-devel
 firefox
+networkmanager
+iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 mpd         # Music player daemon
 ncmpcpp     # MPD client
 st          # Suckless terminal
 ranger      # CLI file manager
 nnn         # ClI file manager
-networkmanager
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 transmission-qt     # Torrent Client
@@ -44,3 +45,8 @@ tig         # TUI for git directories
 slock       # Add screen locking
 scrot       # CLI screenshot tool
 go          # For building go-lang based projects
+ttf-hack        # font
+ttf-dejavu      # font
+ttf-droid       # font
+ttf-inconsolata # font
+ttf-liberation  # font

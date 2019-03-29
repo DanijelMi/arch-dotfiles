@@ -61,28 +61,13 @@ run_once("autocutsel -fork")	-- merges various X clipboards and syncs them into 
 run_once("autocutsel -selection PRIMARY -fork")		-- same as above, no clue how any of this works
 -- }}}
 
--- {{{ Variable definitions
-themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7
-    "rainbow",         -- 8
-    "steamburn",       -- 9
-    "vertex",          -- 10
-    "custom",          -- 11
-}
-
-chosen_theme = themes[11]
+chosen_theme = "custom"
 modkey       = "Mod4"
 altkey       = "Mod1"
 terminal     = "st"
 editor       = os.getenv("EDITOR") or "nvim"
 browser      = "firefox"
-guieditor    = "gvim"
+guieditor    = "code"
 filebrowser  = "st ranger"
 scrlocker    = "glitch-lock"
 pinger       = "st ping 1.1.1.1 -i 0.2"
