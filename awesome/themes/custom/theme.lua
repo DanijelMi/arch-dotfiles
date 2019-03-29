@@ -45,6 +45,21 @@ theme.layout_max                                = theme.dir .. "/icons/max.png"
 theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
 theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
+theme.widget_temp                               = theme.dir .. "/icons/temp.png"
+theme.widget_uptime                             = theme.dir .. "/icons/ac.png"
+theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
+theme.widget_weather                            = theme.dir .. "/icons/dish.png"
+theme.widget_fs                                 = theme.dir .. "/icons/fs.png"
+theme.widget_mem                                = theme.dir .. "/icons/mem.png"
+theme.widget_note                               = theme.dir .. "/icons/note.png"
+theme.widget_note_on                            = theme.dir .. "/icons/note_on.png"
+theme.widget_netdown                            = theme.dir .. "/icons/net_down.png"
+theme.widget_netup                              = theme.dir .. "/icons/net_up.png"
+theme.widget_mail                               = theme.dir .. "/icons/mail.png"
+theme.widget_batt                               = theme.dir .. "/icons/bat.png"
+theme.widget_clock                              = theme.dir .. "/icons/clock.png"
+theme.widget_vol                                = theme.dir .. "/icons/spkr.png"
+
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = 4
@@ -56,30 +71,8 @@ local separators = lain.util.separators
 local gray       = "#9E9C9A"
 
 -- Textclock
-local mytextclock = wibox.widget.textclock(" %H:%M ")
-mytextclock.font = theme.font
-
--- Mail IMAP check
---[[ commented because it needs to be set before use
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    notification_preset = { fg = white }
-    settings = function()
-        mail  = ""
-        count = ""
-
-        if mailcount > 0 then
-            mail = "Mail "
-            count = mailcount .. " "
-        end
-
-        widget:set_markup(markup.font(theme.font, markup(gray, mail) .. count))
-    end
-})
---]]
+local textclock = wibox.widget.textclock("%H:%M")
+textclock.font = theme.font
 
 -- MPD
 theme.mpd = lain.widget.mpd({
@@ -100,59 +93,35 @@ theme.mpd = lain.widget.mpd({
     end
 })
 
--- /home fs
---[[ commented because it needs Gio/Glib >= 2.54
-theme.fs = lain.widget.fs({
-    notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
-    settings  = function()
-        fs_header = ""
-        fs_p      = ""
-
-        if fs_now["/home"].percentage >= 90 then
-            fs_header = " Hdd "
-            fs_p      = fs_now["/home"].percentage
-        end
-
-        widget:set_markup(markup.font(theme.font, markup(gray, fs_header) .. fs_p))
+-- Coretemp
+local tempicon = wibox.widget.imagebox(theme.widget_temp)
+local temp = lain.widget.temp({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C"))
     end
 })
---]]
 
 -- Battery
+local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat = lain.widget.bat({
     settings = function()
-        bat_header = " B "
-        bat_p      = bat_now.perc .. " "
-        widget:set_markup(markup.font(theme.font, markup(gray, bat_header) .. bat_p))
+        bat_p      = bat_now.perc .. "%"
+        widget:set_markup(markup.font(theme.font, bat_p))
     end
 })
-
---[[ CPU
-local cpu_icon = wibox.widget.imagebox(theme.cpu)
-local cpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(space3 .. markup.font(theme.font, "CPU " .. cpu_now.usage
-                          .. "% ") .. markup.font("Roboto 5", " "))
-    end
-})
-local cpubg = wibox.container.background(cpu.widget, theme.bg_focus, gears.shape.rectangle)
-local cpuwidget = wibox.container.margin(cpubg, 0, 0, 5, 5)
---]]
 
 -- ALSA volume
+local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsa({
     --togglechannel = "IEC958,3",
     settings = function()
-        header = " Vol "
         vlevel  = volume_now.level
-
         if volume_now.status == "off" then
-            vlevel = vlevel .. "M "
+            vlevel = vlevel .. "M"
         else
-            vlevel = vlevel .. " "
+            vlevel = vlevel .. "   "
         end
-
-        widget:set_markup(markup.font(theme.font, markup(gray, header) .. vlevel))
+        widget:set_markup(markup.font(theme.font, vlevel))
     end
 })
 
@@ -161,7 +130,39 @@ theme.weather = lain.widget.weather({
     city_id = 785756, -- openweathermap.org city id (785756 - Smederevo)
     settings = function()
         units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(" " .. units .. " ")
+        widget:set_markup(markup.font(theme.font, units .. " "))
+    end
+})
+
+-- Memory Usage
+local memicon = wibox.widget.imagebox(theme.widget_mem)
+local memory = lain.widget.mem({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.perc))
+    end
+})
+
+-- CPU Usage
+local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+local cpu = lain.widget.cpu({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "%"))
+    end
+})
+
+-- Network download rate
+local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
+local netdown = lain.widget.net({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#19EC00", string.format("%.2f", net_now.received/1000) ))
+    end
+})
+
+-- Network upload rate
+local netupicon = wibox.widget.imagebox(theme.widget_netup)
+local netup = lain.widget.net({
+    settings = function()
+        widget:set_markup(markup.fontfg(theme.font, "#E33A6E", string.format("%.2f", net_now.sent/1000)))
     end
 })
 
@@ -220,8 +221,6 @@ function theme.at_screen_connect(s)
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { bg_normal = barcolor, bg_focus = barcolor })
 
-    ram_widget = require("ram")
---require("wifi")
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
@@ -237,17 +236,24 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
---            wifi_widget,
-            ram_widget,
-            theme.mpd.widget,
-            --cpu_icon,
-            --theme.mail.widget,
+            netdownicon,
+            netdown.widget,
+            netupicon,
+            netup.widget,
+            cpuicon,
+            cpu.widget,
+            memicon,
+            memory.widget,
+            tempicon,
+            temp.widget,
             theme.weather.icon,
             theme.weather.widget,
             --theme.fs.widget,
+            baticon,
             bat,
+            volicon,
             theme.volume.widget,
-            mytextclock,
+            textclock,
         },
     }
 end

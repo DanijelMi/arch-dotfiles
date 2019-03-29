@@ -50,3 +50,4 @@ ttf-dejavu      # font
 ttf-droid       # font
 ttf-inconsolata # font
 ttf-liberation  # font
+stress          # very lightweight cpu stresstesting tool
