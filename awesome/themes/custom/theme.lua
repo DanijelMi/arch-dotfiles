@@ -162,7 +162,7 @@ local netdown = lain.widget.net({
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netup = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#E33A6E", string.format("%.2f", net_now.sent/1000)))
+        widget:set_markup(markup.fontfg(theme.font, "#22A7F9", string.format("%.2f", net_now.sent/1000)))
     end
 })
 
