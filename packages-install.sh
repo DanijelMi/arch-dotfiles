@@ -24,7 +24,11 @@ rofi        # Program launcher, switcher, replacement to dmenu
 mpd         # Music player daemon
 ncmpcpp     # MPD client
 st          # Suckless terminal
+awesome     # Window manager
 ranger      # CLI file manager
+poppler     # ranger pdf previews
+atool       # Universal archive extraction/preview in ranger
+w3m         # Image preview within ranger
 nnn         # ClI file manager
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
@@ -52,3 +56,7 @@ ttf-droid       # font
 ttf-inconsolata # font
 ttf-liberation  # font
 stress          # very lightweight cpu stresstesting tool
+code            # Visual Studio Code
+sxiv            # Suckless image viewer
+libinput        # touchpad support
+xorg-xinput     # change touchpad settings during runtime
