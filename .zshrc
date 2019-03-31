@@ -4,7 +4,7 @@
 # Path to your oh-my-zsh installation.
   export ZSH="/home/danijel/.oh-my-zsh"
 
-export PATH="$PATH:/home/danijel/.local/bin:/usr/local/bin:/bin:/bin"
+export PATH="$PATH:/home/danijel/.local/bin:/usr/local/bin:/bin"
 # Prevent background processes being killed along with the shell
 setopt NO_HUP
 

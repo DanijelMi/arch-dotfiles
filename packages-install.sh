@@ -5,7 +5,8 @@
 # Then remove all lines starting with #
 # Then remove everything after # in each line, along with spaces before it
 # Then remove all spaces before the end of the line
-
+# TODO: add support for AUR packages via yay
+# yay -S corrupter-git --noconfirm --needed
 sed -n '/^#*LIST PACKAGES FROM HERE ONWARDS.*$/,$p' $(realpath $0) | \
     sed -e "/^#/d" \
     -e "s/ *#.*//" \
@@ -17,13 +18,14 @@ exit 0
 base
 base-devel
 firefox
+networkmanager
+iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 mpd         # Music player daemon
 ncmpcpp     # MPD client
 st          # Suckless terminal
 ranger      # CLI file manager
 nnn         # ClI file manager
-networkmanager
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 transmission-qt     # Torrent Client
@@ -40,3 +42,13 @@ samba       # For SMB client/server
 remmina     # Mainly for RDP
 freerdp     # Dependency for remmina
 yay         # AUR package installer
+tig         # TUI for git directories
+slock       # Add screen locking
+scrot       # CLI screenshot tool
+go          # For building go-lang based projects
+ttf-hack        # font
+ttf-dejavu      # font
+ttf-droid       # font
+ttf-inconsolata # font
+ttf-liberation  # font
+stress          # very lightweight cpu stresstesting tool
