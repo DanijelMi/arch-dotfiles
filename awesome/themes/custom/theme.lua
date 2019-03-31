@@ -154,7 +154,7 @@ local cpu = lain.widget.cpu({
 local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdown = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#19EC00", string.format("%.2f", net_now.received/1000) ))
+        widget:set_markup(markup.fontfg(theme.font, "#19EC00", string.format("%.2f", net_now.received) ))
     end
 })
 
@@ -162,7 +162,7 @@ local netdown = lain.widget.net({
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netup = lain.widget.net({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#22A7F9", string.format("%.2f", net_now.sent/1000)))
+        widget:set_markup(markup.fontfg(theme.font, "#22A7F9", string.format("%.2f", net_now.sent)))
     end
 })
 
