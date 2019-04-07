@@ -1,7 +1,8 @@
-# Personal linux rice
-Add proper md docs
+# Dotfiles that make my environment, mine
+## Disclaimer
+As with most configs, this one has many, slightly modified, stolen bits and pieces of configurations that I picked across the web  
 
-
-
-To-fix:
-run_once init fail
+TODO:  
+run_once init fail  
+make this a proper doc  
+fasd  
