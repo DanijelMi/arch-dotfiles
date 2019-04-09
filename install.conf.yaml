@@ -1,0 +1,19 @@
+- defaults:
+    link:
+        relink: true
+
+- clean: ['~']
+
+- link:
+    #~/.dotfiles: ''
+    ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/rofi/config:  rofi/config
+    ~/.config/awesome:  awesome
+    ~/.bashrc: .bashrc
+    ~/.zshrc: .zshrc
+    /bin/glitch-lock: scripts/glitch-lock.sh
+    #~/.vim: vim
+    #~/.vimrc: vimrc
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
