@@ -71,15 +71,16 @@ guieditor    = "code"
 filebrowser  = "st ranger"
 scrlocker    = "glitch-lock"
 pinger       = "st ping 1.1.1.1 -i 0.2"
+screenshotter = "scrot ~/Pictures/%Y-%m-%d-%T.png -s -z"
 
 awful.util.terminal = terminal
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    --awful.layout.suit.tile.left,
     awful.layout.suit.tile.top,
     lain.layout.centerwork,
     awful.layout.suit.fair,
-    awful.layout.suit.spiral,
+    --awful.layout.suit.spiral,
 }
 
 awful.util.taglist_buttons = my_table.join(

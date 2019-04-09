@@ -7,11 +7,12 @@
 # Then remove all spaces before the end of the line
 # TODO: add support for AUR packages via yay
 # yay -S corrupter-git --noconfirm --needed
+pacman -Sy  # Update mirrors
 sed -n '/^#*LIST PACKAGES FROM HERE ONWARDS.*$/,$p' $(realpath $0) | \
     sed -e "/^#/d" \
     -e "s/ *#.*//" \
     -e "s/ *$//"| \
-    sudo pacman -S --needed - 
+    sudo pacman -S --needed --noconfirm - 
 exit 0
 
 ##LIST PACKAGES FROM HERE ONWARDS

@@ -195,3 +195,5 @@ map <C-H> <C-W>h
 map <C-J> <C-W>j
 map <C-K> <C-W>k
 map <C-L> <C-W>l
+
+cmap w!! w !sudo tee % >/dev/null   " escalate to sudo and write
