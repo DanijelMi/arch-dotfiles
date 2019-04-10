@@ -16,3 +16,4 @@ TODO:
  - [ ] find the most lightweight functioning graphical browser
  - [ ] tmux
  - [ ] Dotbot
+ - [ ] Compton
