@@ -1,0 +1,112 @@
+# You can edit this file by hand, but it's recommended not to do that.
+
+# Marks:
+'H
+	/home/danijel/
+	..
+1554302395
+'b
+	/home/danijel/bin/
+	..
+1554302395
+'h
+	/home/danijel/
+	..
+1554302395
+'z
+	/home/danijel/.config/vifm
+	..
+1554302395
+
+# Bookmarks:
+
+# TUI:
+al
+q0
+v2
+ov
+m-1
+l2
+r2
+
+# Left window history (oldest to newest):
+d/home/danijel
+	Documents
+3
+d/home/danijel/Documents
+	..
+0
+d/home/danijel
+	Documents
+3
+d/home
+	..
+0
+d/
+	etc
+3
+d/etc
+	..
+0
+d/
+	home
+4
+d/home
+	..
+0
+d/
+	home
+4
+d/home
+	danijel
+1
+d/home/danijel
+	..
+0
+d/home
+	danijel
+1
+d/home/danijel
+	Documents
+3
+d/home/danijel/.mozilla/firefox/9a32zkpj.default
+	storage
+12
+d/home/danijel/.mozilla/firefox/9a32zkpj.default/storage
+	temporary
+3
+d
+
+# Right window history (oldest to newest):
+D/home/danijel
+	..
+0
+D
+
+# Command line history (oldest to newest):
+:colorscheme Default
+:colorscheme dane
+:q
+
+# Search history (oldest to newest):
+
+# Prompt history (oldest to newest):
+
+# Local filter history (oldest to newest):
+
+# Registers:
+
+# Directory stack (oldest to newest):
+
+# Trash content:
+
+# State:
+f
+i1
+[.1
+[F
+F
+I1
+].1
+]F
+s0
