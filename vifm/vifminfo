@@ -6,13 +6,13 @@
 	..
 1554302395
 'b
-	/home/danijel/bin/
+	/home/dane/bin/
 	..
-1554302395
+1555347971
 'h
-	/home/danijel/
+	/home/dane/
 	..
-1554302395
+1555347971
 'z
 	/home/danijel/.config/vifm
 	..
@@ -30,6 +30,36 @@ l2
 r2
 
 # Left window history (oldest to newest):
+d/home/dane/arch-dotfiles
+	cmus
+2
+d/home/dane/.config
+	neovim
+13
+d/home/dane/.config/neovim
+	..
+0
+d/home/dane/.config
+	awesome
+2
+d/home/dane/.config/awesome
+	..
+0
+d/home/dane/.config
+	awesome
+2
+d/home/dane/.config/awesome
+	..
+0
+d/home/dane/.config
+	awesome
+2
+d/home/dane/Downloads
+	BIOS-ROMS
+1
+d/home/dane/arch-dotfiles
+	dotbot
+3
 d/home/danijel
 	Documents
 3
@@ -75,30 +105,56 @@ d/home/danijel/.mozilla/firefox/9a32zkpj.default
 d/home/danijel/.mozilla/firefox/9a32zkpj.default/storage
 	temporary
 3
+d/home
+	dane
+1
+d/home/dane
+	Desktop
+1
+d/home/dane/Desktop
+	Black Mirror (Channel 4)
+1
 d
 
 # Right window history (oldest to newest):
 D/home/danijel
 	..
 0
+D/home
+	..
+0
 D
 
 # Command line history (oldest to newest):
+:set nohlsearch
+:set hlsearch
+:vimhelp
+:set vimhelp
+:h smartcase
+:h ignorecase
 :colorscheme Default
 :colorscheme dane
 :q
+:h
 
 # Search history (oldest to newest):
+/conf
+/BIOS
 
 # Prompt history (oldest to newest):
 
 # Local filter history (oldest to newest):
 
 # Registers:
+""/home/dane/.local/share/vifm/Trash/000_delete2
 
 # Directory stack (oldest to newest):
 
 # Trash content:
+t/home/dane/.local/share/vifm/Trash/000_DELETE
+	/home/dane/Desktop/DELETE
+t/home/dane/.local/share/vifm/Trash/000_delete2
+	/home/dane/Desktop/delete2
 
 # State:
 f

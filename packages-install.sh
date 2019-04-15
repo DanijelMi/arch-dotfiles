@@ -27,6 +27,7 @@ ncmpcpp     # MPD client
 st          # Suckless terminal
 awesome     # Window manager
 ranger      # CLI file manager
+vifm        # Ranger alternative
 poppler     # ranger pdf previews
 atool       # Universal archive extraction/preview in ranger
 w3m         # Image preview within ranger
