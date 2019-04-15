@@ -1,5 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"   # Path to your oh-my-zsh installation.
-export PATH="$PATH:/home/danijel/.local/bin:/usr/local/bin:/bin"
+export PATH="$PATH:$HOME/.local/bin:/usr/local/bin:/bin"
 setopt NO_HUP   # Prevent background processes being killed along with the shell
 
 ZSH_THEME="clean"   # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes

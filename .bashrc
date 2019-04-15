@@ -34,7 +34,7 @@ ex ()
   fi
 }
 
-export PATH="$PATH:/home/danijel/.local/bin:/usr/local/bin"
+export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

@@ -62,3 +62,5 @@ sxiv            # Suckless image viewer
 libinput        # touchpad support
 xorg-xinput     # change touchpad settings during runtime
 fzf             # Fuzzy file finder
+i3lock
+
