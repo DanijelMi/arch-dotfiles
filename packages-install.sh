@@ -61,3 +61,6 @@ sxiv            # Suckless image viewer
 libinput        # touchpad support
 xorg-xinput     # change touchpad settings during runtime
 fzf             # Fuzzy file finder
+mps-youtube     # CLI youtube player
+python          # Python3
+ipython         # Interactive python shell, good as calculator
