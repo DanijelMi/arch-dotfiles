@@ -1,7 +1,8 @@
 " vim: filetype=vifm :
 
 colorscheme dane
-set vicmd=$EDITOR   " use $EDITOR instead of default(vim)
+" set vicmd=$EDITOR   " use $EDITOR instead of default(vim)
+set vicmd=nvim
 set syscalls    " Make vifm use it's own file-handling functions
 set trash   " Deletes move to ~/.local/share/vifm/Trash
 set history=100     " num of directories to store in the directory history.
@@ -32,7 +33,7 @@ set wildstyle=popup
 " registers (at most 5 files).  In other view, when available.
 
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
-set incsearch   " Display search results while typing"
+set incsearch   " Display search results while typing
 set scrolloff=4 " Space between selection and edge
 
 " Don't do too many requests to slow file systems

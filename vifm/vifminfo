@@ -6,13 +6,13 @@
 	..
 1554302395
 'b
-	/home/dane/bin/
+	/home/danijel/bin/
 	..
-1555347971
+1555490170
 'h
-	/home/dane/
+	/home/danijel/
 	..
-1555347971
+1555490170
 'z
 	/home/danijel/.config/vifm
 	..
@@ -30,123 +30,34 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/home/dane/arch-dotfiles
-	cmus
-2
-d/home/dane/.config
-	neovim
-13
-d/home/dane/.config/neovim
-	..
-0
-d/home/dane/.config
-	awesome
-2
-d/home/dane/.config/awesome
-	..
-0
-d/home/dane/.config
-	awesome
-2
-d/home/dane/.config/awesome
-	..
-0
-d/home/dane/.config
-	awesome
-2
-d/home/dane/Downloads
-	BIOS-ROMS
-1
-d/home/dane/arch-dotfiles
-	dotbot
-3
-d/home/danijel
-	Documents
-3
-d/home/danijel/Documents
-	..
-0
-d/home/danijel
-	Documents
-3
-d/home
-	..
-0
-d/
-	etc
-3
-d/etc
-	..
-0
-d/
-	home
-4
-d/home
-	..
-0
-d/
-	home
-4
-d/home
-	danijel
-1
 d/home/danijel
 	..
 0
-d/home
-	danijel
-1
-d/home/danijel
-	Documents
-3
-d/home/danijel/.mozilla/firefox/9a32zkpj.default
-	storage
-12
-d/home/danijel/.mozilla/firefox/9a32zkpj.default/storage
-	temporary
-3
-d/home
-	dane
-1
-d/home/dane
-	Desktop
-1
-d/home/dane/Desktop
-	Black Mirror (Channel 4)
-1
 d
 
 # Right window history (oldest to newest):
 D/home/danijel
 	..
 0
-D/home
-	..
-0
 D
 
 # Command line history (oldest to newest):
-:set nohlsearch
-:set hlsearch
-:vimhelp
-:set vimhelp
 :h smartcase
-:h ignorecase
-:colorscheme Default
-:colorscheme dane
+:set EDITOR
+:set EDITOR nvim
+:echo $USER
+:echo $editor
 :q
+:echo $EDITOR
 :h
 
 # Search history (oldest to newest):
-/conf
-/BIOS
 
 # Prompt history (oldest to newest):
 
 # Local filter history (oldest to newest):
 
 # Registers:
-""/home/dane/.local/share/vifm/Trash/000_delete2
 
 # Directory stack (oldest to newest):
 

@@ -63,6 +63,7 @@ run_once("autocutsel -selection PRIMARY -fork")		-- same as above, no clue how a
 
 chosen_theme = "custom"
 modkey       = "Mod4"
+shell        = "zsh"
 altkey       = "Mod1"
 terminal     = "st"
 editor       = os.getenv("EDITOR") or "nvim"

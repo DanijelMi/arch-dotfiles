@@ -1,3 +1,6 @@
+export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
+export EDITOR=nvim
+
 shopt -s autocd     # Allows you to cd into directory merely by typing the directory name.
 shopt -s expand_aliases # Makes you see what aliases actually do
 shopt -s checkwinsize   # rechecks window size after each executed command
@@ -33,8 +36,6 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
-export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
