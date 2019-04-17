@@ -32,6 +32,7 @@ poppler     # ranger pdf previews
 atool       # Universal archive extraction/preview in ranger
 w3m         # Image preview within ranger
 nnn         # ClI file manager
+vim         # non-negotionable
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 transmission-qt     # Torrent Client
@@ -67,3 +68,4 @@ i3lock
 mps-youtube     # CLI youtube player
 python          # Python3
 ipython         # Interactive python shell, good as calculator
+python-pip      # PIP, nuff said

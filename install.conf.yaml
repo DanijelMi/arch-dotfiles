@@ -7,6 +7,7 @@
 - link:
     #~/.dotfiles: ''
     ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/vifm: vifm
     ~/.config/rofi/config:  rofi/config
     ~/.config/awesome:  awesome
     ~/.bashrc: .bashrc
