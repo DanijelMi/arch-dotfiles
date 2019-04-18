@@ -6,129 +6,44 @@
 	..
 1554302395
 'b
-	/home/danijel/bin/
+	/home/dane/bin/
 	..
-1555490170
+1555605824
 'h
-	/home/danijel/
+	/home/dane/
 	..
-1555490170
-'z
-	/home/danijel/.config/vifm
-	..
-1554302395
+1555605824
 
 # Bookmarks:
 
 # TUI:
 al
-q1
-v2
+q0
+v1
 ov
 m-1
 l2
 r2
 
 # Left window history (oldest to newest):
-d/home
-	danijel
-1
-d/
-	home
-4
-d/home/danijel/Personal/OS
-	..
-0
-d/home/danijel/Personal/OS/kali-linux-2019-1a-amd64-iso
-	..
-0
-d/home/danijel
-	Personal
-6
-d/home/danijel/Personal
-	voidrice
-4
-d/home/danijel
-	Downloads
-4
-d/home/danijel/Downloads
-	Faks
-1
-d/home/danijel
-	Pictures
-7
-d/home/danijel/Pictures
-	..
-0
-d/home/danijel
-	VirtualBox VMs
-11
-d/home/danijel/VirtualBox VMs
-	..
-0
-d/home/danijel
-	Work
-12
-d/home/danijel/Work
-	IBM Resilient
-2
-d/home/danijel/Work/IBM Resilient
-	resilient-client-lookup
-12
-d/home/danijel/Work/IBM Resilient/resilient-client-lookup
-	screenshots
-4
-d/home/danijel/Work/IBM Resilient/resilient-client-lookup/screenshots
-	manual-rule.png
-2
-d/home/danijel/Work/IBM Resilient/resilient-client-lookup
-	screenshots
-4
-d/home/danijel/Work/IBM Resilient/resilient-client-lookup/screenshots
-	automatic-rule.png
-1
-d/home/danijel/Work/IBM Resilient/resilient-client-lookup
-	screenshots
-4
-d/home/danijel/Work/IBM Resilient
-	csv-reader
-10
-d/home/danijel/Work
-	IBM Resilient
-2
-d/home/danijel
-	Downloads
-4
-d/home/danijel/Downloads
-	alienvault-usm
-2
-d/home/danijel/Downloads/alienvault-usm
-	AV install
-1
-d/home/danijel/Downloads
-	DevNullSmtp.jar
-8
+d/home/dane/arch-dotfiles
+	neovim
+5
+d/home/dane
+	battery-widget
+5
+d/home/dane/battery-widget
+	battery-widget.lua
+3
 d
 
 # Right window history (oldest to newest):
-D/home/danijel
+D/home/dane/arch-dotfiles
 	..
 0
 D
 
 # Command line history (oldest to newest):
-:h smartcase
-:set EDITOR
-:set EDITOR nvim
-:echo $USER
-:echo $editor
-:q
-:echo $EDITOR
-:h
-:view
-:set viewcolum
-:h viewcolumns
-:cd
 
 # Search history (oldest to newest):
 
