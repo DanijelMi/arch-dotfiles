@@ -108,6 +108,10 @@ command! reload :write | restart
 filextype *.pdf zathura %c %i &, apvlv %c, xpdf %c
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
+" Images
+fileviewer *.png,*.jpeg,*.jpg
+    \ img2txt %c
+
 " PostScript
 filextype *.ps,*.eps,*.ps.gz
         \ {View in zathura}

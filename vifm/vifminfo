@@ -22,7 +22,7 @@
 
 # TUI:
 al
-q0
+q1
 v2
 ov
 m-1
@@ -30,9 +30,84 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/home/danijel
+d/home
+	danijel
+1
+d/
+	home
+4
+d/home/danijel/Personal/OS
 	..
 0
+d/home/danijel/Personal/OS/kali-linux-2019-1a-amd64-iso
+	..
+0
+d/home/danijel
+	Personal
+6
+d/home/danijel/Personal
+	voidrice
+4
+d/home/danijel
+	Downloads
+4
+d/home/danijel/Downloads
+	Faks
+1
+d/home/danijel
+	Pictures
+7
+d/home/danijel/Pictures
+	..
+0
+d/home/danijel
+	VirtualBox VMs
+11
+d/home/danijel/VirtualBox VMs
+	..
+0
+d/home/danijel
+	Work
+12
+d/home/danijel/Work
+	IBM Resilient
+2
+d/home/danijel/Work/IBM Resilient
+	resilient-client-lookup
+12
+d/home/danijel/Work/IBM Resilient/resilient-client-lookup
+	screenshots
+4
+d/home/danijel/Work/IBM Resilient/resilient-client-lookup/screenshots
+	manual-rule.png
+2
+d/home/danijel/Work/IBM Resilient/resilient-client-lookup
+	screenshots
+4
+d/home/danijel/Work/IBM Resilient/resilient-client-lookup/screenshots
+	automatic-rule.png
+1
+d/home/danijel/Work/IBM Resilient/resilient-client-lookup
+	screenshots
+4
+d/home/danijel/Work/IBM Resilient
+	csv-reader
+10
+d/home/danijel/Work
+	IBM Resilient
+2
+d/home/danijel
+	Downloads
+4
+d/home/danijel/Downloads
+	alienvault-usm
+2
+d/home/danijel/Downloads/alienvault-usm
+	AV install
+1
+d/home/danijel/Downloads
+	DevNullSmtp.jar
+8
 d
 
 # Right window history (oldest to newest):
@@ -50,6 +125,10 @@ D
 :q
 :echo $EDITOR
 :h
+:view
+:set viewcolum
+:h viewcolumns
+:cd
 
 # Search history (oldest to newest):
 
