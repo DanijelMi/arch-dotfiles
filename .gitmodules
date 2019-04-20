@@ -3,4 +3,4 @@
   url = https://github.com/anishathalye/dotbot
 [submodule "shell/zimfw"]
 	path = shell/zimfw
-	url = https://github.com/zimfw/zimfw
+	url = https://github.com/zimfw/zimfw.git

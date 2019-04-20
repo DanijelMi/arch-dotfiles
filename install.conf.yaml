@@ -19,7 +19,7 @@
     ~/.zprofile: shell/zprofile
     ~/.Xresources: shell/Xresources
    # ~/.xinitrc: shell/xinitrc
-    ~/.local/bin/: bin
+   # ~/.local/bin/: bin
     ~/.config/user-dirs.dirs: user-dirs.dirs
     ~/.config/sxiv: sxiv
     #~/.vim: vim
