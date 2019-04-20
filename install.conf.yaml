@@ -1,6 +1,8 @@
 - defaults:
     link:
-        relink: true
+      force: true
+      relink: true
+      create: true
 
 - clean: ['~']
 
@@ -10,9 +12,16 @@
     ~/.config/vifm: vifm
     ~/.config/rofi/config:  rofi/config
     ~/.config/awesome:  awesome
-    ~/.bashrc: .bashrc
-    ~/.zshrc: .zshrc
+    ~/.config/zathura/zathurarc: zathurarc
+
+    ~/.bashrc: shell/.bashrc
+    ~/.zshrc: shell/.zshrc
+    ~/.zprofile: shell/zprofile
+    ~/.Xresources: shell/Xresources
+   # ~/.xinitrc: shell/xinitrc
     ~/.local/bin/: bin
+    ~/.config/user-dirs.dirs: user-dirs.dirs
+    ~/.config/sxiv: sxiv
     #~/.vim: vim
     #~/.vimrc: vimrc
 

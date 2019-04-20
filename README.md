@@ -17,3 +17,14 @@ TODO:
  - [ ] tmux
  - [ ] Dotbot
  - [ ] Compton
+
+### Applications
+
+**Window Manager**: AwesomeWM  
+**Screen Locker**: i3lock   
+**Launcher**: Rofi
+**Web Browser**: Firefox  
+**Development Environment**: VSCode  
+**Document Viewer**: Zathura  
+**File Manager**: Vifm  
+**Text Editor**: Neovim  
