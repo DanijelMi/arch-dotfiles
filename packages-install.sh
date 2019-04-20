@@ -69,3 +69,5 @@ mps-youtube     # CLI youtube player
 python          # Python3
 ipython         # Interactive python shell, good as calculator
 python-pip      # PIP, nuff said
+openssh         # SSH server/client
+sshfs           # Mount remote ssh directories

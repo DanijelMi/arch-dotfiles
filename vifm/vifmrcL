@@ -15,6 +15,7 @@ set smartcase
 set nohlsearch
 set incsearch
 set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+" CHECKPOINT
 colorscheme luke
 
 map <C-h> <C-w>h

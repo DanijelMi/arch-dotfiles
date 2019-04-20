@@ -6,50 +6,44 @@
 	..
 1554302395
 'b
-	/home/danijel/bin/
+	/home/dane/bin/
 	..
-1555490170
+1555605824
 'h
-	/home/danijel/
+	/home/dane/
 	..
-1555490170
-'z
-	/home/danijel/.config/vifm
-	..
-1554302395
+1555605824
 
 # Bookmarks:
 
 # TUI:
 al
 q0
-v2
+v1
 ov
 m-1
 l2
 r2
 
 # Left window history (oldest to newest):
-d/home/danijel
-	..
-0
+d/home/dane/arch-dotfiles
+	neovim
+5
+d/home/dane
+	battery-widget
+5
+d/home/dane/battery-widget
+	battery-widget.lua
+3
 d
 
 # Right window history (oldest to newest):
-D/home/danijel
+D/home/dane/arch-dotfiles
 	..
 0
 D
 
 # Command line history (oldest to newest):
-:h smartcase
-:set EDITOR
-:set EDITOR nvim
-:echo $USER
-:echo $editor
-:q
-:echo $EDITOR
-:h
 
 # Search history (oldest to newest):
 

@@ -12,7 +12,7 @@
     ~/.config/awesome:  awesome
     ~/.bashrc: .bashrc
     ~/.zshrc: .zshrc
-    ~/.local/bin/glitch-lock: scripts/glitch-lock.sh
+    ~/.local/bin/: bin
     #~/.vim: vim
     #~/.vimrc: vimrc
 
