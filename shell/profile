@@ -20,7 +20,7 @@ export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Change default zim location
 export PATH="$PATH:\
 $HOME/.local/bin:\
 $HOME/bin:\
-$HOME/custom-bin:\
+$HOME/.scripts:\
 /usr/local/bin:\
 /bin"
 

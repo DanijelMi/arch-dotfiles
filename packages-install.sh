@@ -26,12 +26,10 @@ mpd         # Music player daemon
 ncmpcpp     # MPD client
 st          # Suckless terminal
 awesome     # Window manager
-ranger      # CLI file manager
 vifm        # Ranger alternative
-poppler     # ranger pdf previews
+poppler     # pdf previews
 atool       # Universal archive extraction/preview in ranger
 w3m         # Image preview within ranger
-nnn         # ClI file manager
 vim         # non-negotionable
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
@@ -49,8 +47,7 @@ samba       # For SMB client/server
 remmina     # Mainly for RDP
 freerdp     # Dependency for remmina
 yay         # AUR package installer
-tig         # TUI for git directories
-slock       # Add screen locking
+tig         # TUI git
 scrot       # CLI screenshot tool
 go          # For building go-lang based projects
 ttf-hack        # font
@@ -61,13 +58,13 @@ ttf-liberation  # font
 stress          # very lightweight cpu stresstesting tool
 code            # Visual Studio Code
 sxiv            # Suckless image viewer
-libinput        # touchpad support
+libinput        # Input configuration
 xorg-xinput     # change touchpad settings during runtime
 fzf             # Fuzzy file finder
-i3lock
+i3lock          # Screen locker
 mps-youtube     # CLI youtube player
 python          # Python3
 ipython         # Interactive python shell, good as calculator
-python-pip      # PIP, nuff said
+python-pip      # Python package manager
 openssh         # SSH server/client
 sshfs           # Mount remote ssh directories

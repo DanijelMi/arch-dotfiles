@@ -7,11 +7,12 @@
 - clean: ['~']
 
 - link:
-    ~/.config/nvim/init.vim: neovim/init.vim
+    ~/.config/nvim/init.vim: init.vim
     ~/.config/vifm: vifm
     ~/.config/rofi/config:  rofi/config
     ~/.config/awesome:  awesome
     ~/.config/zathura/zathurarc: zathurarc
+    ~/.config/sxiv: sxiv
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
@@ -20,9 +21,8 @@
     ~/.Xresources: shell/Xresources
     ~/.xinitrc: shell/xinitrc
     
-   # ~/.local/bin/: bin
+    ~/.scripts: scripts
     ~/.config/user-dirs.dirs: user-dirs.dirs
-    ~/.config/sxiv: sxiv
     #~/.vim: vim
     #~/.vimrc: vimrc
 
