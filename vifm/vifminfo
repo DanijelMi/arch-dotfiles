@@ -18,8 +18,8 @@
 
 # TUI:
 al
-q0
-v1
+q1
+v2
 ov
 m-1
 l2
@@ -35,6 +35,87 @@ d/home/dane
 d/home/dane/battery-widget
 	battery-widget.lua
 3
+d/home/dane
+	Downloads
+5
+d/home/dane/Downloads
+	..
+0
+d/home/dane
+	arch-dotfiles
+12
+d/home/dane/arch-dotfiles
+	neovim
+5
+d/home/dane
+	dotfiles
+18
+d/home/dane/dotfiles
+	.git
+1
+d/home/dane
+	Videos
+10
+d/home
+	dane
+1
+d/
+	etc
+3
+d/etc
+	X11
+3
+d/etc/X11
+	..
+0
+d/etc
+	X11
+3
+d/etc/X11
+	xorg.conf.d
+3
+d/etc/X11/xorg.conf.d
+	00-keyboard.conf
+1
+d/etc/X11
+	xinit
+2
+d/etc/X11/xinit
+	..
+0
+d/etc/X11
+	xorg.conf.d
+3
+d/etc/X11/xorg.conf.d
+	90-mhwd.conf
+3
+d/etc/X11
+	mhwd.d
+1
+d/etc/X11/mhwd.d
+	intel.conf
+1
+d/etc/X11
+	xinit
+2
+d/etc/X11/xinit
+	xinitrc.d
+1
+d/etc/X11/xinit/xinitrc.d
+	50-systemd-user.sh
+2
+d/etc/X11/xinit
+	xinitrc
+2
+d/etc/X11
+	xorg.conf.d
+3
+d/etc/X11/xorg.conf.d
+	00-keyboard.conf
+1
+d/etc/X11
+	xorg.conf-bkp
+5
 d
 
 # Right window history (oldest to newest):
@@ -44,8 +125,13 @@ D/home/dane/arch-dotfiles
 D
 
 # Command line history (oldest to newest):
+:rename
+:vieq
+:view
+:q
 
 # Search history (oldest to newest):
+/.xpro
 
 # Prompt history (oldest to newest):
 

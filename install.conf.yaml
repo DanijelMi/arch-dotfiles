@@ -7,7 +7,6 @@
 - clean: ['~']
 
 - link:
-    #~/.dotfiles: ''
     ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/vifm: vifm
     ~/.config/rofi/config:  rofi/config
@@ -16,9 +15,11 @@
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
-    ~/.zprofile: shell/zprofile
+    ~/.zimrc: shell/zimrc
+    ~/.profile: shell/profile
     ~/.Xresources: shell/Xresources
-   # ~/.xinitrc: shell/xinitrc
+    ~/.xinitrc: shell/xinitrc
+    
    # ~/.local/bin/: bin
     ~/.config/user-dirs.dirs: user-dirs.dirs
     ~/.config/sxiv: sxiv

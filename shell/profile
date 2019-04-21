@@ -1,0 +1,40 @@
+#!/usr/bin/zsh
+
+####### EXPORTS ###########
+export EDITOR='nvim'
+export VISUAL='nvim'
+export PAGER='less'
+
+export TERMINAL=/usr/bin/lxterminal
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export XDG_CURRENT_DESKTOP=XFCE
+export XDG_CONFIG_DIRS=/etc/xdg
+
+export SSH_KEY_PATH="~/.ssh/rsa_id" # ssh
+export LANG=en_US.UTF-8 # You may need to manually set your language environment
+export MANPATH="$MANPATH:/usr/local/man"
+export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Change default zim location
+# export ARCHFLAGS="-arch x86_64"   # Compilation flags
+
+export PATH="$PATH:\
+$HOME/.local/bin:\
+$HOME/bin:\
+$HOME/custom-bin:\
+/usr/local/bin:\
+/bin"
+
+######## ALIASES ###########
+alias ll='ls -l --color=auto --group-directories-first'
+alias ls='ls -hN --color=auto --group-directories-first'
+alias grep="grep --color=auto" # Color grep - highlight desired sequence.
+alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
+
+
+# Need to understand this..
+#typeset -gU cdpath fpath mailpath path
+
+#if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  #exec startx
+#fi
+

@@ -1,19 +1,10 @@
-export PATH="$PATH:$HOME/.local/bin:/usr/local/bin"
-export EDITOR=nvim
-
 shopt -s autocd     # Allows you to cd into directory merely by typing the directory name.
 shopt -s expand_aliases # Makes you see what aliases actually do
 shopt -s checkwinsize   # rechecks window size after each executed command
 shopt -s extglob    # Extended globbing, allowing inverse globs
 complete -cf sudo   # Autocomplete now works with sudo
-HISTSIZE= HISTFILESIZE= # Infinite history.
+HISTSIZE=1000
 
-alias ls='ls -hN --color=auto --group-directories-first'
-alias ll='ls -l --color=auto --group-directories-first'
-alias grep="grep --color=auto" # Color grep - highlight desired sequence.
-alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
-
-# # ex - archive extractor
 # # usage: ex <file>
 ex ()
 {
@@ -36,6 +27,5 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
