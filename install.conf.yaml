@@ -7,7 +7,7 @@
 - clean: ['~']
 
 - link:
-    ~/.config/nvim/init.vim: init.vim
+    ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/vifm: vifm
     ~/.config/rofi/config:  rofi/config
     ~/.config/awesome:  awesome
