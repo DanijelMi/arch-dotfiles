@@ -26,6 +26,8 @@ mpd         # Music player daemon
 ncmpcpp     # MPD client
 st          # Suckless terminal
 awesome     # Window manager
+lightdm     # Display/login manager
+lightdm-slick-greeter	# Graphical style for lightdm
 vifm        # Ranger alternative
 poppler     # pdf previews
 atool       # Universal archive extraction/preview in ranger
