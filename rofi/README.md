@@ -1,2 +1,5 @@
-Scripts utilizing the  tool.   
-Install rofi from a package manager or build it from source.
+# Rofi
+
+## Application Launcher/switcher, SSH shortcut
+
+Scripts utilizing the rofi gui for various functions, linked to `~/.scripts`.  
