@@ -4,7 +4,7 @@
 
 ### Using `slick-greeter` greeter for the graphical menu.  
 
-Arch packages: `lightdm`, `slick-greeter`  
+Arch packages: `lightdm`, `slick-greeter`, `moka-icon-theme`, `adapta-maia-theme`
 Destination directory: `/etc/lightdm/`  
 Login background wallpaper: `/usr/share/backgrounds/main.jpg`  
 
