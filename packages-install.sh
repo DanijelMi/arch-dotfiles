@@ -28,6 +28,8 @@ st          # Suckless terminal
 awesome     # Window manager
 lightdm     # Display/login manager
 lightdm-slick-greeter	# Graphical style for lightdm
+moka-icon-theme     # For slick-greeter
+adapta-maia-theme   # For slick-greeter
 vifm        # Ranger alternative
 poppler     # pdf previews
 atool       # Universal archive extraction/preview in ranger
@@ -70,3 +72,4 @@ ipython         # Interactive python shell, good as calculator
 python-pip      # Python package manager
 openssh         # SSH server/client
 sshfs           # Mount remote ssh directories
+android-file-transfer   # Android MTP mount with FUSE wrapper

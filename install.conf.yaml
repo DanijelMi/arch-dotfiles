@@ -21,7 +21,7 @@
     ~/.Xresources: shell/Xresources
     ~/.xinitrc: shell/xinitrc
     
-    ~/.scripts: scripts
+    ~/.scripts/glitch-lock: scripts/glitch-lock.sh
     ~/.config/user-dirs.dirs: user-dirs.dirs
     #~/.vim: vim
     #~/.vimrc: vimrc
