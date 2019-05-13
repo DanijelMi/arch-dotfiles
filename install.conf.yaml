@@ -18,6 +18,8 @@
     ~/.zshrc: shell/.zshrc
     ~/.zimrc: shell/zimrc
     ~/.profile: shell/profile
+    ~/.zprofile: shell/profile
+    ~/.bash_profile: shell/profile
     ~/.Xresources: shell/Xresources
     ~/.xinitrc: shell/xinitrc
     

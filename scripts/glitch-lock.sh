@@ -4,7 +4,7 @@
 # corrupter: https://github.com/r00tman/corrupter
 
 # Place to temporarily store the lockscreen image
-TMP_BG="/tmp/screen.png"
+TMP_BG="/tmp/lockscreen.png"
 
 # Check dependencies
 DEPENDENCIES=(

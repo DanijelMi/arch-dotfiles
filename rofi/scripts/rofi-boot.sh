@@ -1,56 +1,66 @@
 #!/usr/bin/env bash
 # Author: Danijel Milosevic
-# Dependencies: Rofi
 # Initial menu command 
-SCRIPT="rofi -dmenu -i -p Power Options -width 10 -lines 5"
-# Parameters to be displayed
-OPTIONS="Lock\nShutdown\nReboot\nSuspend\nHibernate"
-# Menu called on confirmation
-CONFIRMSCRIPT="rofi -dmenu -i -p Confirm -width 8 -lines 2"
-# Parameters to be displayed on confirmation
-CONFIRMOPTIONS="Yes\nNo"
-# If an additional argument is called with the script, append an extra option in the menu
-if [ ${#1} -gt 0 ]; then
-    OPTIONS="Exit WM\n$OPTIONS"
-fi
-# Call of the initial menu 
-SELECTION=`echo -e $OPTIONS | $SCRIPT | awk '{print $1}'`
-# If selected option is not null
-if [ ${#SELECTION} -gt 0 ]
-then
-    if [ $SELECTION = "Shutdown" ] || [ $SELECTION = "Reboot" ]
-    then
-        CONFIRMSELECTION=`echo -e $CONFIRMOPTIONS | $CONFIRMSCRIPT | awk '{print $1}'`
-        if [ $CONFIRMSELECTION = "Yes" ]
-        then
-            case $SELECTION in
-                Shutdown)
-                    systemctl poweroff
-                    ;;
-                Reboot)
-                    systemctl reboot
-                    ;;
-                *)
-                    ;;
-            esac
-        fi
+
+LOCK_CMD="glitch-lock"  # This is a custom lock screen script
+SHUTDOWN_CMD="systemctl poweroff"
+REBOOT_CMD="systemctl reboot"
+SUSPEND_CMD="systemctl suspend"
+HIBERNATE_CMD="systemctl hibernate"
+
+confirm_prompt() {
+    CONFIRM_SCRIPT="rofi -dmenu -i -p Confirm -width 13 -lines 1 -columns -2"
+    CONFIRM_OPTIONS="Yes\nNo"
+    CONFIRM_SELECTION=`echo -e $CONFIRM_OPTIONS | $CONFIRM_SCRIPT | awk '{print $1}'`
+    if [ "$CONFIRM_SELECTION" == "Yes" ]; then
+        return 0
     else
-        case $SELECTION  in
-            # The custom case that evals the additional argument as a command on its own
-            Exit)
-                eval $1
-                ;;
-            Lock)
-                loginctl lock-session
-                ;;
-            Suspend)
-                systemctl suspend
-                ;;
-            Hibernate)
-                systemctl hibernate
-                ;;
-            *)
-                ;;
-        esac
+        return 1
     fi
+}
+MAIN_OPTIONS=(      # List and format all menu options
+      Lock
+      Shutdown
+      Reboot
+      Suspend
+      Hibernate
+      )
+for i in "${MAIN_OPTIONS[@]}"; do
+    WORD+=$i\\n
+done
+MAIN_OPTIONS=${WORD::-2} # trim last \n
+unset WORD
+MAIN_GUI="rofi -dmenu -i -p Power Options -width 14 -lines ${#MAIN_OPTIONS[@]} -columns 1"
+
+# Check dependencies
+DEPENDENCIES=(
+      rofi
+      )
+for i in "${DEPENDENCIES[@]}"; do
+   which $i &> /dev/null || printf "$i was not found on your system.\n"
+done
+
+# Call of the initial menu 
+MAIN_SELECTION=`echo -e $MAIN_OPTIONS | $MAIN_GUI # | awk '{print $1}'`
+if [ ${#MAIN_SELECTION} -gt 0 ] # non-null selection
+then
+    case $MAIN_SELECTION in
+        Shutdown)
+            confirm_prompt && $SHUTDOWN_CMD
+            ;;
+        Reboot)
+            confirm_prompt && $REBOOT_CMD
+            ;;
+        Lock)
+            $LOCK_CMD
+            ;;
+        Suspend)
+            $SUSPEND_CMD
+            ;;
+        Hibernate)
+            confirm_prompt && $HIBERNATE_CMD
+            ;;
+        *)
+            ;;
+        esac
 fi
