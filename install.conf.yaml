@@ -23,7 +23,12 @@
     ~/.Xresources: shell/Xresources
     ~/.xinitrc: shell/xinitrc
     
+    # CUSTOM SCRIPTS
     ~/.scripts/glitch-lock: scripts/glitch-lock.sh
+    ~/.scripts/rofi-select: rofi/scripts/rofi-select.sh
+    ~/.scripts/rofi-wireguard: rofi/scripts/rofi-wireguard.sh
+    ~/.scripts/rofi-boot: rofi/scripts/rofi-boot.sh
+
     ~/.config/user-dirs.dirs: user-dirs.dirs
     #~/.vim: vim
     #~/.vimrc: vimrc

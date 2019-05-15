@@ -7,11 +7,7 @@
 TMP_BG="/tmp/lockscreen.png"
 
 # Check dependencies
-DEPENDENCIES=(
-      scrot
-      i3lock
-      corrupter
-      )
+DEPENDENCIES=(scrot i3lock corrupter)
 for i in "${DEPENDENCIES[@]}"; do
    which $i &> /dev/null || printf "$i was not found on your system.\n"
 done

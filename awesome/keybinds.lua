@@ -265,6 +265,10 @@ globalkeys = my_table.join(
               {description = "ping for connection", group = "launcher"}),
 
 
+    awful.key({ modkey }, "z", function ()
+            os.execute("rofi-select")
+        end,
+        {description = "show rofi", group = "launcher"}),
     awful.key({ modkey }, "r", function ()
             os.execute("rofi -show combi -terminal st")
         end,

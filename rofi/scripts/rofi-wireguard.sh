@@ -6,8 +6,6 @@
 [ -z "$EDITOR" ] && EDITOR=vi   
 
 CONFIG_PATH="/etc/wireguard/*.conf"
-howmany() { echo $#; }
-howmanyNL() { echo $(howmany ${1//\\n/ }); }
 
 # Executes a privileged command and requests authentication if needed
 authenticate(){
@@ -52,7 +50,7 @@ if [ ${#SELECTION} -gt 0 ]; then
             do
                 AP="$(basename -- $f)\n$AP"
             done
-        CONFIG_SELECTION=`echo -e ${AP%??} | rofi -dmenu -i -lines $(howmanyNL $AP) -p "Config File"`
+        CONFIG_SELECTION=`echo -e ${AP%??} | rofi -dmenu -i -lines ${#AP[@]} -p "Config File"`
             if [ ${#CONFIG_SELECTION} -gt 0 ]; then
                 authenticate $EDITOR $(dirname $CONFIG_PATH)/$CONFIG_SELECTION
             fi

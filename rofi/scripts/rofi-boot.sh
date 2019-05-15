@@ -28,9 +28,7 @@ unset WORD
 MAIN_GUI="rofi -dmenu -i -p Power Options -width 14 -lines ${#MAIN_OPTIONS[@]} -columns 1"
 
 # Check dependencies
-DEPENDENCIES=(
-      rofi
-      )
+DEPENDENCIES=(rofi)
 for i in "${DEPENDENCIES[@]}"; do
    which $i &> /dev/null || printf "$i was not found on your system.\n"
 done
