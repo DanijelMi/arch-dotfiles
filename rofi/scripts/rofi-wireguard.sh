@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 # Author: Danijel Milosevic
 # Dependencies: Rofi
-EDITOR=vim
+
+# Set vi as editor if no editor is set
+[ -z "$EDITOR" ] && EDITOR=vi   
+
 CONFIG_PATH="/etc/wireguard/*.conf"
 howmany() { echo $#; }
 howmanyNL() { echo $(howmany ${1//\\n/ }); }
+
+# Executes a privileged command and requests authentication if needed
 authenticate(){
     # If user is root or sudo still remembers password
     if [  $(echo $EUID) -eq 0 ] || sudo -n true 2>/dev/null; then
@@ -16,15 +21,20 @@ authenticate(){
         fi
     fi
 }
+# Checks if wireguard is on/off
 WG_STATUS=$(ip addr | grep wg0 | awk '{print$1}')
 if [ ${#WG_STATUS} -gt 0 ]; then
     WG_STATUS="Active"
-    OPTIONS="Deactivate\nRestart\nConfigure"
+    OPTIONS=(Deactivate Restart Configure)
 else
     WG_STATUS="Inactive"
-    OPTIONS="Activate\nConfigure"
+    OPTIONS=(Activate Configure)
 fi
-SCRIPT="rofi -dmenu -i -p $WG_STATUS -width 20 -lines $(howmanyNL $OPTIONS)"
+for i in "${OPTIONS[@]}"; do
+    WORD+=$i\\n
+done
+OPTIONS=${WORD::-2} # trim last \n
+SCRIPT="rofi -dmenu -i -p $WG_STATUS -width 20 -lines ${#OPTIONS[@]}"
 # Parameters to be displayed
 SELECTION=`echo -e $OPTIONS | $SCRIPT | awk '{print$1}'`
 

@@ -18,13 +18,8 @@ confirm_prompt() {
         return 1
     fi
 }
-MAIN_OPTIONS=(      # List and format all menu options
-      Lock
-      Shutdown
-      Reboot
-      Suspend
-      Hibernate
-      )
+# List and format all menu options
+MAIN_OPTIONS=(Lock Shutdown Reboot Suspend Hibernate)
 for i in "${MAIN_OPTIONS[@]}"; do
     WORD+=$i\\n
 done
@@ -42,8 +37,7 @@ done
 
 # Call of the initial menu 
 MAIN_SELECTION=`echo -e $MAIN_OPTIONS | $MAIN_GUI # | awk '{print $1}'`
-if [ ${#MAIN_SELECTION} -gt 0 ] # non-null selection
-then
+if [ ${#MAIN_SELECTION} -gt 0 ]; then # non-null selection
     case $MAIN_SELECTION in
         Shutdown)
             confirm_prompt && $SHUTDOWN_CMD
