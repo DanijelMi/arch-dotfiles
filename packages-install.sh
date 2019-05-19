@@ -48,6 +48,7 @@ xorg-xbacklight     # Adds control of backlight
 nm-connection-editor    # GUI for NetworkManager connections
 zathura             # Document reader
 zathura-pdf-mupdf   # Dependency for viewing PDFS, EPUBS, there are other alternatives
+nfs-utils   # For NFS mounting
 samba       # For SMB client/server
 remmina     # Mainly for RDP
 freerdp     # Dependency for remmina
@@ -73,4 +74,6 @@ ipython         # Interactive python shell, good as calculator
 python-pip      # Python package manager
 openssh         # SSH server/client
 sshfs           # Mount remote ssh directories
+fuse            # Mount filesystems in userspace
 android-file-transfer   # Android MTP mount with FUSE wrapper
+rsync      # Beautiful tool.

@@ -160,10 +160,6 @@ globalkeys = my_table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Dropdown application
-    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end,
-              {description = "dropdown application", group = "launcher"}),
-
     -- Widgets popups
     awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end,
               {description = "show filesystem", group = "widgets"}),
@@ -265,10 +261,9 @@ globalkeys = my_table.join(
               {description = "ping for connection", group = "launcher"}),
 
 
-    awful.key({ modkey }, "z", function ()
-            os.execute("rofi-select")
-        end,
+     awful.key({ modkey }, "z", function () os.execute("rofi-select") end,
         {description = "show rofi", group = "launcher"}),
+
     awful.key({ modkey }, "r", function ()
             os.execute("rofi -show combi -terminal st")
         end,
