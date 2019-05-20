@@ -5,23 +5,25 @@
 # Set vi as editor if no editor is set
 [ -z "$EDITOR" ] && EDITOR=vi   
 
+# Where the wireguard connection parameters are stored
 CONFIG_PATH="/etc/wireguard/*.conf"
 
 # Executes a privileged command and requests authentication if needed
 authenticate(){
-    # If user is root or sudo still remembers password
-    if [  $(echo $EUID) -eq 0 ] || sudo -n true 2>/dev/null; then
+    # Is the process owner root? Or is sudo already typed in?
+    if [ $(id -u) = 0 ] || sudo -n true 2>/dev/null ; then
         sudo "$@"
-    else
-        PASSWD=$(rofi -dmenu -i -password -p "Requires Privileges" -width 30 -lines 0)
+    else    # Get password from rofi for sudo
+        PASSWD=$(rofi -dmenu -i -async-pre-read 0 -password -p "Requires Privileges" -width 30 -lines 0)
         if [ ${#PASSWD} -gt 0 ]; then
             echo $PASSWD | sudo -S "$@"
+            unset PASSWD    # """Security"""
         fi
     fi
 }
 # Checks if wireguard is on/off
 WG_STATUS=$(ip addr | grep wg0 | awk '{print$1}')
-if [ ${#WG_STATUS} -gt 0 ]; then
+if [ ${#WG_STATUS} -gt 0 ]; then    # If entry found
     WG_STATUS="Active"
     OPTIONS=(Deactivate Restart Configure)
 else
@@ -29,13 +31,13 @@ else
     OPTIONS=(Activate Configure)
 fi
 for i in "${OPTIONS[@]}"; do
-    WORD+=$i\\n
+    OPTIONS_FORMATTED+=$i\\n
 done
-OPTIONS=${WORD::-2} # trim last \n
+OPTIONS=${OPTIONS_FORMATTED::-2} # trim last \n
 SCRIPT="rofi -dmenu -i -p $WG_STATUS -width 20 -lines ${#OPTIONS[@]}"
-# Parameters to be displayed
-SELECTION=`echo -e $OPTIONS | $SCRIPT | awk '{print$1}'`
 
+# Display main menu
+SELECTION=`echo -e $OPTIONS | $SCRIPT | awk '{print$1}'`
 if [ ${#SELECTION} -gt 0 ]; then
     case $SELECTION in
         Activate)
@@ -45,9 +47,9 @@ if [ ${#SELECTION} -gt 0 ]; then
             authenticate wg-quick down wg0
             ;;
         Configure)
+            # List and format all files from $CONFIG_PATH
             FILE=`authenticate bash -c "ls $CONFIG_PATH"`
-            for f in $FILE
-            do
+            for f in $FILE; do
                 AP="$(basename -- $f)\n$AP"
             done
         CONFIG_SELECTION=`echo -e ${AP%??} | rofi -dmenu -i -lines ${#AP[@]} -p "Config File"`
