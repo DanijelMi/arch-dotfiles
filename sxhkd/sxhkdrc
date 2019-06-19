@@ -33,6 +33,25 @@ super + i
 
 # Open custom script menu
 super + z 
+ rofi-select
+
+# Restart keybind 
+control alt k
+ pkill -SIGUSR1 sxhkd
+
+# Chain test
+alt x ; {h,j}
+ notify-send {"HH","JJ"}
+
+# Open communication apps
+alt c ; {w,l,f}
+ firefox --new-window {https://web.whatsapp.com,\
+ https://www.linkedin.com/,\
+ https://www.facebook.com}
+
+# Open Gmail
+alt m ; {1,2,3}
+ firefox --new-window https://mail.google.com/mail/u/{0,1,2}
 
 ### SYS MODS ###
 # Brightness
@@ -41,9 +60,9 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
  xbacklight -dec 25 -time 0
 
+### Lockscreen
 XF86ScreenSaver
  glitch-lock
- 
 
 # Volume
 XF86AudioRaiseVolume

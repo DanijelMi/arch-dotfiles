@@ -47,6 +47,9 @@ do
 end
 -- }}}
 
+-- autostart script
+awful.spawn.with_shell("~/.config/awesome/autorun.sh")
+
 -- {{{ Autostart windowless processes
 
 -- This function will run once every time Awesome is started

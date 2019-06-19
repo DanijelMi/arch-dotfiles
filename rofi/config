@@ -3,7 +3,7 @@ rofi.font: hack 14
 rofi.width: 60
 rofi.lines: 10
 rofi.columns: 3
-rofi.modi: drun,window,ssh
+rofi.modi: drun,window,ssh,combi
 rofi.combi-modi: window,drun,ssh
 rofi.sidebar-mode: true
 rofi.auto-select: false

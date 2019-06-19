@@ -139,7 +139,7 @@ globalkeys = my_table.join(
     awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1, nil, true)    end,
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
-              {description = "decrease the number of columns", group = "layout"}),
+              {description = "decrease the number of corumns", group = "layout"}),
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
@@ -206,8 +206,8 @@ globalkeys = my_table.join(
     awful.key({ modkey }, "v", function () awful.spawn.with_shell("xsel -b | xsel") end,
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
-     awful.key({ modkey }, "z", function () os.execute("rofi -show combi") end,
-        {description = "show rofi", group = "launcher"}),
+      awful.key({ modkey }, "z", function () os.execute("rofi -show combi") end,
+         {description = "show rofi", group = "launcher"}),
 
     -- Add LUA code execution for runtime testing
     awful.key({ modkey }, "x",
@@ -261,7 +261,7 @@ clientkeys = my_table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     -- Hack to only show tags 1 and 9 in the shortcut window (mod+s)
-    local descr_view, descr_toggle, descr_move, descr_toggle_focus
+    local descr_view, descr_toggle, descr_move, descrotoggle_focus
     if i == 1 or i == 9 then
         descr_view = {description = "view tag #", group = "tag"}
         descr_toggle = {description = "toggle tag #", group = "tag"}
