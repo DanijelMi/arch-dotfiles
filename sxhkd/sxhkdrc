@@ -1,0 +1,54 @@
+### OPEN PROGRAM ###
+# Open rofi
+super + r
+ rofi -show combi
+
+# Open firefox
+super + q
+ firefox
+
+# Open vscode
+super + a
+ code
+
+# Open file browser
+super + e
+ st vifm
+
+# Open pinger
+super + p
+ st ping 1.1.1.1 -i 0.2
+ 
+# Screen locker
+control + alt + l
+ glitch-lock
+
+# Open terminal
+super Return
+ st
+
+# Open Screenshot tool
+super + i
+ flameshot gui
+
+# Open custom script menu
+super + z 
+
+### SYS MODS ###
+# Brightness
+XF86MonBrightnessUp
+ xbacklight -inc 25 -time 0
+XF86MonBrightnessDown
+ xbacklight -dec 25 -time 0
+
+XF86ScreenSaver
+ glitch-lock
+ 
+
+# Volume
+XF86AudioRaiseVolume
+ amixer -q set Master 20%+ unmute
+XF86AudioLowerVolume
+ amixer -q set Master 20%- unmute
+XF86AudioMute
+ amixer -q set Master toggle

@@ -13,6 +13,7 @@
     ~/.config/awesome:  awesome
     ~/.config/zathura/zathurarc: zathurarc
     ~/.config/sxiv: sxiv
+    ~/.config/sxhkd: sxhkd
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
@@ -28,6 +29,7 @@
     ~/.scripts/rofi-select: rofi/scripts/rofi-select.sh
     ~/.scripts/rofi-wireguard: rofi/scripts/rofi-wireguard.sh
     ~/.scripts/rofi-boot: rofi/scripts/rofi-boot.sh
+    ~/.scripts/rofi-smb: rofi/scripts/rofi-smb.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
     #~/.vim: vim

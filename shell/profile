@@ -31,6 +31,10 @@ alias grep="grep --color=auto" # Color grep - highlight desired sequence.
 alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
 alias crp="rsync --recursive --progress --size-only --inplace --verbose" # A better cp
 
+######## FUNCTIONS #########
+halp(){curl cheat.sh/$1;}
+
+sxhkd & # Start hotkey daemon
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path
