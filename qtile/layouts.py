@@ -2,8 +2,21 @@ from libqtile import layout
 import solarized
 
 layouts = [
-    layout.Max(),
-    layout.MonadTall(border_focus=solarized.base02),
+    # layout.Max(),
+    # layout.MonadTall(border_focus=solarized.base02),
+    # layout.Floating(),
+    layout.Bsp(fair=False),
+    # layout.Columns(),
+    # layout.Matrix(),
+    layout.MonadWide(),
+    # layout.RatioTile(),
+    # layout.Slice(),
+    # layout.Stack(),
+    # layout.Tile(),
+    # layout.TreeTab(),
+    layout.VerticalTile(),
+    #layout.Wmii(),
+    layout.Zoomy(margin=5)
 ]
 
 floating_layout = layout.Floating(

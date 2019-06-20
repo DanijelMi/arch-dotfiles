@@ -66,8 +66,8 @@ XF86ScreenSaver
 
 # Volume
 XF86AudioRaiseVolume
- amixer -q set Master 20%+ unmute
+ amixer -q set Master 10%+ unmute
 XF86AudioLowerVolume
- amixer -q set Master 20%- unmute
+ amixer -q set Master 10%- unmute
 XF86AudioMute
  amixer -q set Master toggle
