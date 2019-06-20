@@ -24,11 +24,11 @@ control + alt + l
  glitch-lock
 
 # Open terminal
-super Return
+super + Return
  st
 
 # Open Screenshot tool
-super + i
+super + Insert
  flameshot gui
 
 # Open custom script menu
@@ -44,7 +44,7 @@ alt x ; {h,j}
  notify-send {"HH","JJ"}
 
 # Open communication apps
-alt c ; {w,l,f}
+super c ; {w,l,f}
  firefox --new-window {https://web.whatsapp.com,\
  https://www.linkedin.com/,\
  https://www.facebook.com}

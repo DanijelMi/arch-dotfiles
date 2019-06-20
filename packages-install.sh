@@ -76,4 +76,10 @@ openssh         # SSH server/client
 sshfs           # Mount remote ssh directories
 fuse            # Mount filesystems in userspace
 android-file-transfer   # Android MTP mount with FUSE wrapper
-rsync      # Beautiful tool.
+rsync           # Beautiful tool.
+rclone          # For online storage services
+dunst           # Notification server
+qtile           # Experimental
+nitrogen        # wallpaper setter
+xorg-xev        # See keybinds for sxhkd
+sxhkd           # Hotkey daemon

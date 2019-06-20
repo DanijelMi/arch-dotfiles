@@ -1,0 +1,57 @@
+#! /usr/bin/env bash
+# Scans the devices on the 
+
+NET_IF=wlp3s0       # On which network interface should I scan
+PORT=18739          # Port of the SSH server on the remote device
+FS_MOUNT_DIR=~/Phone    # Where to mount phone files
+
+USER=$(whoami)
+SERVER_MOUNT_DIR=/storage/emulated/0
+GATEWAY=$(ip r | grep wlp3s0 | grep -m 1 -Po '(([0-9]{1,3}\.?){1,4}/)[0-9]{1,2}')   # Get gateway
+SELF_IP=$(ip add show wlp3s0 | grep -Po 'inet \K[\d.]+')    # Get own IP address
+
+# Check if specified NET_IF exists
+VAR2=$(ip a | grep -Po ": \K($NET_IF)(?=: <)")
+if [ -z "$VAR2" ]; then
+    echo "The specified network interface does not exist. Closing"
+    exit 0
+fi
+
+# Check if gateway was found
+if [ -z "$GATEWAY" ]; then
+    echo "Gateway not found, closing"
+    exit 0
+fi
+
+# Check if target is already mounted
+VAR1=$(mount | grep $FS_MOUNT_DIR)
+if [ ! -z "$VAR1" ]; then
+    echo "This path is already mounted!" 
+    exit 0
+fi
+
+# Check if the specified local mount folder does not exist
+if [ ! -d "$FS_MOUNT_DIR" ]; then
+    echo "The specified local folder does not exist"
+    exit 0
+fi
+
+# Check if the specified local mount folder is empty
+if [ "$(ls -A $FS_MOUNT_DIR)" ]; then
+     echo "$FS_MOUNT_DIR is not empty"
+     exit 0
+fi
+
+echo "Scanning for devices..."
+SERVER_IP=$(nmap -e $NET_IF --exclude $SELF_IP --open -p $PORT $GATEWAY -oG - | grep -m 1 -Po 'Host: \K([0-9]{1,3}\.?){1,4}')
+
+# Check if a scan returned an IP
+if [ -z "$SERVER_IP" ]; then
+    echo "No devices found, closing"
+    exit 0
+else
+    echo Device at $SERVER_IP found!
+fi
+
+echo "Mounting file system..."
+sshfs $USER@$SERVER_IP:$SERVER_MOUNT_DIR $FS_MOUNT_DIR -p $PORT -C -o reconnect
