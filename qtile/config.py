@@ -4,7 +4,8 @@ from libqtile import bar, widget, hook
 from keys import keys, groups
 from layouts import layouts, floating_layout
 from scratchpad import remove_scratchpadded, set_scratchpadded
-from widgets import CryptoTicker
+
+import os, subprocess
 
 """
 This is main config file that should import all other config files and expose these variables:
@@ -16,7 +17,6 @@ This is main config file that should import all other config files and expose th
 """
 
 mod = 'mod4'
-import os
 
 # defaults for widgets and extensions
 widget_defaults = dict(font='sans', fontsize=12, padding=3)
@@ -25,13 +25,14 @@ extension_defaults = widget_defaults.copy()
 bottom_bar_widgets = [
     widget.CurrentLayoutIcon(),
     widget.GroupBox(),
-    # CryptoTicker(currency='usd', from_currency='bitcoin', format='{to_price}:{percent_change_1h}|{percent_change_24h}%', update_interval=60),
     widget.Prompt(),
     widget.TaskList(rounded=False, margin_y=8, margin_x=1, padding_x=1),
+    # widget.CapsNumLockIndicator(), 
+    widget.HDDBusyGraph(border_width=1, type='box'),
     widget.Battery(),
     widget.Volume(),
     widget.Systray(),
-    widget.Clock(format='%Y-%m-%d %a %I:%M %p'),    # TIME
+    widget.Clock(format='%d.%m. %w %H:%M'),    # TIME
 ]
 
 screens = [
@@ -51,21 +52,20 @@ dgroups_key_binder = None
 dgroups_app_rules = []
 main = None
 follow_mouse_focus = False
-bring_front_click = False
-cursor_warp = False
-auto_fullscreen = True
+bring_front_click = True    # When clicked, window gets in front
+cursor_warp = True          # Cursor follows focused windows
+auto_fullscreen = True      # Apps request for fullscreen is allowed
 focus_on_window_activation = "smart"
 
 wmname = "LG3D" # Needed var for some java apps
 
 
-# startup apps
-def wallpaper():
-    os.system('feh --bg-scale ~/.wallpaper')
-
+# @hook.subscribe.startup_once  # This one is from the docs..
 @hook.subscribe.startup
 def autostart():
-    wallpaper()
+    # home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    # subprocess.call([home])                     
+    os.system('feh --bg-scale ~/.wallpaper')    # Set wallpaper
 
 
 @hook.subscribe.client_new

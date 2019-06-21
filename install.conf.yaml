@@ -8,7 +8,8 @@
 
 - link:
     ~/.config/nvim/init.vim: neovim/init.vim
-    ~/.config/vifm: vifm
+    ~/.config/vifm: file_managers/vifm
+    ~/.config/pcmanfm: file_managers/pcmanfm
     ~/.config/rofi/config:  rofi/config
     ~/.config/awesome:  awesome
     ~/.config/qtile: qtile

@@ -3,25 +3,23 @@
 As with most configs, this one has many, slightly modified, stolen bits and pieces of configurations that I picked across the web  
 
 TODO:  
- - [ ] run_once init fail (awm)
  - [ ] make this a proper doc  
  - [ ] fasd  
  - [ ] libinput
  - [ ] UL/DL averaging
- - [ ] proper .zshrc/.bashrc
+ - [ ] separate aliases/functions
  - [ ] proper st config/link
- - [ ] music player
+ - [ ] music player (ncmpcpp / mpd)
  - [ ] mail client (mutt)
- - [ ] fix scrot
- - [ ] find the most lightweight functioning graphical web browser
+ - [ ] find the most lightweight functioning graphical web browser (surf)
  - [ ] tmux
  - [*] Dotbot
  - [ ] Compton
- - [ ] Eradicate xbindkeys
+ - [ ] Replace dotbot with Stow
 
 ### Applications
 
-**Window Manager**: AwesomeWM  
+**Window Manager**: AwesomeWM/QTile  
 **Display Manager**: LightDM  
 **Screen Locker**: i3lock (chained with [corrupter](https://github.com/r00tman/corrupter "GitHub page"))  
 **Launcher**: Rofi  
@@ -29,7 +27,7 @@ TODO:
 **Development Environment**: VSCode  
 **Document Viewer**: Zathura  
 **File Manager**: Vifm  
-**Text Editor**: Neovim  
+**Text Editor**: Neovim / Leafpad  
 **Input Handler**: Libinput  
 **Terminal Emulator**: St  
 **Terminal Multiplexer**: Tmux  

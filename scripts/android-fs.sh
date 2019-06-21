@@ -7,7 +7,8 @@ FS_MOUNT_DIR=~/Phone    # Where to mount phone files
 
 USER=$(whoami)
 SERVER_MOUNT_DIR=/storage/emulated/0
-GATEWAY=$(ip r | grep wlp3s0 | grep -m 1 -Po '(([0-9]{1,3}\.?){1,4}/)[0-9]{1,2}')   # Get gateway
+GATEWAY=$(ip r | grep $NET_IF | grep -m 1 -Po '(([0-9]{1,3}\.?){1,4}/)[0-9]{1,2}')
+echo $GATEWAY
 SELF_IP=$(ip add show wlp3s0 | grep -Po 'inet \K[\d.]+')    # Get own IP address
 
 # Check if specified NET_IF exists

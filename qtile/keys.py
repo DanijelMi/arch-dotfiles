@@ -5,7 +5,7 @@ from libqtile.config import EzKey
 import solarized
 from dropdown import DropDown
 
-left, down, up, right = 'hjkl'
+# left, down, up, right = 'hjkl'
 mod = 'mod4'
 layout = lazy.layout
 
@@ -22,15 +22,15 @@ and for modifiers:
 keymap = {
     # '<F12>': drop_down_terminal.toggle_function,
     # Switch between windows in current stack pane
-    f'M-{left}': layout.left(),
-    f'M-{up}': layout.up(),
-    f'M-{down}': layout.down(),
-    f'M-{right}': layout.right(),
+    'M-h': layout.left(),
+    'M-k': layout.up(),
+    'M-j': layout.down(),
+    'M-l': layout.right(),
     # Move windows up or down in current layout
-    f'M-S-{up}': layout.shuffle_up(),
-    f'M-S-{down}': layout.shuffle_down(),
-    f'M-S-{left}': layout.swap_left(),
-    f'M-S-{right}': layout.swap_right(),
+    'M-S-k': layout.shuffle_up(),
+    'M-S-j': layout.shuffle_down(),
+    'M-S-h': layout.swap_left(),
+    'M-S-l': layout.swap_right(),
     # Window Manipulation
     'M-i': layout.grow(),
     'M-m': layout.shrink(),
@@ -43,8 +43,16 @@ keymap = {
     'M-q': lazy.window.kill(),
     'M-f': lazy.window.toggle_fullscreen(),
     # System
+
+    # Switch between layouts
     'M-<Tab>': lazy.next_layout(),
-    'M-S-c': lazy.window.kill(),
+    'M-S-<Tab>': lazy.prev_layout(),
+
+    # Move to left/right group
+    'M-<Right>': lazy.screen.next_group(),
+    'M-<Left>': lazy.screen.prev_group(),
+
+    'M-S-c': lazy.window.kill(),    # Kill selected window
     'M-C-r': lazy.restart(),
     'M-C-q': lazy.shutdown(),
     # Launchers
@@ -60,10 +68,14 @@ keymap = {
     # Other
     # '<Print>': lazy.spawn('flameshot gui'),
     # 'M-r': lazy.spawn('urxvt -e /usr/bin/ranger'),
+
 }
+
+# Switch to group
 groups = [Group(i) for i in "1234567890"]
 for i in groups:
     keymap[f'M-{i.name}'] = lazy.group[i.name].toscreen()
     keymap[f'M-S-{i.name}'] = lazy.window.togroup(i.name)
+
 
 keys = [EzKey(k, v) for k, v in keymap.items()]
