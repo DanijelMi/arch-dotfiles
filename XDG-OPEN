@@ -1,0 +1,5 @@
+xdg-mime query filetype tmp.txt
+
+xdg-mime  query default text/plain 
+
+xdg-mime default vifm.desktop inode/directory
