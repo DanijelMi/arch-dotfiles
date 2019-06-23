@@ -21,11 +21,11 @@ super + p
  
 # Screen locker
 control + alt + l
- glitch-lock
+ $LOCKSCREEN
 
 # Open terminal
 super + Return
- st
+ $TERMINAL
 
 # Open Screenshot tool
 super + Insert
@@ -44,10 +44,17 @@ alt x ; {h,j}
  notify-send {"HH","JJ"}
 
 # Open communication apps
-super c ; {w,l,f}
+super w ; {w,l,f}
  firefox --new-window {https://web.whatsapp.com,\
  https://www.linkedin.com/,\
  https://www.facebook.com}
+
+# Open other apps
+super w ; {k,r,g,m}
+ {keepass,\
+ firefox --new-window https://www.reddit.com,\
+ firefox --new-window https://github.com,\
+ pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp)}
 
 # Open Gmail
 alt m ; {1,2,3}

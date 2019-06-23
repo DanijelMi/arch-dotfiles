@@ -16,6 +16,8 @@
     ~/.config/zathura/zathurarc: zathurarc
     ~/.config/sxiv: sxiv
     ~/.config/sxhkd: sxhkd
+    ~/.config/mpd: mpd
+    ~/.config/ncmpcpp: ncmpcpp
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
@@ -29,15 +31,11 @@
     # GTK QT
     ~/.config/gtk-3.0: gtk_qt/gtk-3.0
     ~/.gtkrc-2.0: gtk_qt/gtk-2.0
+    ~/.config/Trolltech.conf: gtk_qt/qt/Trolltech.conf
 
     
     # CUSTOM SCRIPTS
-    ~/.scripts/glitch-lock: scripts/glitch-lock.sh
-    ~/.scripts/android-fs: scripts/android-fs.sh
-    ~/.scripts/rofi-select: rofi/scripts/rofi-select.sh
-    ~/.scripts/rofi-wireguard: rofi/scripts/rofi-wireguard.sh
-    ~/.scripts/rofi-boot: rofi/scripts/rofi-boot.sh
-    ~/.scripts/rofi-smb: rofi/scripts/rofi-smb.sh
+    ~/.scripts: scripts
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
     #~/.vim: vim

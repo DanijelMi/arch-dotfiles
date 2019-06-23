@@ -1,30 +1,39 @@
 #!/usr/bin/zsh
 
 ####### EXPORTS ###########
-export EDITOR='nvim'
-export VISUAL='nvim'
-export PAGER='less'
+export EDITOR="nvim"
+export EDITOR_VISUAL="leafpad"
+export TERMINAL="st"
+export PAGER="less"
+export READER="zathura"
+export WEB_BROWSER="firefox"
+export GUI_IDE="code"
+export LOCKSCREEN="glitch-lock"
+export FILE="vifm"
+export FILE_GUI="pcmanfm"
+export SUDO_ASKPASS=$HOME/.scripts/rofi-askpass # GUI for passwd prompt.. change with rofi pass?
+# export SCREENSHOT="flameshot gui"
 
-export TERMINAL=/usr/bin/lxterminal
+
+export XDG_CONFIG_HOME="$HOME/.config"
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export XDG_CURRENT_DESKTOP=XFCE
-export XDG_CONFIG_DIRS=/etc/xdg
+#export XDG_CURRENT_DESKTOP=XFCE
+#export XDG_CONFIG_DIRS=/etc/xdg
 
 export SSH_KEY_PATH="~/.ssh/rsa_id" # ssh
-export LANG=en_US.UTF-8 # You may need to manually set your language environment
+export LANG=en_US.UTF-8             # You may need to manually set your language environment
 export MANPATH="$MANPATH:/usr/local/man"
-export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Change default zim location
+export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Default zim location
 # export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
 export PATH="$PATH:\
 $HOME/.local/bin:\
-$HOME/bin:\
 $HOME/.scripts:\
 /usr/local/bin:\
 /bin"
 
-pgrep sxhkd || sxhkd & # Start hotkey daemon
+pgrep sxhkd >/dev/null || sxhkd & # Start hotkey daemon
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path

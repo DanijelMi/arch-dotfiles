@@ -1,2 +1,6 @@
 file_managers/vifm/vifminfo
 qtile/__pycache__
+# Ignore personal data
+mpd/*
+# Except the config
+!mpd/mpd.conf

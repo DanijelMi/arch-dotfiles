@@ -83,3 +83,10 @@ qtile           # Experimental
 nitrogen        # wallpaper setter
 xorg-xev        # See keybinds for sxhkd
 sxhkd           # Hotkey daemon
+x11-ssh-askpass # Askpass program
+ncdu            # Storage analyzing TUI
+xwallpaper      # Minimalistic wallpaper setter
+breeze-gtk      # Used theme for GTK
+lxappearance    # Used to configure GTK/QT themes
+geoclue         # Used by redshift to get lat/lon for dimming
+redshift        # F.lux for linux

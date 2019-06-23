@@ -1,6 +1,12 @@
 #! /usr/bin/env bash
 # Scans the devices on the 
 
+# Check for dependencies
+DEPENDENCIES=(nmap sshfs ip)
+for i in "${DEPENDENCIES[@]}"; do
+   which $i &> /dev/null || printf "$i was not found on your system. Aborting.\n"
+done
+
 NET_IF=wlp3s0       # On which network interface should I scan
 PORT=18739          # Port of the SSH server on the remote device
 FS_MOUNT_DIR=~/Phone    # Where to mount phone files
