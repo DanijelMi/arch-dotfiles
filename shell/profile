@@ -33,7 +33,7 @@ $HOME/.scripts:\
 /usr/local/bin:\
 /bin"
 
-pgrep sxhkd >/dev/null || sxhkd & # Start hotkey daemon
+# pgrep sxhkd >/dev/null || sxhkd
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path

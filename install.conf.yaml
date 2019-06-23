@@ -24,6 +24,7 @@
     ~/.zimrc: shell/.zimrc
     ~/.profile: shell/profile
     ~/.zprofile: shell/profile
+    ~/.xprofile: shell/xprofile
     ~/.bash_profile: shell/profile
     ~/.Xresources: shell/Xresources
     ~/.xinitrc: shell/xinitrc

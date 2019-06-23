@@ -1,0 +1,2 @@
+setbg   # Sets background wallpaper
+pgrep sxhkd >/dev/null || sxhkd &   # Starts keybind daemon

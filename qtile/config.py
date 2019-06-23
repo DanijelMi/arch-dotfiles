@@ -63,9 +63,9 @@ wmname = "LG3D" # Needed var for some java apps
 # @hook.subscribe.startup_once  # This one is from the docs..
 @hook.subscribe.startup
 def autostart():
-    # home = os.path.expanduser('~/.config/qtile/autostart.sh')
-    # subprocess.call([home])                     
-    os.system('feh --bg-scale ~/.wallpaper')    # Set wallpaper
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.call([home])                     
+    # os.system('feh --bg-scale ~/.wallpaper')    # Set wallpaper
 
 
 @hook.subscribe.client_new
