@@ -18,6 +18,7 @@
     ~/.config/sxhkd: sxhkd
     ~/.config/mpd: mpd
     ~/.config/ncmpcpp: ncmpcpp
+    ~/.config/dunst: dunst
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
