@@ -3,6 +3,9 @@
 # Start zim
 [[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh
 
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 setopt LOCAL_OPTIONS          # allow functions to have local options
 setopt LOCAL_TRAPS            # allow functions to have local traps
 setopt CLOBBER
@@ -25,6 +28,7 @@ alias ls='ls -hN --color=auto --group-directories-first'
 alias grep="grep --color=auto" # Color grep - highlight desired sequence.
 alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
 alias crp="rsync --recursive --progress --size-only --inplace --verbose" # A better cp
+alias pacinstall="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S"
 
 ######## FUNCTIONS #########
 h(){curl cheat.sh/$1;}

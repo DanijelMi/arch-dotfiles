@@ -91,3 +91,6 @@ lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux
 geoclue         # Used by redshift to get lat/lon for dimming
 xorg-server-xephyr  # Run X-Server inside an X application
+mlocate         # adds locate
+speedcrunch     # The best calculator ever
+clipit          # Clipboard manager
