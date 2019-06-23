@@ -39,7 +39,7 @@ keymap = {
     'M-S-<space>': layout.flip(),
     'M-<space>': lazy.window.toggle_floating(),
     'M-S-<Return>': lazy.window.toggle_split(),
-    'M-<Return>': lazy.spawn('urxvt'),
+    # 'M-<Return>': lazy.spawn('st'),
     'M-q': lazy.window.kill(),
     'M-f': lazy.window.toggle_fullscreen(),
     # System
@@ -66,7 +66,6 @@ keymap = {
     # '<XF86AudioRaiseVolume>': lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ +2%'),
     # '<XF86AudioLowerVolume>': lazy.spawn('pactl set-sink-volume @DEFAULT_SINK@ -2%'),
     # Other
-    # '<Print>': lazy.spawn('flameshot gui'),
     # 'M-r': lazy.spawn('urxvt -e /usr/bin/ranger'),
 
 }
