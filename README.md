@@ -1,6 +1,4 @@
-# Dotfiles that make my environment, mine
-## Disclaimer
-As with most configs, this one has many, slightly modified, stolen bits and pieces of configurations that I picked across the web  
+# Dotfiles
 
 TODO:  
  - [ ] make this a proper doc  
@@ -8,39 +6,39 @@ TODO:
  - [ ] libinput
  - [ ] UL/DL averaging
  - [ ] separate aliases/functions
- - [ ] proper st config/link
- - [ ] music player (ncmpcpp / mpd)
+ - [ ] proper st config/link or find alternative
  - [ ] mail client (mutt)
  - [ ] find the most lightweight functioning graphical web browser (surf)
  - [ ] tmux
- - [*] Dotbot
  - [ ] Compton
  - [ ] Replace dotbot with Stow
+ - [ ] replace execution commands with xdg-open
+ - [ ] make dunst not look retarded
 
-### Applications
 
-**Window Manager**: AwesomeWM/QTile  
-**Display Manager**: LightDM  
-**Screen Locker**: i3lock (chained with [corrupter](https://github.com/r00tman/corrupter "GitHub page"))  
-**Launcher**: Rofi  
-**Web Browser**: Firefox  
-**Development Environment**: VSCode  
-**Document Viewer**: Zathura  
-**File Manager**: Vifm  
-**Text Editor**: Neovim / Leafpad  
-**Input Handler**: Libinput  
-**Terminal Emulator**: St  
-**Terminal Multiplexer**: Tmux  
-**Shell**: Zsh (with ZIM) 
 
-###  In order to install everything, there are two stages:
-#### 1. System configuration  
- Actions requring *root privileges*, for installing packages and setting system-wide configurations.
- ```bash
- insert script here that does everything automagically *
- ```
-#### 2. User configuration  
- Preferrably executed by a *non-root* user. These are mostly configurations for most of the software used. 
+| Function | Program      |
+|----------:|:-------------|
+| Window Manager | [AwesomeWM](awesome), [QTile](qtile)|
+| Display Manager | [LightDM](lightdm) |
+| Launcher | [rofi](rofi) |
+| Web Browser | firefox |
+| PDF Viewer | [Zathura](zathurarc) |
+| File Manager | [Vifm](file_managers/vifm), [pcmanfm](file_managers/pcmanfm)|
+| Text Editor | [Neovim](neovim), leafpad |
+| Input | Libinput |
+| Terminal Emulator| St |
+| Terminal Multiplexer | Tmux |
+| Shell | Zsh with ZIM |
+| Screen Lock | i3lock |
+| Notification | [Dunst](dunst) |
+| Keybinds | [sxhkd](sxhkd) |
+| Music | [ncmpcpp](ncmpcpp), [mpd](mpd), mpc
+| Image Viewer | [sxiv](sxiv) |
+| Calculator | speedcrunch |
+
+
+To symlink all user-side config files, run:
  ```bash
  ./install
  ```

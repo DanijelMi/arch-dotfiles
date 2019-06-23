@@ -1,11 +1,15 @@
-### Environment setting
+## Environment settings
+
+### Bash
 
 `.bashrc` = Executes every time a bash shell is invoked  
 `.profile` = Executes when a bash login shell is invoked  
+
+### Other
 `.xprofile` = Executes at the beginning of the X user session. Sourced by display managers  
 `.Xresources` = WIP  
 
-## ZSH
+### ZSH
 
 `.zshrc` = Executs every time a zsh shell is invoked  
 `.zprofile` = Executes when a zsh login shell is invoked  

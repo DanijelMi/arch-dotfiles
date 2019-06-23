@@ -28,7 +28,7 @@ super + Return
  $TERMINAL
 
 # Open Screenshot tool
-super + Insert
+super + Print
  flameshot gui
 
 # Open custom script menu
@@ -47,14 +47,15 @@ alt x ; {h,j}
 super w ; {w,l,f}
  firefox --new-window {https://web.whatsapp.com,\
  https://www.linkedin.com/,\
- https://www.facebook.com}
+ https://www.facebook.com,\}
 
 # Open other apps
-super w ; {k,r,g,m}
+super w ; {k,r,g,m,c}
  {keepass,\
  firefox --new-window https://www.reddit.com,\
  firefox --new-window https://github.com,\
- pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp)}
+ pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp),\
+ speedcrunch}
 
 # Open Gmail
 alt m ; {1,2,3}
