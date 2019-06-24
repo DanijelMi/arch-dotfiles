@@ -94,3 +94,4 @@ xorg-server-xephyr  # Run X-Server inside an X application
 mlocate         # adds locate
 speedcrunch     # The best calculator ever
 clipit          # Clipboard manager
+keepassxc       # Improved fork of Keepass in Qt5

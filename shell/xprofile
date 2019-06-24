@@ -1,3 +1,11 @@
-setbg   # Sets background wallpaper
+# Set background
+setbg
+
+# Hotkey Daemon
 pgrep sxhkd >/dev/null || sxhkd &   # Starts keybind daemon
+
+# Clipboard manager
 pgrep clipit >/dev/null || clipit -dn &
+
+# Turn off system beep
+xset -b
