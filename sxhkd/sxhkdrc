@@ -51,7 +51,7 @@ super w ; {w,l,f}
 
 # Open other apps
 super w ; {k,r,g,m,c}
- {keepass,\
+ {keepassxc,\
  firefox --new-window https://www.reddit.com,\
  firefox --new-window https://github.com,\
  pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp),\
