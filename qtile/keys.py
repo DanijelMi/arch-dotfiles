@@ -39,8 +39,6 @@ keymap = {
     'M-S-<space>': layout.flip(),
     'M-<space>': lazy.window.toggle_floating(),
     'M-S-<Return>': lazy.window.toggle_split(),
-    # 'M-<Return>': lazy.spawn('st'),
-    'M-q': lazy.window.kill(),
     'M-f': lazy.window.toggle_fullscreen(),
     # System
 
