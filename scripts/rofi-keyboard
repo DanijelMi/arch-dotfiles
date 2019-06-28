@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Author: Danijel Milosevic
+# A simple rofi interface for selecting the keyboard layout
+MAIN_GUI="rofi -dmenu -width 25 -i -p Keyboard layout"    # Rofi settings
+MAIN_OPTIONS=(us rs rs\ -variant\ latin Other) # Add default opts
+
+find_layout(){
+    # /usr/share/X11/xkb/rules/base.lst
+    echo WA
+}
+
+# Process options in a format that is pipable into rofi
+for i in "${MAIN_OPTIONS[@]}"; do
+    WORD+=$i\\n         # add \n after each array element
+done
+MAIN_OPTIONS=${WORD::-2} # trim last \n
+
+CHOICE=$(echo -e $MAIN_OPTIONS | $MAIN_GUI) # Draw rofi
+if [ $CHOICE == "Other" ]; then
+    find_layout
+elif [ ${#CHOICE} -gt 0 ]; then # non-null selection
+    setxkbmap $CHOICE
+fi

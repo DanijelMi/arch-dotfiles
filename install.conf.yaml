@@ -19,6 +19,7 @@
     ~/.config/mpd: mpd
     ~/.config/ncmpcpp: ncmpcpp
     ~/.config/dunst: dunst
+    ~/.config/newsboat: newsboat
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc

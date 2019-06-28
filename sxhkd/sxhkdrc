@@ -24,6 +24,10 @@ super + p
 control + alt + l
  $LOCKSCREEN
 
+# Keyboard layout
+super + alt + space
+ rofi-keyboard
+
 # Open terminal
 super + Return
  $TERMINAL
