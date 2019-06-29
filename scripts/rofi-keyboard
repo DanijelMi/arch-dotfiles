@@ -1,14 +1,27 @@
 #!/usr/bin/env bash
 # Author: Danijel Milosevic
 # A simple rofi interface for selecting the keyboard layout
-MAIN_GUI="rofi -dmenu -width 25 -i -p Keyboard layout"    # Rofi settings
-MAIN_OPTIONS=(us rs rs\ -variant\ latin Other) # Add default opts
 
-find_layout(){
-    # /usr/share/X11/xkb/rules/base.lst
-    echo WA
-}
+##### CONFIG ######
+# Layouts available at immediate menu. It's a bash array, so an unescaped space
+# is a separator. Two possible formats: LAYOUT or LAYOUT:STYLE
+# To find these params, run the program first and select the "Other" option for the full list.
+MAIN_OPTIONS=(us rs rs:latin it de)  # Add default opts
 
+##### END CONFIG ##### (Although who am I to tell you)
+
+MAIN_GUI="rofi -dmenu -width 25 -i -p Quick_layouts"    # Rofi settings
+KB_LAYOUTS=/usr/share/X11/xkb/rules/base.lst    # File that holds all available layouts
+
+# DEPENDENCY CHECK
+DEPENDENCIES=(rofi setxkbmap)
+for i in "${DEPENDENCIES[@]}"; do
+   which $i &> /dev/null || printf "$i was not found on your system. Aborting.\n"
+done
+# Used to control script flow in such a manner that "heavy"
+# optional code is at the end, (needed for script-type languages)
+SEARCH_OTHER_FLAG=0 
+MAIN_OPTIONS+=("Other") # Add mandatory option in the main config
 # Process options in a format that is pipable into rofi
 for i in "${MAIN_OPTIONS[@]}"; do
     WORD+=$i\\n         # add \n after each array element
@@ -16,8 +29,48 @@ done
 MAIN_OPTIONS=${WORD::-2} # trim last \n
 
 CHOICE=$(echo -e $MAIN_OPTIONS | $MAIN_GUI) # Draw rofi
-if [ $CHOICE == "Other" ]; then
-    find_layout
-elif [ ${#CHOICE} -gt 0 ]; then # non-null selection
-    setxkbmap $CHOICE
+# Separate potential layout:style format
+LAYOUT=$(echo $CHOICE | cut -f1 -d:)   
+VARIANT=$(echo $CHOICE | cut -f2 -d:)   
+if [ ${#CHOICE} -gt 0 ]; then # non-null selection
+    if [ $CHOICE == "Other" ]; then # Skip ahead to full-blown language searching
+        SEARCH_OTHER_FLAG=1
+    elif [ ${#CHOICE_VARIANT} -gt 0 ]; then   # Option with variant
+        eval "setxkbmap $LAYOUT -variant $VARIANT"
+    else
+        eval "setxkbmap $LAYOUT"        # Option without variant
+    fi
 fi
+
+if [ $SEARCH_OTHER_FLAG -eq 0 ]; then
+    exit 0
+fi
+
+# Change the gui params for rofi
+MAIN_GUI="rofi -dmenu -i -p Find_Layout"
+# Reads all of the available layouts and sub-styles from a big-chungus of a file and:
+# Deletes all lines before the layout list
+# Deletes all lines after the 
+LAYOUT=$(sed '1,/! layout/d ; /! variant/,$d' $KB_LAYOUTS \
+| awk '{ print $1 " " $2 " " $3 " " $4 " " $5 " " $6 " " $7 " " $8 }' | $MAIN_GUI)
+LAYOUT=$(echo $LAYOUT | awk '{ print $1 }')
+if [ ${#LAYOUT} -eq 0 ]; then # null selection
+    exit 0
+fi
+
+# Build an array of from the variant options, include Default (no variant)
+VARIANTS="Default\\n"
+while IFS= read -r line; do
+    VARIANTS+=${line:2}\\n
+done < <(grep " $LAYOUT: " $KB_LAYOUTS)
+VARIANT=$(echo -e ${VARIANTS::-2} | $MAIN_GUI)  # Get selection from rofi
+VARIANT=$(echo $VARIANT | awk '{ print $1 }')   # Get just the variant name
+if [ ${#VARIANT} -gt 0 ]; then # non-null selection
+    if [ $VARIANT == "Default" ]; then
+        eval "setxkbmap $LAYOUT"    # If default opt, omit variant
+    else
+        eval "setxkbmap $LAYOUT -variant $VARIANT"
+    fi
+fi
+
+#TODO: Handle "*" bad input, prolly many others.
