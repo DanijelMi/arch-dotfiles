@@ -30,15 +30,16 @@ MAIN_OPTIONS=${WORD::-2} # trim last \n
 
 CHOICE=$(echo -e $MAIN_OPTIONS | $MAIN_GUI) # Draw rofi
 # Separate potential layout:style format
-LAYOUT=$(echo $CHOICE | cut -f1 -d:)   
-VARIANT=$(echo $CHOICE | cut -f2 -d:)   
+echo $CHOICE
 if [ ${#CHOICE} -gt 0 ]; then # non-null selection
     if [ $CHOICE == "Other" ]; then # Skip ahead to full-blown language searching
         SEARCH_OTHER_FLAG=1
-    elif [ ${#CHOICE_VARIANT} -gt 0 ]; then   # Option with variant
+    elif [[ $CHOICE == *":"* ]]; then   # Option with variant
+        LAYOUT=$(echo $CHOICE | cut -f1 -d:)
+        VARIANT=$(echo $CHOICE | cut -f2 -d:)
         eval "setxkbmap $LAYOUT -variant $VARIANT"
     else
-        eval "setxkbmap $LAYOUT"        # Option without variant
+        eval "setxkbmap $CHOICE"        # Option without variant
     fi
 fi
 
@@ -59,10 +60,12 @@ if [ ${#LAYOUT} -eq 0 ]; then # null selection
 fi
 
 # Build an array of from the variant options, include Default (no variant)
+MAIN_GUI="rofi -dmenu -i -p Find_Variant"
 VARIANTS="Default\\n"
 while IFS= read -r line; do
     VARIANTS+=${line:2}\\n
 done < <(grep " $LAYOUT: " $KB_LAYOUTS)
+VARIANT=""
 VARIANT=$(echo -e ${VARIANTS::-2} | $MAIN_GUI)  # Get selection from rofi
 VARIANT=$(echo $VARIANT | awk '{ print $1 }')   # Get just the variant name
 if [ ${#VARIANT} -gt 0 ]; then # non-null selection
@@ -72,5 +75,5 @@ if [ ${#VARIANT} -gt 0 ]; then # non-null selection
         eval "setxkbmap $LAYOUT -variant $VARIANT"
     fi
 fi
-
-#TODO: Handle "*" bad input, prolly many others.
+ 
+#TODO: Handle evil string inputs :(
