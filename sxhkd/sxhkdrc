@@ -66,21 +66,14 @@ super w ; {k,r,g,m,c}
 alt m ; {1,2,3}
  firefox --new-window https://mail.google.com/mail/u/{0,1,2}
 
-### SYS MODS ###
 # Brightness
-XF86MonBrightnessUp
- xbacklight -inc 25 -time 0
-XF86MonBrightnessDown
- xbacklight -dec 25 -time 0
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+ xbacklight -{inc,dec} 25 -time 100
 
 ### Lockscreen
 XF86ScreenSaver
  glitch-lock
 
 # Volume
-XF86AudioRaiseVolume
- amixer -q set Master 10%+ unmute
-XF86AudioLowerVolume
- amixer -q set Master 10%- unmute
-XF86AudioMute
- amixer -q set Master toggle
+{XF86AudioRaiseVolume, XF86AudioLowerVolume, XF86AudioMute}
+ amixer -q set Master {10%+ unmute,10%- unmute,toggle}
