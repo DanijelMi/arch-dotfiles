@@ -22,6 +22,7 @@
     ~/.config/newsboat: newsboat
     ~/.config/betterlockscreenrc: betterlockscreenrc
     ~/.config/neofetch: neofetch
+    ~/.config/fontconfig: fontconfig
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
