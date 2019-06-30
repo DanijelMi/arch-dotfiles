@@ -13,7 +13,7 @@ super + a
 
 # Open file browser
 super + {e, shift e}
- {$TERMINAL vifm,\
+ {$TERMINAL -e $FILE,\
  $FILE_GUI}
 
 # Open pinger
@@ -21,7 +21,7 @@ super + p
  st ping 1.1.1.1 -i 0.2
  
 # Screen locker
-control + alt + l
+{control + alt + l, XF86ScreenSaver}
  $LOCKSCREEN
 
 # Keyboard layout
@@ -34,7 +34,7 @@ super + Return
 
 # Open Screenshot tool
 super + Print
- flameshot gui
+ bash -c $SCREENSHOT
 
 # Open custom script menu
 super + z 
@@ -70,10 +70,10 @@ alt m ; {1,2,3}
 {XF86MonBrightnessUp, XF86MonBrightnessDown}
  xbacklight -{inc,dec} 25 -time 100
 
-### Lockscreen
-XF86ScreenSaver
- glitch-lock
-
 # Volume
-{XF86AudioRaiseVolume, XF86AudioLowerVolume, XF86AudioMute}
+XF86Audio{RaiseVolume,LowerVolume,Mute}
  amixer -q set Master {10%+ unmute,10%- unmute,toggle}
+
+# Playback
+XF86Audio{Next,Prev,Play,Stop}
+mpc {next,prev,toggle,stop}
