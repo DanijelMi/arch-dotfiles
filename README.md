@@ -11,9 +11,11 @@ TODO:
  - [ ] find the most lightweight functioning graphical web browser (surf)
  - [ ] tmux
  - [ ] Compton
- - [ ] Replace dotbot with Stow
  - [ ] replace execution commands with xdg-open
  - [ ] make dunst not look retarded
+ - [ ] Newsboat
+ - [ ] Neofetch
+ - [ ] Plank
 
 
 

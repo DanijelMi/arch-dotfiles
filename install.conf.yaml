@@ -20,6 +20,8 @@
     ~/.config/ncmpcpp: ncmpcpp
     ~/.config/dunst: dunst
     ~/.config/newsboat: newsboat
+    ~/.config/betterlockscreenrc: betterlockscreenrc
+    ~/.config/neofetch: neofetch
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc

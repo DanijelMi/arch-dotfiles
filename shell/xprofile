@@ -1,11 +1,9 @@
-# Set background
-setbg
-
-# Hotkey Daemon
-pgrep sxhkd >/dev/null || sxhkd &   # Starts keybind daemon
-
-# Clipboard manager
-pgrep clipit >/dev/null || clipit -dn &
-
-# Turn off system beep
-xset -b
+setbg                                       # Set background
+pgrep sxhkd >/dev/null || sxhkd &           # Hotkey Daemon
+pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
+xset b off                                  # Turn off system beep
+unclutter -b                                # Auto-hide inactive cursor
+nm-applet &                                 # Network Manager applet
+# Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
+# that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
+xhost +local:

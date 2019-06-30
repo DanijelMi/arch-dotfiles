@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env bash
 
 ####### EXPORTS ###########
 export EDITOR="nvim"
@@ -8,12 +8,12 @@ export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
 export GUI_IDE="code"
-export LOCKSCREEN="glitch-lock"
-export FILE="vifm"
+# export LOCKSCREEN="lock-glitch"
+export LOCKSCREEN="lock-better"
+export FILE="vifmuber"
 export FILE_GUI="pcmanfm"
 export SUDO_ASKPASS=$HOME/.scripts/rofi-askpass # GUI for passwd prompt.. change with rofi pass?
-# export SCREENSHOT="flameshot gui"
-
+export SCREENSHOT="flameshot gui"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export QT_QPA_PLATFORMTHEME="qt5ct"
