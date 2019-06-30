@@ -44,7 +44,7 @@ neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 transmission-qt     # Torrent Client
 transmission-cli    # Torrent client
-tmux        # Terminal multiplexer
+tmux        # Terminal multiplexer. Best thing since sliced beets
 gparted     # Graphical storage formatter
 smplayer    # Lightweight media player
 xorg-xbacklight     # Adds control of backlight
@@ -71,6 +71,8 @@ sxiv            # Suckless image viewer
 libinput        # Input configuration
 xorg-xinput     # change touchpad settings during runtime
 xorg-xhost      # Manage auth for X server
+xorg-xwininfo   # Get info for x various x windows
+compton         # X Compositor
 fzf             # Fuzzy file finder
 i3lock          # Screen locker
 youtube-dl      # Get stuff from yt and similar sites
@@ -101,3 +103,4 @@ clipit          # Clipboard manager
 keepassxc       # Improved fork of Keepass in Qt5
 unclutter       # Hides cursor when idle
 recoll          # Full text search tool, including file content
+inotify-tools   # I really should be using this more often

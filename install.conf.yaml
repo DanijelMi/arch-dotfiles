@@ -23,6 +23,7 @@
     ~/.config/betterlockscreenrc: betterlockscreenrc
     ~/.config/neofetch: neofetch
     ~/.config/fontconfig: fontconfig
+    ~/.config/compton.conf: compton.conf
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
