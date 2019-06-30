@@ -6,7 +6,10 @@
 # Then remove everything after # in each line, along with spaces before it
 # Then remove all spaces before the end of the line
 # TODO: add support for AUR packages via yay
-# yay -S corrupter-git --noconfirm --needed
+# YAY PACKAGES:
+# corrupter-git
+# betterlockscreen
+# st-luke-git
 pacman -Syy  # Update mirrors
 sed -n '/^#*LIST PACKAGES FROM HERE ONWARDS.*$/,$p' $(realpath $0) | \
     sed -e "/^#/d" \
@@ -22,7 +25,7 @@ firefox
 networkmanager
 iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
-mpd         # Music player daemon
+mpd         # Music player server daemon
 ncmpcpp     # MPD client
 st          # Suckless terminal
 awesome     # Window manager
@@ -30,17 +33,17 @@ lightdm     # Display/login manager
 lightdm-slick-greeter	# Graphical style for lightdm
 moka-icon-theme     # For slick-greeter
 adapta-maia-theme   # For slick-greeter
-pcmanfm     # graphical file manager
+pcmanfm     # Lightweigh graphical file manager
 vifm        # Ranger alternative
+ffmpegthumbnailer   # Lightweight video thumbnailer for file managers
 poppler     # pdf previews
 atool       # Universal archive extraction/preview in ranger
-w3m         # Image preview within ranger
-vim         # non-negotionable
+w3m         # Text based web browser and pager
+python-ueberzug # Aims to replace shitty w3m
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 transmission-qt     # Torrent Client
 transmission-cli    # Torrent client
-steam               # Steam game launcher
 tmux        # Terminal multiplexer
 gparted     # Graphical storage formatter
 smplayer    # Lightweight media player
@@ -50,11 +53,12 @@ zathura             # Document reader
 zathura-pdf-mupdf   # Dependency for viewing PDFS, EPUBS, there are other alternatives
 nfs-utils   # For NFS mounting
 samba       # For SMB client/server
-remmina     # Mainly for RDP
-freerdp     # Dependency for remmina
+remmina     # Remote system control (RDP,VNC,SPICE,NX,XDMCP,SSH)
+freerdp     # RDP support for remmina
 yay         # AUR package installer
 tig         # TUI git
 scrot       # CLI screenshot tool
+flameshot   # Lightshot linux equivalent
 go          # For building go-lang based projects
 ttf-hack        # font
 ttf-dejavu      # font
@@ -66,8 +70,10 @@ code            # Visual Studio Code
 sxiv            # Suckless image viewer
 libinput        # Input configuration
 xorg-xinput     # change touchpad settings during runtime
+xorg-xhost      # Manage auth for X server
 fzf             # Fuzzy file finder
 i3lock          # Screen locker
+youtube-dl      # Get stuff from yt and similar sites
 mps-youtube     # CLI youtube player
 python          # Python3
 ipython         # Interactive python shell, good as calculator
@@ -80,10 +86,8 @@ rsync           # Beautiful tool.
 rclone          # For online storage services
 dunst           # Notification server
 qtile           # Experimental
-nitrogen        # wallpaper setter
 xorg-xev        # See keybinds for sxhkd
 sxhkd           # Hotkey daemon
-x11-ssh-askpass # Askpass program
 ncdu            # Storage analyzing TUI
 xwallpaper      # Minimalistic wallpaper setter
 breeze-gtk      # Used theme for GTK
@@ -95,3 +99,5 @@ mlocate         # adds locate
 speedcrunch     # The best calculator ever
 clipit          # Clipboard manager
 keepassxc       # Improved fork of Keepass in Qt5
+unclutter       # Hides cursor when idle
+recoll          # Full text search tool, including file content
