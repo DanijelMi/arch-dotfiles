@@ -7,3 +7,4 @@ nm-applet &                                 # Network Manager applet
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
 xhost +local:
+xset r rate 230 35                          # Key repeat threshold and speed

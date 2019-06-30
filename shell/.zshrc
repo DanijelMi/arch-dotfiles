@@ -29,7 +29,7 @@ alias grep="grep --color=auto" # Color grep - highlight desired sequence.
 alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
 alias crp="rsync --recursive --progress --size-only --inplace --verbose" # A better cp
 alias pacinstall="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S"
-alias vim="nvim"
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
 ######## FUNCTIONS #########
 h(){curl cheat.sh/$1;}

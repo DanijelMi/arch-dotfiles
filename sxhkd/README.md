@@ -7,5 +7,5 @@ The goal is to have keybinds that work cross-desktop/window manager environments
 
 Use the `xorg-xev` package to find out key codes.
 
-To autostart, add following line in .xinitrc (AND/OR in .profile ... TOFIX);
-`sxhkd &`
+To autostart, add following line in .xprofile
+`pgrep sxhkd >/dev/null || sxhkd &`
