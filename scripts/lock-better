@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+greet_text(){
+    NUM_PACKAGES=$(pacman -Qu | wc -l)
+    if [ $NUM_PACKAGES -gt 0 ]; then
+        echo You have $NUM_PACKAGES updates available
+        return
+    else
+        echo "Welcome, $(whoami)"
+        return
+    fi
+}
+# Lock screen and trim the status text so it does not break the 31 character limit
+betterlockscreen -l dimblur -t "$(greet_text | cut -c -31)"
