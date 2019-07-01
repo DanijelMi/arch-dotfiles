@@ -45,6 +45,7 @@
     ~/.scripts: scripts
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
+    scripts/vifmuber : file_managers/vifm/scripts/vifmrun
     #~/.vim: vim
     #~/.vimrc: vimrc
 

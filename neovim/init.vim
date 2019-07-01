@@ -198,3 +198,10 @@ map <C-L> <C-W>l
 
 " escalate to sudo and write
 cmap w!! w !sudo -A tee % >/dev/null
+
+" Make transparency work
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+" Make it work when changing colorschemes on the fly as well
+au ColorScheme * hi Normal ctermbg=none guibg=none
+au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red

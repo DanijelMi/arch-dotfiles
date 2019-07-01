@@ -3,18 +3,23 @@
 super + r
  rofi -show combi
 
-# Open firefox
+# Open web browser
 super + q
- firefox
+ $WEB_BROWSER
 
-# Open vscode
+# Open IDE
 super + a
- code
+ $IDE_GUI
 
 # Open file browser
 super + {e, shift e}
  {$TERMINAL -e $FILE,\
  $FILE_GUI}
+
+# Open text editors
+super + {t, shift t}
+ {$TERMINAL -e $EDITOR,\
+ $EDITOR_GUI}
 
 # Open pinger
 super + p

@@ -2,12 +2,12 @@
 
 ####### EXPORTS ###########
 export EDITOR="nvim"
-export EDITOR_VISUAL="leafpad"
+export EDITOR_GUI="leafpad"
 export TERMINAL="st"
 export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
-export GUI_IDE="code"
+export IDE_GUI="code"
 # export LOCKSCREEN="lock-glitch"
 export LOCKSCREEN="lock-better"
 export FILE="vifmuber"
