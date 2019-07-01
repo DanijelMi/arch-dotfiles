@@ -15,6 +15,11 @@ setopt COMPLETE_IN_WORD       # dont nice background tasks
 setopt PROMPT_SUBST           # expand prompt sequences
 setopt NO_HUP   # Prevent background processes being killed along with the shell
 
+# Add ctrl-x command building in $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x' edit-command-line
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vi'
