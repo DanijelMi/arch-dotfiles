@@ -10,6 +10,7 @@
 # corrupter-git
 # betterlockscreen
 # st-luke-git
+# ttf-symbola       # Emoji support in st terminal
 pacman -Syy  # Update mirrors
 sed -n '/^#*LIST PACKAGES FROM HERE ONWARDS.*$/,$p' $(realpath $0) | \
     sed -e "/^#/d" \
@@ -60,11 +61,9 @@ tig         # TUI git
 scrot       # CLI screenshot tool
 flameshot   # Lightshot linux equivalent
 go          # For building go-lang based projects
-ttf-hack        # font
 ttf-dejavu      # font
+ttf-font-awesome    # Needed for vifm icons
 ttf-droid       # font
-ttf-inconsolata # font
-ttf-liberation  # font
 stress          # very lightweight cpu stresstesting tool
 code            # Visual Studio Code
 sxiv            # Suckless image viewer
