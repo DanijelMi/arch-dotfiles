@@ -28,7 +28,7 @@ iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 mpd         # Music player server daemon
 ncmpcpp     # MPD client
-st          # Suckless terminal
+alacritty   # Terminal emulator
 awesome     # Window manager
 lightdm     # Display/login manager
 lightdm-slick-greeter	# Graphical style for lightdm

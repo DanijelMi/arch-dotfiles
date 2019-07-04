@@ -24,6 +24,7 @@
     ~/.config/neofetch: neofetch
     ~/.config/fontconfig: fontconfig
     ~/.config/compton.conf: compton.conf
+    ~/.config/alacritty: alacritty
 
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc

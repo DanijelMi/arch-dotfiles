@@ -3,7 +3,7 @@
 ####### EXPORTS ###########
 export EDITOR="nvim"
 export EDITOR_GUI="leafpad"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
@@ -32,8 +32,6 @@ $HOME/.local/bin:\
 $HOME/.scripts:\
 /usr/local/bin:\
 /bin"
-
-# pgrep sxhkd >/dev/null || sxhkd
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path
