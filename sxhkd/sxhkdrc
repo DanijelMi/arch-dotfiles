@@ -17,9 +17,9 @@ super + {e, shift e}
  $FILE_GUI}
 
 # Open text editors
-super + {t, shift t}
- {$TERMINAL -e $EDITOR,\
- $EDITOR_GUI}
+#super + {t, shift t}
+# {$TERMINAL -e $EDITOR,\
+# $EDITOR_GUI}
 
 # Open pinger
 super + p
@@ -82,3 +82,9 @@ XF86Audio{RaiseVolume,LowerVolume,Mute}
 # Playback
 XF86Audio{Next,Prev,Play,Stop}
 mpc {next,prev,toggle,stop}
+
+
+
+#### DWM #####
+ 
+
