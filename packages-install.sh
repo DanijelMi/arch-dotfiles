@@ -71,6 +71,8 @@ libinput        # Input configuration
 xorg-xinput     # change touchpad settings during runtime
 xorg-xhost      # Manage auth for X server
 xorg-xwininfo   # Get info for x various x windows
+xorg-xsetroot   # Change title of root Xwindow
+xdotool         # Automation tool
 compton         # X Compositor
 fzf             # Fuzzy file finder
 i3lock          # Screen locker
