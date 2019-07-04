@@ -14,17 +14,16 @@ bat(){
     onl="$(grep "on-line" <(acpi -V))"
     charge="$(awk '{print +$4}' <(acpi -b))"
     if [[ ( -z $onl && $charge -gt 20 ) ]]; then
-        echo -e "BAT \x04$charge%\x01"
+        echo -e "BAT $charge%"
     elif [[ ( -z $onl && $charge -le 20 ) ]]; then
-        echo -e "BAT \x03$charge%\x01"
+        echo -e "BAT $charge%"
     else
-        echo -e "AC \x06$charge%\x01"
+        echo -e "AC $charge%"
     fi
 }
 
 mem(){
-    mem="$(awk '/^-/ {print $3}' <(free -m))"
-    echo -e "\x04$mem\x01"
+    echo -e "$(free -m | grep Mem: | awk {'print ($3/$2)'})"
 }
 
 # CPU line courtesy Procyon:
@@ -99,4 +98,4 @@ dte(){
 # Pipe to status bar
 # xsetroot -name "$(music) $(bat) • CPU $(cpu) MEM $(mem) • HDD $(hdd) \
 # • EML $(eml) PKG $(pac) AUR $(ups)$(aur) • NET $(int) • $(dte) "
-xsetroot -name "$(music)"
+xsetroot -name "$(music) $(bat) $(mem)"
