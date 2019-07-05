@@ -28,8 +28,8 @@ export MANPATH="$MANPATH:/usr/local/man"
 export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Default zim location
 # export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
-# Adds `~/.local/` and all subdirectories to $PATH
-export PATH="$PATH:$(du "$HOME/.local/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+# Adds `~/.local/bin/` and all subdirectories to $PATH
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path

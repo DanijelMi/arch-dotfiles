@@ -43,8 +43,8 @@
 
     
     # CUSTOM SCRIPTS
-    ~/.local: .local
-    ~/.local/tools/vifmuber: file_managers/vifm/scripts/vifmrun
+    ~/.local/bin: bin
+    ~/.local/bin/tools/vifmuber: file_managers/vifm/scripts/vifmrun
     ~/.local/bin/dwm-init: dwm/dwm-init.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
