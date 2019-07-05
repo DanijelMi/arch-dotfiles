@@ -23,7 +23,10 @@ bat(){
 }
 
 mem(){
-    echo -e "$(free -m | grep Mem: | awk {'print ($3/$2)'})"
+    echo -e "$(free -m | grep Mem: | awk {'printf("Mem:%.0f%\n", $3/$2 * 100.0) }')"
+    # echo -e "$(free -m | grep Mem: | awk {'printf("free : %.0f %\n", $3/$2 * 100.0) }')"
+    # free | grep Mem | awk '{ printf("free: %.4f %\n", $4/$2 * 100.0) }'
+
 }
 
 # CPU line courtesy Procyon:
