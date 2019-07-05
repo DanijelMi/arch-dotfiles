@@ -7,3 +7,4 @@ savefloat 6.1 CUSTOM
 center 6.1
 sticky 6.1 CUSTOM
 statuscolors 2018... CUSTOM
+resizecorners 6.1 CUSTOM
