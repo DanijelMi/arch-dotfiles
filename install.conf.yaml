@@ -43,10 +43,12 @@
 
     
     # CUSTOM SCRIPTS
-    ~/.scripts: scripts
+    ~/.local: .local
+    ~/.local/tools/vifmuber: file_managers/vifm/scripts/vifmrun
+    ~/.local/bin/dwm-init: dwm/dwm-init.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
-    scripts/vifmuber : file_managers/vifm/scripts/vifmrun
+    ~/.customapps: dwm/dwm-init.sh
     #~/.vim: vim
     #~/.vimrc: vimrc
 
