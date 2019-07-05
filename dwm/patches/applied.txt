@@ -5,3 +5,4 @@ awesomebar 6.2
 bottomstack 6.1 CUSTOM
 savefloat 6.1 CUSTOM
 center 6.1
+sticky 6.1 CUSTOM
