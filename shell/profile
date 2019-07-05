@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Runs on user login
 
 ####### EXPORTS ###########
 export EDITOR="nvim"
@@ -27,11 +28,8 @@ export MANPATH="$MANPATH:/usr/local/man"
 export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Default zim location
 # export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
-export PATH="$PATH:\
-$HOME/.local/bin:\
-$HOME/.scripts:\
-/usr/local/bin:\
-/bin"
+# Adds `~/.local/` and all subdirectories to $PATH
+export PATH="$PATH:$(du "$HOME/.local/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path
