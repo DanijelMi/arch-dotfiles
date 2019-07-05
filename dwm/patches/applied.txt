@@ -8,3 +8,4 @@ center 6.1
 sticky 6.1 CUSTOM
 statuscolors 2018... CUSTOM
 resizecorners 6.1 CUSTOM
+hide_vacant_tags    6.2 CUSTOM
