@@ -15,16 +15,17 @@ bat(){
     onl="$(grep "on-line" <(acpi -V))"
     charge="$(awk '{print +$4}' <(acpi -b))"
     if [[ ( -z $onl && $charge -gt 20 ) ]]; then
-        echo -e "BAT $charge%"
+        echo -e "\x05B$charge"
     elif [[ ( -z $onl && $charge -le 20 ) ]]; then
-        echo -e "BAT $charge%"
+        echo -e "\x05B$charge"
     else
-        echo -e "AC $charge%"
+        echo -e "\x08C$charge"
     fi
 }
 
 mem(){
-    echo -e "\x04$(free -m | grep Mem: | awk {'printf("%.0f%\n", $3/$2 * 100.0) }')\x01"
+    ram=$(free -m | grep Mem: | awk {'printf("%.0f", $3/$2 * 100.0)}')
+    printf "\x07%0*d\x01\n" 2 $ram
 }
 
 # CPU line courtesy Procyon:
@@ -36,7 +37,7 @@ cpu(){
     read cpu a b c idle rest < /proc/stat
     total=$((a+b+c+idle))
     cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-    echo -e "\x05$cpu%\x01"
+    printf "\x05%0*d\n" 2 $cpu
 }
 
 hdd(){
@@ -92,11 +93,11 @@ int(){
 }
 
 dte(){
-    dte="$(date "+%I:%M")"
-    echo -e "\x02$dte\x01"
+    dte="$(date "+%H:%M")"
+    echo -e "\x09$dte\x01"
 }
 
 # Pipe to status bar
 # xsetroot -name "$(music) $(bat) • CPU $(cpu) MEM $(mem) • HDD $(hdd) \
 # • EML $(eml) PKG $(pac) AUR $(ups)$(aur) • NET $(int) • $(dte) "
-xsetroot -name "$(music) $(bat) $(mem)"
+xsetroot -name "$(music)$(dte)$(bat)$(cpu)$(mem)%"
