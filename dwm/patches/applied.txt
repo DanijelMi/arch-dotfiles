@@ -1,2 +1,3 @@
+centeredmaster 6.1
 activetagindicatorbar 6.2
 attachabove 6.1
