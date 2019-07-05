@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-
-# Makes quick-restart of DWM possible by killing it.
-# For a permanent kill, target the underlying launcher (such as login manager or startx)
-while true; do
-    dwm 2> ~/.dwm.log       # Log stderror to a file
-done
-
 # Time display
 while true; do
    xsetroot -name "$( date +"%F %R" )"
@@ -23,3 +16,9 @@ setxkbmap us &      # Set keyboard layout to us
 # font... Disabled until I figure out how this part works
 # xset fp+ $HOME/.fonts &
 # xset fp rehash &
+
+# Makes quick-restart of DWM possible by killing it.
+# For a permanent kill, target the underlying launcher (such as login manager or startx)
+while true; do
+    dwm 2> ~/.dwm.log       # Log stderror to a file
+done
