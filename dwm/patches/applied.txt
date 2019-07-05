@@ -3,3 +3,4 @@ activetagindicatorbar 6.2
 attachabove 6.1
 awesomebar 6.2
 bottomstack 6.1 CUSTOM
+savefloat 6.1 CUSTOM
