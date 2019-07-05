@@ -4,6 +4,7 @@
 # 07:cyan 08:magenta 09:grey
 
 music(){
+    pgrep mpd || return 0
     track="$(mpc current)"
     artist="${track%%- *}"
     title="${track##*- }"
@@ -23,10 +24,7 @@ bat(){
 }
 
 mem(){
-    echo -e "$(free -m | grep Mem: | awk {'printf("Mem:%.0f%\n", $3/$2 * 100.0) }')"
-    # echo -e "$(free -m | grep Mem: | awk {'printf("free : %.0f %\n", $3/$2 * 100.0) }')"
-    # free | grep Mem | awk '{ printf("free: %.4f %\n", $4/$2 * 100.0) }'
-
+    echo -e "\x04$(free -m | grep Mem: | awk {'printf("%.0f%\n", $3/$2 * 100.0) }')\x01"
 }
 
 # CPU line courtesy Procyon:
