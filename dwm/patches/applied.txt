@@ -6,3 +6,4 @@ bottomstack 6.1 CUSTOM
 savefloat 6.1 CUSTOM
 center 6.1
 sticky 6.1 CUSTOM
+statuscolors 2018... CUSTOM
