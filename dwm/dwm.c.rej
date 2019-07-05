@@ -1,21 +1,10 @@
---- dwm.c.orig	2014-02-09 15:24:10.344116918 +0100
-+++ dwm.c	2014-02-09 15:24:10.336116918 +0100
-@@ -1646,8 +1651,16 @@
- 		return;
- 	selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
- 	if(selmon->sel->isfloating)
--		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
--		       selmon->sel->w, selmon->sel->h, False);
-+		/*restore last known float dimensions*/
-+		resize(selmon->sel, selmon->sel->sfx, selmon->sel->sfy,
-+		       selmon->sel->sfw, selmon->sel->sfh, False);
-+	else {
-+		/*save last known float dimensions*/
-+		selmon->sel->sfx = selmon->sel->x;
-+		selmon->sel->sfy = selmon->sel->y;
-+		selmon->sel->sfw = selmon->sel->w;
-+		selmon->sel->sfh = selmon->sel->h;
-+	}
- 	arrange(selmon);
- }
- 
+--- dwm.c
++++ dwm.c
+@@ -212,6 +213,7 @@ static void tagmon(const Arg *arg);
+ static void tile(Monitor *);
+ static void togglebar(const Arg *arg);
+ static void togglefloating(const Arg *arg);
++static void togglermaster(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+ static void unfocus(Client *c, int setfocus);

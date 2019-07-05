@@ -1,3 +1,4 @@
+CUSTOM means I had to manually patch it
 centeredmaster 6.1
 activetagindicatorbar 6.2
 attachabove 6.1
@@ -10,3 +11,4 @@ statuscolors 2018... CUSTOM
 resizecorners 6.1 CUSTOM
 hide_vacant_tags    6.2 CUSTOM
 combo 6.2
+rmaster 6.1 CUSTOM
