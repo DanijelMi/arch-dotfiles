@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 greet_text(){
-    NUM_PACKAGES=$(pacman -Qu | wc -l)
+    NUM_PACKAGES=$(pacman -Qqu | wc -l)
     if [ $NUM_PACKAGES -gt 0 ]; then
         echo You have $NUM_PACKAGES updates available
         return

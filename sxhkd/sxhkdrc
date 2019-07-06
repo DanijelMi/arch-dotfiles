@@ -23,7 +23,7 @@ super + {e, shift e}
 
 # Open pinger
 super + p
- st ping 1.1.1.1 -i 0.2
+ $TERMINAL -e ping 1.1.1.1 -i 0.2
  
 # Screen locker
 {control + alt + l, XF86ScreenSaver}

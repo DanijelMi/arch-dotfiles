@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # Time display
-while true; do
-   xsetroot -name "$( date +"%F %R" )"
-   sleep 1m    # Update time every minute
-done &
+# while true; do
+#    xsetroot -name "$( date +"%F %R" )"
+#    sleep 1m    # Update time every minute
+# done &
 
 xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
 xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group

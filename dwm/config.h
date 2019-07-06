@@ -18,18 +18,22 @@ static const char col_red[]         = "#ff0000";
 static const char col_yellow[]      = "#ffff00";
 static const char col_white[]       = "#ffffff";
 static const char col_blue[]        = "#041CF2";
+static const char col_green[]       = "#49E818";
+static const char col_teal[]        = "#49AEF0";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
-	[SchemeWarn] =	 { col_black, col_yellow, col_red },
+	[SchemeNorm] =	{ col_gray3, col_gray1, col_gray2 },
+	[SchemeSel]  =	{ col_gray4, col_cyan,  col_cyan  },
+	[SchemeHid]  =	{ col_cyan,  col_gray1, col_cyan  },
+	[SchemeWarn] =	{ col_black, col_yellow, col_red },
 	[SchemeUrgent]=	 { col_white, col_red,    col_red },
-	[SchemeCPU]=	 { col_white, col_red,    col_red },
-	[SchemeRAM]=	 { col_black, col_yellow, col_yellow },
-	[SchemeBAT]=	 { col_white, col_blue,   col_blue },
-	[SchemeTIME]=	 { col_white, col_black,  col_black },
+	[SchemeCPU]  =	{ col_white, col_red,    col_red },
+	[SchemeRAM]  =	{ col_black, col_yellow, col_yellow },
+	[SchemeBAT]  =	{ col_white, col_blue,   col_blue },
+	[SchemeTIME] =	{ col_white, col_black,  col_black },
+	[SchemeDL]   =	{ col_white, col_green,  col_green },
+	[SchemeUL]   =	{ col_black, col_teal,  col_teal },
 };
 
 /* tagging */
