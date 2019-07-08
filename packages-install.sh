@@ -26,26 +26,23 @@ firefox
 networkmanager
 iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
+fzf         # Fuzzy file finder
 mpd         # Music player server daemon
 ncmpcpp     # MPD client
 alacritty   # Terminal emulator
-awesome     # Window manager
-lightdm     # Display/login manager
+lightdm                 # Display/login manager
 lightdm-slick-greeter	# Graphical style for lightdm
-moka-icon-theme     # For slick-greeter
-adapta-maia-theme   # For slick-greeter
 pcmanfm     # Lightweigh graphical file manager
 vifm        # Ranger alternative
 ffmpegthumbnailer   # Lightweight video thumbnailer for file managers
 poppler     # pdf previews
-atool       # Universal archive extraction/preview in ranger
 w3m         # Text based web browser and pager
 python-ueberzug # Aims to replace shitty w3m
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 transmission-qt     # Torrent Client
-transmission-cli    # Torrent client
-tmux        # Terminal multiplexer. Best thing since sliced beets
+transmission-cli    # Torrent Client
+tmux        # Must-have
 gparted     # Graphical storage formatter
 smplayer    # Lightweight media player
 xorg-xbacklight     # Adds control of backlight
@@ -74,12 +71,11 @@ xorg-xwininfo   # Get info for x various x windows
 xorg-xsetroot   # Change title of root Xwindow
 xdotool         # Automation tool
 compton         # X Compositor
-fzf             # Fuzzy file finder
 i3lock          # Screen locker
 youtube-dl      # Get stuff from yt and similar sites
 mps-youtube     # CLI youtube player
 python          # Python3
-ipython         # Interactive python shell, good as calculator
+ipython         # Interactive python shell
 python-pip      # Python package manager
 openssh         # SSH server/client
 sshfs           # Mount remote ssh directories
@@ -88,8 +84,7 @@ android-file-transfer   # Android MTP mount with FUSE wrapper
 rsync           # Beautiful tool.
 rclone          # For online storage services
 dunst           # Notification server
-qtile           # Experimental
-xorg-xev        # See keybinds for sxhkd
+xorg-xev        # Find symkeys for keyboard
 sxhkd           # Hotkey daemon
 ncdu            # Storage analyzing TUI
 xwallpaper      # Minimalistic wallpaper setter
@@ -97,7 +92,7 @@ breeze-gtk      # Used theme for GTK
 lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux
 geoclue         # Used by redshift to get lat/lon for dimming
-xorg-server-xephyr  # Run X-Server inside an X application
+xorg-server-xephyr  # Run X-Server inside an X-Server
 mlocate         # adds locate
 speedcrunch     # The best calculator ever
 clipit          # Clipboard manager
@@ -105,3 +100,4 @@ keepassxc       # Improved fork of Keepass in Qt5
 unclutter       # Hides cursor when idle
 recoll          # Full text search tool, including file content
 inotify-tools   # I really should be using this more often
+wmname          # Used to set "wmname LG3D"

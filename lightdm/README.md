@@ -4,8 +4,9 @@
 
 ### Using `slick-greeter` greeter for the graphical menu.  
 
-Arch packages: `lightdm`, `slick-greeter`, `moka-icon-theme`, `adapta-maia-theme`
+Arch packages: `lightdm`, `slick-greeter`
 Destination directory: `/etc/lightdm/`  
+Make sure that the theme specified in slick-greeter.conf is installed on your system.
 Login background wallpaper: `/usr/share/pixmaps/login_wallpaper`
 
 #### Note: if symlinking these files to /etc/lightdm, make sure that the `lightdm` user can read those symlinks 

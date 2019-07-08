@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# Time display
+# Status bar
 # while true; do
-#    xsetroot -name "$( date +"%F %R" )"
-#    sleep 1m    # Update time every minute
+#     dwm-status
+#     sleep 1
 # done &
 
 xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
@@ -17,6 +17,7 @@ setxkbmap us &      # Set keyboard layout to us
 # xset fp+ $HOME/.fonts &
 # xset fp rehash &
 
+wmname LG3D     # This fixes many java apps, don't fuck with it.
 # Makes quick-restart of DWM possible by killing it.
 # For a permanent kill, target the underlying launcher (such as login manager or startx)
 while true; do

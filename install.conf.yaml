@@ -26,6 +26,7 @@
     ~/.config/compton.conf: compton.conf
     ~/.config/alacritty: alacritty
 
+    ~/.alias_fn: shell/.alias_fn
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
     ~/.zimrc: shell/.zimrc
@@ -46,6 +47,7 @@
     ~/.local/bin: bin
     ~/.local/bin/tools/vifmuber: file_managers/vifm/scripts/vifmrun
     ~/.local/bin/dwm-init: dwm/dwm-init.sh
+    ~/.local/bin/dwm-status: dwm/dwm-status.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
     ~/.customapps: dwm/dwm-init.sh
