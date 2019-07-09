@@ -13,7 +13,7 @@
 # xset fp+ $HOME/.fonts &
 # xset fp rehash &
 
-#wmname LG3D     # This fixes many java apps, don't fuck with it.
+#wmname LG3D     # This fixes many java apps, and the reason is retarded so you don't need to know why just trust it ok
 # Makes quick-restart of DWM possible by killing it.
 # For a permanent kill, target the underlying launcher (such as login manager or startx)
 
