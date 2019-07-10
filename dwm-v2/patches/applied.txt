@@ -4,7 +4,6 @@ centeredmaster 6.1
 activetagindicatorbar 6.2
 awesomebar 6.2
 bottomstack 6.1 CUSTOM
-savefloat 6.1 CUSTOM
 center 6.1
 sticky 6.1 CUSTOM
 statuscolors 2018... CUSTOM
@@ -16,3 +15,4 @@ combo 6.2
 hide_vacant_tags    6.2 
 attachabove 6.1
 resizecorners 6.1 CUSTOM
+savefloat 6.1 CUSTOM
