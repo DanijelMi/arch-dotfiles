@@ -106,21 +106,20 @@ netup_mark=0
 # • EML $(eml) PKG $(pac) AUR $(ups)$(aur) • NET $(int) • $(dte) "
 
 UTC=0   # Forces slower-updating widgets to render immedeately at start
-while true; do
-    [[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem)
+[[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem)
 
-    cpu=$(cpu $cpu_mark)  # cpu measurement internally uses 0.5 sec sleep
-    cpu_mark="$(cat /proc/stat)"
-    timedate=$(timedate)
-    [[ $(($UTC % 2)) -eq 0 ]] && music=$(music)
-    bat=$(bat)
-    [[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)
-    netdown=$(netdown $netdown_mark)
-    netdown_mark=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
-    netup=$(netup $netup_mark)
-    netup_mark=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
+### MAIN EXEC
+cpu=$(cpu $cpu_mark)  # cpu measurement internally uses 0.5 sec sleep
+cpu_mark="$(cat /proc/stat)"
+timedate=$(timedate)
+[[ $(($UTC % 2)) -eq 0 ]] && music=$(music)
+bat=$(bat)
+[[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)
+netdown=$(netdown $netdown_mark)
+netdown_mark=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
+netup=$(netup $netup_mark)
+netup_mark=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
 
-    xsetroot -name "$music$netdown$netup$pac$bat$mem$cpu$timedate"
-    UTC=$(date +%s)
-    sleep 1
-done
+xsetroot -name "$music$netdown$netup$pac$bat$mem$cpu$timedate"
+UTC=$(date +%s)
+sleep 1

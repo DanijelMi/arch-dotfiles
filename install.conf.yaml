@@ -46,7 +46,7 @@
     # CUSTOM SCRIPTS
     ~/.custombin: bin
     ~/.custombin/vifmuber: file_managers/vifm/scripts/vifmrun
-    ~/.custombin/dwm-init: dwm/dwm-init.sh
+    ~/.custombin/dwm-loop: dwm/dwm-loop.sh
     ~/.custombin/dwm-status: dwm/dwm-status.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
