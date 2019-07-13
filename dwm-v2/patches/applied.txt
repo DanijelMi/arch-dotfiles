@@ -2,10 +2,8 @@
 CUSTOM means I had to manually patch it
 centeredmaster 6.1
 activetagindicatorbar 6.2
-awesomebar 6.2
 bottomstack 6.1 CUSTOM
 center 6.1
-sticky 6.1 CUSTOM
 statuscolors 2018... CUSTOM
 
 
@@ -16,3 +14,7 @@ hide_vacant_tags    6.2
 attachabove 6.1
 resizecorners 6.1 CUSTOM
 savefloat 6.1 CUSTOM
+sticky 6.1 CUSTOM
+awesomebar 6.2
+alpha 20180613 CUSTOM
+cfacts 6.1 CUSTOM
