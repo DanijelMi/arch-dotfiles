@@ -131,13 +131,14 @@ set noerrorbells        " Kills the fucking system beep
 set visualbell          " Replaces audio beep with visual flash. Another method to kill fucking beep
 set wildmenu            " Display command line's tab complete options as a menu
 set autoread            " Enables option of re-reading files if modified inside Vim
-map <F7> :checktime<CR> " Binds F7 to re-read file in case it changed. "autoread" needs to be set
+noremap <F7> :checktime<CR> " Binds F7 to re-read file in case it changed. "autoread" needs to be set
 set confirm             " Display confirmation dialog when closing an unsaved file
 set formatoptions+=j    " Delete comment characters when joining lines
 set hidden              " Hides buffers instead of closing them. Enables having unwritten changes and also opening a new file without being forced to write or undo your changes first
 set history=500         " How many commands are saved
 set undolevels=500      " How many undo steps are saved
 set complete=.,w,b,u,t  " Where to look for CTRL-P suggestion while in INSERT mode
+set clipboard^=unnamed  " Enables cross-terminal yanking
 
 " VISUAL OPTIONS
 colorscheme badwolf     " Set colorscheme of editor
@@ -191,10 +192,10 @@ set foldmethod=indent   " Fold based on indentation levels
 set foldnestmax=3       " Only fold up to three nested levels
 
 " FASTER WINDOW-SWITCHING
-map <C-H> <C-W>h
-map <C-J> <C-W>j
-map <C-K> <C-W>k
-map <C-L> <C-W>l
+noremap <C-H> <C-W>h
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-L> <C-W>l
 
 " escalate to sudo and write
 cmap w!! w !sudo -A tee % >/dev/null
