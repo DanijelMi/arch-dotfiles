@@ -26,6 +26,7 @@
     ~/.config/compton.conf: compton.conf
     ~/.config/alacritty: alacritty
 
+    ~/.alias_fn: shell/.alias_fn
     ~/.bashrc: shell/.bashrc
     ~/.zshrc: shell/.zshrc
     ~/.zimrc: shell/.zimrc
@@ -43,12 +44,12 @@
 
     
     # CUSTOM SCRIPTS
-    ~/.local/bin: bin
-    ~/.local/bin/tools/vifmuber: file_managers/vifm/scripts/vifmrun
-    ~/.local/bin/dwm-init: dwm/dwm-init.sh
+    ~/.custombin: bin
+    ~/.custombin/vifmuber: file_managers/vifm/scripts/vifmrun
+    ~/.custombin/dwm-loop: dwm/dwm-loop.sh
+    ~/.custombin/dwm-status: dwm/dwm-status.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
-    ~/.customapps: dwm/dwm-init.sh
     #~/.vim: vim
     #~/.vimrc: vimrc
 

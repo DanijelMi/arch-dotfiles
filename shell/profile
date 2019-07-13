@@ -29,7 +29,7 @@ export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Default zim location
 # export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
 # Adds `~/.local/bin/` and all subdirectories to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/.custombin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # Need to understand this..
 #typeset -gU cdpath fpath mailpath path

@@ -1,12 +1,14 @@
 #!/bin/sh
-export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 
+##### NEEDS STUDYING ###########
+#setxkbmap us &      # Set keyboard layout to us
+# font... Disabled until I figure out how this part works
+# xset fp+ $HOME/.fonts &
+# xset fp rehash &
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 # xrandr --setprovideroutputsource modesetting NVIDIA-0
 # xrandr --auto
-
 dbus-daemon --session &
-start-pulseaudio-x11
-
 eval $(ssh-agent -s)
 dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
@@ -23,6 +25,28 @@ export SSH_AUTH_SOCK
 #   -layout "us,pt" -variant "altgr-intl,sundeadkeys" \
 #   -option "grp:alt_shift_toggle" -option caps:swapescape -option terminate:ctrl_alt_bksp
 
-#exec qtile
-exec dwm
-#pgrep sxhkd >/dev/null || sxhkd & # Start hotkey daemon
+##########################################
+#xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
+#xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
+
+start-pulseaudio-x11                        # ...start pulseaudio? :D
+setbg                                       # Wallpaper
+pgrep mpd >/dev/null || mpd &               # Music Server Daemon
+pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
+prgrep compton >/dev/null || compton &      # X compositor
+xset b off                                  # Turn off fucking BOOP
+unclutter -b                                # Auto-hide inactive cursor
+nm-applet &                                 # Network Manager applet
+xset r rate 230 35                          # Key repeat threshold and speed
+# Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
+# that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
+xhost +local:
+
+# Commands that do not work if the window manager is not already started, so we execute them after.
+execute_after() {
+    wmname LG3D                     # Makes java apps behave correctly
+    sxhkd &                         # Hotkey Daemon
+}
+
+(sleep 0.2 && execute_after) &
+exec dwm-loop

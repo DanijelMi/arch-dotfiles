@@ -138,7 +138,7 @@ set hidden              " Hides buffers instead of closing them. Enables having 
 set history=500         " How many commands are saved
 set undolevels=500      " How many undo steps are saved
 set complete=.,w,b,u,t  " Where to look for CTRL-P suggestion while in INSERT mode
-set clipboard^=unnamed  " Enables cross-terminal yanking
+set clipboard=unnamed   " Cross-vim yanking
 
 " VISUAL OPTIONS
 colorscheme badwolf     " Set colorscheme of editor
