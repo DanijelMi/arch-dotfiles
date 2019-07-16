@@ -48,5 +48,5 @@ execute_after() {
     sxhkd &                         # Hotkey Daemon
 }
 
-(sleep 0.2 && execute_after) &
+(sleep 1 && execute_after) &
 exec dwm-loop
