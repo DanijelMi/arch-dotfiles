@@ -19,3 +19,5 @@ sticky 6.1 CUSTOM
 awesomebar 6.2
 alpha 20180613 CUSTOM
 cfacts 6.1 CUSTOM
+fullgaps 6.2 CUSTOM
+pertag 20170513 CUSTOM

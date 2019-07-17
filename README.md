@@ -21,7 +21,7 @@ TODO:
 
 | Function | Program      |
 |----------:|:-------------|
-| Window Manager | [AwesomeWM](awesome), [QTile](qtile)|
+| Window Manager | <s>[AwesomeWM](awesome), [QTile](qtile) </s>, [Dwm](dwm)|
 | Display Manager | [LightDM](lightdm) |
 | Launcher | [rofi](rofi) |
 | Web Browser | firefox |
