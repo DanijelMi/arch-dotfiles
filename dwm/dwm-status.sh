@@ -12,7 +12,7 @@
 #     read cpu a b c idle rest < /proc/stat
 #     total=$((a+b+c+idle))
 #     cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-#     printf "\x05%0*d\x01" 2 $cpu
+#     printf "%0*d" 2 $cpu
 # }
 
 cpu(){
@@ -21,36 +21,36 @@ cpu(){
     read cpu a b c idle rest < /proc/stat
     total=$((a+b+c+idle))
     cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-    printf "\x05%0*d\x01" 2 $cpu
+    printf "%0*d" 2 $cpu
 }
 cpu_mark="$(cat /proc/stat)"
 
 
 mem(){
     ram=$(free -m | grep Mem: | awk {'printf("%.0f", $3/$2 * 100.0)}')
-    printf "\x07%0*d\x01" 2 $ram
+    printf "%0*d" 2 $ram
 }
 
 timedate(){
     dte="$(date "+%H:%M:%S")"
-    echo -en "\x09$dte\x01"
+    echo -en "$dte"
 }
 
 music(){
     pgrep mpd >/dev/null || return 0
     track="$(mpc -f "[%title% - %artist%]" | head -1)"
-    echo -en "\x09$track\x01"
+    echo -en "$track"
 }
 
 bat(){
     onl="$(grep "on-line" <(acpi -V))"
     charge="$(awk '{print +$4}' <(acpi -b))"
     if [[ ( -z $onl && $charge -gt 20 ) ]]; then
-        echo -e "\x05B$charge"
+        echo -e "B$charge"
     elif [[ ( -z $onl && $charge -le 20 ) ]]; then
-        echo -e "\x05B$charge"
+        echo -e "B$charge"
     else
-        echo -e "\x08C$charge"
+        echo -e "C$charge"
     fi
 }
 
@@ -70,33 +70,48 @@ bat(){
 pac(){
     pup="$(pacman -Qqu | wc -l)"
     if [ $pup -gt 0 ]; then 
-        echo -en "\x05Outdated:$pup\x01"
+        echo -en "Outdated:$pup"
     else
         echo -en ""
     fi
 }
 
-# netUP(){
-#     T1_RX=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
-#     T1_TX=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
-#     sleep 1
-#     T2_RX=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
-#     T2_TX=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
-#     echo "$(( ( T2_RX-T1_RX ) / 1000))"
-#     echo "$(( ( T2_TX-T1_TX ) / 1000))"
-# }
 
-netdown(){
-    NEW_RX=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
-    printf "\x0a%0*d\x01" 3 $(( ($NEW_RX-$1)/1000 ))
+net_if_array=($(ip -o -4 route show to default | awk '{print $5}'))
+net_sample(){
+    # DOWN
+    NEW_RX=()
+    for i in "${!net_if_array[@]}"; do
+        #echo "${net_if_array[$i]}"
+        NEW_RX[$i]=$(cat /sys/class/net/${net_if_array[$i]}/statistics/rx_bytes)
+        #echo ${NEW_RX[$i]}
+    done
+    # UP
+    NEW_TX=()
+    for i in "${!net_if_array[@]}"; do
+        #echo "${net_if_array[$i]}"
+        NEW_TX[$i]=$(cat /sys/class/net/${net_if_array[$i]}/statistics/tx_bytes)
+        #echo ${NEW_TX[$i]}
+    done
+    echo ${NEW_RX[0]} ${NEW_TX[0]} ${NEW_RX[1]} ${NEW_TX[1]} 
 }
-netdown_mark=0
+net_mark=$(net_sample)
 
-netup(){
-    NEW_TX=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
-    printf "\x0b%0*d\x01" 3 $(( ($NEW_TX-$1)/1000 ))
-}
-netup_mark=0
+#net_calculate(){
+    #
+#}
+
+#netdown(){
+    #NEW_RX=$(cat /sys/class/net/${net_if_array[0]}/statistics/rx_bytes)
+    #printf "%0*d" 3 $(( ($NEW_RX-$1)/1000 ))
+#}
+#netdown_mark=0
+#
+#netup(){
+    #NEW_TX=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
+    #printf "%0*d" 3 $(( ($NEW_TX-$1)/1000 ))
+#}
+#netup_mark=0
 
 
     # dependency: sysstat
@@ -109,17 +124,39 @@ UTC=0   # Forces slower-updating widgets to render immedeately at start
 [[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem)
 
 ### MAIN EXEC
-cpu=$(cpu $cpu_mark)  # cpu measurement internally uses 0.5 sec sleep
-cpu_mark="$(cat /proc/stat)"
-timedate=$(timedate)
+#cpu=$(cpu $cpu_mark)
+# cpu_mark="$(cat /proc/stat)"
+#timedate=$(timedate)
 [[ $(($UTC % 2)) -eq 0 ]] && music=$(music)
 bat=$(bat)
 [[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)
-netdown=$(netdown $netdown_mark)
-netdown_mark=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
-netup=$(netup $netup_mark)
-netup_mark=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
+# netdown=$(netdown $netdown_mark)
+# netdown_mark=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
+# netup=$(netup $netup_mark)
+# netup_mark=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
 
-xsetroot -name "$music$netdown$netup$pac$bat$mem$cpu$timedate"
+# xsetroot -name "\
+# $music\
+# $netdown\
+# $netup\
+# $pac\
+# $bat\
+# $mem\
+# $(cpu $cpu_mark)\
+# $(timedate)\
+# "
+# UTC=$(date +%s)
+# sleep 1
+
+
+xsetroot -name "\
+$music \
+$netdown:\
+$netup \
+$pac \
+$bat \
+$mem \
+$(timedate) \
+"
 UTC=$(date +%s)
 sleep 1
