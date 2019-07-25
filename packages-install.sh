@@ -59,6 +59,7 @@ scrot       # CLI screenshot tool
 flameshot   # Lightshot linux equivalent
 go          # For building go-lang based projects
 ttf-dejavu      # font
+ttf-dejavu-sans-mono-powerline 
 ttf-font-awesome    # Needed for vifm icons
 ttf-droid       # font
 stress          # very lightweight cpu stresstesting tool

@@ -4,7 +4,7 @@
 ####### EXPORTS ###########
 export EDITOR="nvim"
 export EDITOR_GUI="leafpad"
-export TERMINAL="alacritty"
+export TERMINAL="alacritty_rainbow"
 export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
