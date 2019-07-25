@@ -27,7 +27,7 @@ cpu_mark="$(cat /proc/stat)"
 
 
 mem(){
-    ram=$(free -m | grep Mem: | awk {'printf("%.0f", $3/$2 * 100.0)}')
+    ram=$(free | grep Mem: | awk {'printf("%.0f", $3/$2 * 100.0)}')
     printf "%0*d" 2 $ram
 }
 
