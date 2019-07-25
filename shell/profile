@@ -13,7 +13,7 @@ export IDE_GUI="code"
 export LOCKSCREEN="lock-better"
 export FILE="vifmuber"
 export FILE_GUI="pcmanfm"
-export SUDO_ASKPASS=$HOME/.scripts/rofi-askpass # GUI for passwd prompt.. change with rofi pass?
+export SUDO_ASKPASS=$HOME/.custombin/rofi-askpass # GUI for passwd prompt.. change with rofi pass?
 export SCREENSHOT="flameshot gui"
 
 export XDG_CONFIG_HOME="$HOME/.config"
