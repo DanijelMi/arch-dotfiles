@@ -177,7 +177,12 @@ noremap <C-J> <C-W>j
 noremap <C-K> <C-W>k
 noremap <C-L> <C-W>l
 
-" escalate to sudo and write
+" Execute current file
+"nnoremap <F9> :!%:p
+nnoremap <leader>r :!%:p<Enter>
+nnoremap <leader>R :!$TERMINAL -e %:p<Enter>
+
+" Escalate to sudo and write
 cmap w!! w !sudo -A tee % >/dev/null
 
 " Make transparency work
