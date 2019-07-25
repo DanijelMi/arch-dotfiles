@@ -11,9 +11,10 @@ setopt NO_HUP             # Prevent background processes being killed along with
 # Add ctrl-x command building in $EDITOR  #
 autoload -U edit-command-line             #
 zle -N edit-command-line                  #
-bindkey '^x' edit-command-line            #
 
 [[ -s ${ZIM_HOME}/init.zsh ]] && source ${ZIM_HOME}/init.zsh    # Start zim (zsh fancifier)
 source /usr/share/fzf/key-bindings.zsh          # Add CTRL-T, CTRL-R and ALT-C
 source /usr/share/fzf/completion.zsh            # Contextual ** Auto-completion. Ex. ssh **<TAB>
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" 2> /dev/null' # fzf default params (use ripgrep)
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"                                                    # Make the above apply to CTRL-T 
 [ -f ~/.alias_fn ] && source $HOME/.alias_fn    # Set aliases and functions
