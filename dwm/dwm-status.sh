@@ -1,19 +1,6 @@
 #!/usr/bin/env bash
-# Status script for dwm
-# colours: 01:normal 02:white 03:red 04:green 05:yellow 06:blue
-# 07:cyan 08:magenta 09:grey
-
-
-# cpu(){
-#     read cpu a b c previdle rest < /proc/stat
-#     notify-send "$cpu $a $b $c $previdle $rest"
-#     prevtotal=$((a+b+c+previdle))
-#     sleep 0.5
-#     read cpu a b c idle rest < /proc/stat
-#     total=$((a+b+c+idle))
-#     cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-#     printf "%0*d" 2 $cpu
-# }
+# Author: Danijel Milosevic
+# Status bar primarily made for dwm
 
 cpu(){
     read cpu a b c previdle rest <<< $(echo "$1 $2 $3 $4 $5")
@@ -21,19 +8,14 @@ cpu(){
     read cpu a b c idle rest < /proc/stat
     total=$((a+b+c+idle))
     cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-    printf "%0*d" 2 $cpu
+    printf "C%0*d" 2 $cpu
 }
 cpu_mark="$(cat /proc/stat)"
 
-
+#TODO: SHORTEN
 mem(){
     ram=$(free | grep Mem: | awk {'printf("%.0f", $3/$2 * 100.0)}')
-    printf "%0*d" 2 $ram
-}
-
-timedate(){
-    dte="$(date "+%H:%M:%S")"
-    echo -en "$dte"
+    printf "M%0*d" 2 $ram
 }
 
 music(){
@@ -46,11 +28,11 @@ bat(){
     onl="$(grep "on-line" <(acpi -V))"
     charge="$(awk '{print +$4}' <(acpi -b))"
     if [[ ( -z $onl && $charge -gt 20 ) ]]; then
-        echo -e "B$charge"
+        echo -e "-$charge"
     elif [[ ( -z $onl && $charge -le 20 ) ]]; then
-        echo -e "B$charge"
+        echo -e "-$charge!"
     else
-        echo -e "C$charge"
+        echo -e "+$charge"
     fi
 }
 
@@ -76,87 +58,59 @@ pac(){
     fi
 }
 
-
-net_if_array=($(ip -o -4 route show to default | awk '{print $5}'))
+# Takes a sample of bytes transmitted and recieved since the boot time for each active interface
 net_sample(){
-    # DOWN
-    NEW_RX=()
+    NEW_RX=()   # DOWNLOAD
     for i in "${!net_if_array[@]}"; do
-        #echo "${net_if_array[$i]}"
         NEW_RX[$i]=$(cat /sys/class/net/${net_if_array[$i]}/statistics/rx_bytes)
-        #echo ${NEW_RX[$i]}
     done
-    # UP
-    NEW_TX=()
+    NEW_TX=()   # UPLOAD
     for i in "${!net_if_array[@]}"; do
-        #echo "${net_if_array[$i]}"
         NEW_TX[$i]=$(cat /sys/class/net/${net_if_array[$i]}/statistics/tx_bytes)
-        #echo ${NEW_TX[$i]}
     done
     echo ${NEW_RX[0]} ${NEW_TX[0]} ${NEW_RX[1]} ${NEW_TX[1]} 
 }
-net_mark=$(net_sample)
+net_mark=(0 0 0 0 0 0 0 0)  # Exists only so that the first math operations aren't invalid
 
-#net_calculate(){
-    #
-#}
+# Calculates and nicely formats the byte delta from the last taken sample (passed as array arg) and new net_sample
+net_calculate(){
+    fn_args=("$@")
+    net_mark=($(net_sample))
+    output=""
+    for i in "${!net_mark[@]}"; do
+        if [ $(($i % 2)) -eq 0 ]; then
+            output+=" ${net_if_array[ $(( $i/2 )) ]}-"
+            output+=$( printf "%0*d\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) ):
+        else
+            output+=$( printf "%0*d\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) )
+        fi
+    done
+    echo $output
+}
 
-#netdown(){
-    #NEW_RX=$(cat /sys/class/net/${net_if_array[0]}/statistics/rx_bytes)
-    #printf "%0*d" 3 $(( ($NEW_RX-$1)/1000 ))
-#}
-#netdown_mark=0
-#
-#netup(){
-    #NEW_TX=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
-    #printf "%0*d" 3 $(( ($NEW_TX-$1)/1000 ))
-#}
-#netup_mark=0
+UTC=0   # Forces widgets to render immedeately from start
+while true; do
+    # Builds a list of active network interfaces
+    [[ $(($UTC % 5)) -eq 0 ]] && net_if_array=($(ip -o -4 route show to default | awk '{print $5}'))
+    net=$(net_calculate ${net_mark[@]}) # Network bandwidth
+    net_mark=($(net_sample))    # Obligatory byte snapshot for the next network delta calculation
+    cpu=$(cpu $cpu_mark)
+    cpu_mark="$(cat /proc/stat)"    # Obligatory cpu usage snapshot for the next cpu delta calculation
+    bat=$(bat)                  # Battery
+    [[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem) # Memory
+    [[ $(($UTC % 2)) -eq 0 ]] && music=$(music) # MPD data
+    [[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)    # Pacman available updates
 
-
-    # dependency: sysstat
-    # mpstat 1 1 | awk '/^Average/ {print 100-$NF,"%"}'
-
-# xsetroot -name "$(music) $(bat) • CPU $(cpu) MEM $(mem) • HDD $(hdd) \
-# • EML $(eml) PKG $(pac) AUR $(ups)$(aur) • NET $(int) • $(dte) "
-
-UTC=0   # Forces slower-updating widgets to render immedeately at start
-[[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem)
-
-### MAIN EXEC
-#cpu=$(cpu $cpu_mark)
-# cpu_mark="$(cat /proc/stat)"
-#timedate=$(timedate)
-[[ $(($UTC % 2)) -eq 0 ]] && music=$(music)
-bat=$(bat)
-[[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)
-# netdown=$(netdown $netdown_mark)
-# netdown_mark=$(cat /sys/class/net/enp4s0f2/statistics/rx_bytes)
-# netup=$(netup $netup_mark)
-# netup_mark=$(cat /sys/class/net/enp4s0f2/statistics/tx_bytes)
-
-# xsetroot -name "\
-# $music\
-# $netdown\
-# $netup\
-# $pac\
-# $bat\
-# $mem\
-# $(cpu $cpu_mark)\
-# $(timedate)\
-# "
-# UTC=$(date +%s)
-# sleep 1
-
-
-xsetroot -name "\
-$music \
-$netdown:\
-$netup \
+# Indentation would add whitespace to output
+    xsetroot -name "\
 $pac \
+$music \
+$net \
+$cpu \
 $bat \
 $mem \
-$(timedate) \
+$(date "+%H:%M")\
 "
-UTC=$(date +%s)
-sleep 1
+    UTC=$(date +%s)
+    sleep 1
+done
