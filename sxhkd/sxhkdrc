@@ -79,6 +79,10 @@ alt m ; {1,2,3}
 XF86Audio{RaiseVolume,LowerVolume,Mute}
  amixer -q set Master {10%+ unmute,10%- unmute,toggle}
 
+# Scroll Volume
+super {button4,button5}
+ amixer -q set Master {4%+ unmute,4%- unmute,toggle}
+
 # Playback
 XF86Audio{Next,Prev,Play,Stop}
 mpc {next,prev,toggle,stop}

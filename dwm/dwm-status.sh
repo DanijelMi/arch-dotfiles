@@ -49,12 +49,42 @@ bat(){
 #     fi
 # }
 
+vol(){
+    v_data=$(amixer get Master | tail -n1 | awk '{printf $5";"$6}')
+    IFS=';' read -a v_data <<< "$v_data"
+    if [ ${v_data[1]} = "[on]" ]; then
+        echo -e "${v_data[0]}" | cut -c 2-3
+    else
+        echo -e Mute
+    fi
+}
+
 pac(){
     pup="$(pacman -Qqu | wc -l)"
     if [ $pup -gt 0 ]; then 
         echo -en "Outdated:$pup"
     else
         echo -en ""
+    fi
+}
+
+parseNetwork(){
+    inp=("$@");
+
+    if [[ ${#inp} -gt 6 ]]; then # 6+ digits
+        first_cut=$((${#inp} - 5));
+        second_cut=$(($first_cut - 1));
+        echo "${inp:0:second_cut }.${inp:second_cut:1}MB";
+    fi
+
+    if [[ ${#inp} -lt 7 ]] && [[ ${#inp} -gt 3 ]]; then # 5 and 4 digits
+        first_cut=$((${#inp} - 2));
+        second_cut=$(($first_cut - 1));
+        echo "${inp:0:second_cut }KB";
+    fi
+
+    if [[ ${#inp} -lt 4 ]]; then # 3 digits
+        printf "%3dB \n" $inp ;
     fi
 }
 
@@ -81,8 +111,10 @@ net_calculate(){
         if [ $(($i % 2)) -eq 0 ]; then
             output+=" ${net_if_array[ $(( $i/2 )) ]}-"
             output+=$( printf "%0*d\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) ):
+            # output+=$(echo D:$(parseNetwork $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) )) )/)
         else
             output+=$( printf "%0*d\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) )
+            # output+="$(echo U:$(parseNetwork $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) )) ))"
         fi
     done
     echo $output
@@ -97,6 +129,7 @@ while true; do
     cpu=$(cpu $cpu_mark)
     cpu_mark="$(cat /proc/stat)"    # Obligatory cpu usage snapshot for the next cpu delta calculation
     bat=$(bat)                  # Battery
+    vol=$(vol)
     [[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem) # Memory
     [[ $(($UTC % 2)) -eq 0 ]] && music=$(music) # MPD data
     [[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)    # Pacman available updates
@@ -106,6 +139,7 @@ while true; do
 $pac \
 $music \
 $net \
+$vol \
 $cpu \
 $bat \
 $mem \
