@@ -25,6 +25,7 @@
     ~/.config/fontconfig: fontconfig
     ~/.config/compton.conf: compton.conf
     ~/.config/alacritty: alacritty
+    ~/.config/bspwm: bspwm
 
     ~/.alias_fn: shell/.alias_fn
     ~/.bashrc: shell/.bashrc

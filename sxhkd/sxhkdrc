@@ -5,24 +5,24 @@ super + r
 
 # Open web browser
 super + q
- $WEB_BROWSER
+ xdg-open http://
 
-# Open IDE
-super + a
- $IDE_GUI
+# Open VIM/IDE
+super + {a, shift a}
+ {$IDE_GUI, $TERMINAL -e vim}
 
-# Open file browser
+# Open file browser(TUI/GUI)
 super + {e, shift e}
  {$TERMINAL -e $FILE,\
  $FILE_GUI}
 
-# Open text editors
+# Open text editor(TUI/GUI)
 #super + {t, shift t}
 # {$TERMINAL -e $EDITOR,\
 # $EDITOR_GUI}
 
 # Open pinger
-super + p
+super p
  $TERMINAL -e ping 1.1.1.1 -i 0.2
  
 # Screen locker
@@ -37,6 +37,10 @@ super + alt + space
 super + Return
  $TERMINAL
 
+# Open keybind list
+super + alt + k
+ rofi-sxhkd
+
 # Open Screenshot tool
 super + Print
  bash -c $SCREENSHOT
@@ -45,19 +49,14 @@ super + Print
 super + z 
  rofi-select
 
-# Restart keybind 
+# Restart keybind daemon
 control alt k
  pkill -SIGUSR1 sxhkd
 
-# Chain test
-alt x ; {h,j}
- notify-send {"HH","JJ"}
-
 # Open communication apps
-super w ; {w,l,f}
+super w ; {w,l}
  firefox --new-window {https://web.whatsapp.com,\
- https://www.linkedin.com/,\
- https://www.facebook.com,\}
+ https://www.linkedin.com,\}
 
 # Open other apps
 super w ; {k,r,g,m,c}
@@ -86,3 +85,64 @@ super {button4,button5}
 # Playback
 XF86Audio{Next,Prev,Play,Stop}
 mpc {next,prev,toggle,stop}
+
+######## BSPWM-Specific binds #########
+
+# Close WM
+super + shift + Escape
+ bspc quit
+
+# Close/Kill active window
+super + {_,shift +}c
+ bspc node -{c,k}
+
+# Toggle Monocle mode
+super + m
+ bspc desktop -l next
+
+# Switch/move to workspace
+super + {_,shift + }{1-9,0}
+ bspc {desktop -f,node -d} focused:^{1-9,10}
+#bspc {desktop -f,node -d} '^{1-9,10}'
+
+# Focus/move node in direction
+super + {_,shift + }{h,j,k,l}
+ bspc node -{f,s} {west,south,north,east}
+
+# Expand tiled space
+super + alt + {h,j,k,l}
+ bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10};
+#bspc node {@east -r +10,@north -r -10,@south -r +10,@west -r -10}
+
+# Win+G : Move active window to biggest space
+super + g
+ bspc node -s biggest
+
+# Win + {T,Shift + T,S} : Set window mode
+super + {t,shift + t,s,f}
+ bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# Lock active window
+super + l
+ bspc node -g locked
+
+# hide window
+super + v
+ bspc node -g hidden
+
+# unhide window
+super + shift + v
+ bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
+
+# Resize gaps
+super alt g : {k,j}
+ bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+# Make split ratios equal
+super + equal
+	bspc node @/ --equalize
+
+# Ironically, this works implicitly and breaks otherwise
+# Win + LeftClick : Move window
+#super + button{1-2}
+ #bspc pointer -g {move,resize_corner}

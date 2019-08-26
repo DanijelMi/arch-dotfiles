@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+
+sxhkd &     # Keybind daemon
+compton -b &    # X Compositor
+setbg &     # Set background image
+# Find monitor names with xrandr -q
+xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
+  echo $line
+  bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
+done
+
+#bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+bspc config pointer_modifier mod4   # Super key to mouse actions
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+
+bspc config focus_follows_pointer true
+bspc config border_width    1
+bspc config border_radius   10
+bspc config window_gap      14

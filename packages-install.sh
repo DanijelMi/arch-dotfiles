@@ -104,3 +104,4 @@ unclutter       # Hides cursor when idle
 recoll          # Full text search tool, including file content
 inotify-tools   # I really should be using this more often
 wmname          # Used to set "wmname LG3D"
+bspwm           # Binary space partition window manager
