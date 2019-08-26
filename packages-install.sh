@@ -93,6 +93,8 @@ breeze-gtk      # Used theme for GTK
 lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux
 geoclue         # Used by redshift to get lat/lon for dimming
+tlp             # Power Management
+tlpui           # Power Management, but gui
 xorg-server-xephyr  # Run X-Server inside an X-Server
 mlocate         # adds locate
 speedcrunch     # The best calculator ever
