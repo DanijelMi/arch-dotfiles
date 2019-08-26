@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 while true; do
-    dwm
+    exec dwm
 done
