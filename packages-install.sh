@@ -94,7 +94,7 @@ lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux
 geoclue         # Used by redshift to get lat/lon for dimming
 tlp             # Power Management
-tlpui           # Power Management, but gui
+tlpui           # GUI frontend for tlp
 xorg-server-xephyr  # Run X-Server inside an X-Server
 mlocate         # adds locate
 speedcrunch     # The best calculator ever
@@ -105,3 +105,6 @@ recoll          # Full text search tool, including file content
 inotify-tools   # I really should be using this more often
 wmname          # Used to set "wmname LG3D"
 bspwm           # Binary space partition window manager
+xorg-xrandr     # Configure monitors in X
+autorandr       # Save and load configurations
+arandr          # GUI frontend for xrandr
