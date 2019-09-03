@@ -48,9 +48,32 @@ bat(){
 #     fi
 # }
 
-lang(){
-    echo missing feature
+_keyboard(){
+	local kd_layout kb_caps
+
+	# Checks if the current layout is set to Greek (adjust accordingly).
+	# If yes, the indicator will be displayed, else it is assumed that
+	# English is being used.
+	if [ "$(setxkbmap -query | sed '/^layout/!d ; s,^.*:[\ ]*,,g')" = 'gr' ]; then
+		kb_layout="%{B$backgroundalt}%{U$foreground}%{+u} EL %{-u}%{U-}%{B-}"
+	fi
+
 }
+keyboardlayout(){
+    #TODO: use setxkbmap -query and display in layout:variant format
+    echo dummy
+    # _info=$(setxkbmap -query | tail -n 2)
+    # echo -en "$($_info | grep layout | awk '{print $2}') $($_info | grep variant | awk '{print $2}'"
+    # echo -en "$(setxkbmap -query | sed '/^layout/!d ; s,^.*:[\ ]*,,g')"
+}
+
+# Show if caps_lock is on
+capslock(){
+    if [ "$(xset -q | grep Caps | awk '{ print $4 }')" = 'on' ]; then
+        echo -en "%{B#900}%{U#006}%{+u} CAPS %{-u}%{U-}%{B-}"
+    fi
+}
+
 
 vol(){
     amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
@@ -136,7 +159,8 @@ $(vol) \
 $(mem) \
 $(groups) \
 %{F#000000}this is an%{F-} example.\
-%{B#900}%{A:alacritty:}Spawn Terminal%{A}%{B-}\
+%{B#900}%{A:alacritty:}Spawn Terminal%{A}%{B-} \
+$(capslock) \
 $(bat)" 
         sleep 0.5
     done
