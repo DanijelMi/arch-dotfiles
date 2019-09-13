@@ -62,11 +62,11 @@ ttf-dejavu      # font
 ttf-dejavu-sans-mono-powerline 
 ttf-font-awesome    # Needed for vifm icons
 ttf-droid       # font
-stress          # very lightweight cpu stresstesting tool
+stress          # lightweight cpu stresstesting tool
 code            # Visual Studio Code
 sxiv            # Suckless image viewer
 libinput        # Input configuration
-xorg-xinput     # change touchpad settings during runtime
+xorg-xinput     # Change touchpad settings during runtime
 xorg-xhost      # Manage auth for X server
 xorg-xwininfo   # Get info for x various x windows
 xorg-xsetroot   # Change title of root Xwindow
@@ -88,7 +88,6 @@ dunst           # Notification server
 xorg-xev        # Find symkeys for keyboard
 sxhkd           # Hotkey daemon
 ncdu            # Storage analyzing TUI
-xwallpaper      # Minimalistic wallpaper setter
 breeze-gtk      # Used theme for GTK
 lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux
@@ -108,3 +107,4 @@ bspwm           # Binary space partition window manager
 xorg-xrandr     # Configure monitors in X
 autorandr       # Save and load configurations
 arandr          # GUI frontend for xrandr
+nitrogen        # Set desktop wallpaper

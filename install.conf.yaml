@@ -26,6 +26,7 @@
     ~/.config/compton.conf: compton.conf
     ~/.config/alacritty: alacritty
     ~/.config/bspwm: bspwm
+    ~/.config/conky: conky
 
     ~/.alias_fn: shell/.alias_fn
     ~/.bashrc: shell/.bashrc

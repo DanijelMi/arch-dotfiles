@@ -38,7 +38,7 @@ super + Return
  $TERMINAL
 
 # Open list of sxhkd keybinds
-super + alt + k
+super + alt + m
  rofi-sxhkd
 
 # Open Screenshot tool
@@ -92,6 +92,8 @@ super {button4,button5}
 XF86Audio{Next,Prev,Play,Stop}
  mpc {next,prev,toggle,stop}
 
+
+
 ######## BSPWM-Specific binds #########
 
 # Rotate node layout CW
@@ -119,10 +121,12 @@ super + {_,shift + }{1-9,0}
 super + {_,shift + }{h,j,k,l}
  bspc node -{f,s} {west,south,north,east}
 
-# Expand tiled space
+# Resize tiled node
 super + alt + {h,j,k,l}
- bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10};
-#bspc node {@east -r +10,@north -r -10,@south -r +10,@west -r -10}
+ {bspc node -z right -10 0 ; bspc node -z left 10 0,\
+ bspc node -z bottom 0 10 ; bspc node -z top 0 -10,\
+ bspc node -z bottom 0 -10 ; bspc node -z top 0 10,\
+ bspc node -z right 10 0 ; bspc node -z left -10 0}	
 
 # Win+G : Move active window to biggest space
 super + g
@@ -136,11 +140,11 @@ super + {t,shift + t,s,f}
 super + ctrl + {x,y,z}
 	bspc node -g {locked,sticky,private}
 
-# hide window
+# Hide window
 super + v
  bspc node -g hidden
 
-# unhide window
+# Unhide window
 super + shift + v
  bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
 
@@ -168,3 +172,11 @@ super + {Left,Down,Up,Right}
 # Resize a floating window
 super + alt + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+
+# Flip node children orientation
+super + alt + r
+ bspc node @parent -R 90
+
+# Flip current desktop with the last one
+super + alt + s
+ bspc desktop -s last

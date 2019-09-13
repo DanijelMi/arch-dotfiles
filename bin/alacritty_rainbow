@@ -5,5 +5,5 @@
 alacritty \
 --config-file <(cat ~/.config/alacritty/alacritty.yml | sed "s/.*background: '0x000000'/    background: '0x$((RANDOM%2))$((RANDOM%10))$((RANDOM%2))$((RANDOM%10))$((RANDOM%2))$((RANDOM%10))'/") \
 --no-live-config-reload \
-$@ &
+"$@"
 # Passing $@ arguments forward, for example "-e ping 1.1.1.1"

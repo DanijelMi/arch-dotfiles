@@ -7,7 +7,7 @@ cpu(){
     read cpu a b c idle rest < /proc/stat
     total=$((a+b+c+idle))
     cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-    printf "C%0*d" 2 $cpu
+    printf "%0*d" 2 $cpu
 }
 cpu_mark="$(cat /proc/stat)"
 
@@ -18,7 +18,7 @@ mem(){
 }
 
 music(){
-    pgrep mpd >/dev/null || return 0
+    pgrep mpd >/dev/null || return 0    # return now if no process exists
     track="$(mpc -f "[%title% - %artist%]" | head -1)"
     echo -en "$track"
 }
@@ -48,32 +48,18 @@ bat(){
 #     fi
 # }
 
-_keyboard(){
-	local kd_layout kb_caps
-
-	# Checks if the current layout is set to Greek (adjust accordingly).
-	# If yes, the indicator will be displayed, else it is assumed that
-	# English is being used.
-	if [ "$(setxkbmap -query | sed '/^layout/!d ; s,^.*:[\ ]*,,g')" = 'gr' ]; then
-		kb_layout="%{B$backgroundalt}%{U$foreground}%{+u} EL %{-u}%{U-}%{B-}"
-	fi
-
-}
 keyboardlayout(){
-    #TODO: use setxkbmap -query and display in layout:variant format
-    echo dummy
-    # _info=$(setxkbmap -query | tail -n 2)
-    # echo -en "$($_info | grep layout | awk '{print $2}') $($_info | grep variant | awk '{print $2}'"
-    # echo -en "$(setxkbmap -query | sed '/^layout/!d ; s,^.*:[\ ]*,,g')"
+    layout=$(setxkbmap -query | grep layout | awk '{print $2}')
+    variant=$(setxkbmap -query | grep variant | awk '{print $2}')
+    echo -en $layout $variant
 }
 
 # Show if caps_lock is on
 capslock(){
     if [ "$(xset -q | grep Caps | awk '{ print $4 }')" = 'on' ]; then
-        echo -en "%{B#900}%{U#006}%{+u} CAPS %{-u}%{U-}%{B-}"
+        echo -en "CAPS"
     fi
 }
-
 
 vol(){
     amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
@@ -140,66 +126,57 @@ net_calculate(){
     for i in "${!net_mark[@]}"; do
         if [ $(($i % 2)) -eq 0 ]; then
             output+=" ${net_if_array[ $(( $i/2 )) ]}-"
-            output+=$( printf "%0*d\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) ):
+            output+=$( printf "%%{F#0C0}%0*d%%{F-}\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) ):
             # output+=$(echo D:$(parseNetwork $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) )) )/)
         else
-            output+=$( printf "%0*d\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) )
+            output+=$( printf "%%{F#09D}%0*d%%{F-}\n" 3 $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) / 1000 )) )
             # output+="$(echo U:$(parseNetwork $(( (${net_mark[$i]} - ${fn_args[$i]}) / ($(date +%s) - $UTC) )) ))"
         fi
     done
-    echo $output
+    echo -en $output
 }
 
 feed_lemon(){   # I'm not changing this function name
     while true; do
-        echo -e -n "\
-%{l}%{O55}%{+u}%{U#900} \
+    # Builds a list of active network interfaces
+#%{l}%{O55}%{+u}%{U#900} \
+# $(groups) \
+        net_if_array=($(ip -o -4 route show to default | awk '{print $5}'))
+        echo -en "\
+%{l}%{+u}%{U#900} \
+%{A:$TERMINAL -e sh -c 'cal -y && sleep infinity':}\uf073%{A} \
 $(date "+%H:%M") \
+%{F#FC0}$(mem)\uf538%{F-} \
+%{F#39f}$(cpu $cpu_mark)\
+%{A:$TERMINAL -e sh -c 'htop':}\uf2db%{A}%{F-} \
+$(capslock)\
 $(vol) \
-$(mem) \
-$(groups) \
-%{F#000000}this is an%{F-} example.\
-%{B#900}%{A:alacritty:}Spawn Terminal%{A}%{B-} \
-$(capslock) \
-$(bat)" 
-        sleep 0.5
+%{A:pavucontrol:}\uf026%{A} \
+%{A:rofi-keyboard:}%{B#900}$(keyboardlayout)%{B-}%{A} \
+%{F#E00}$(pac)%{F-} \
+$(bat)\uf244 \
+$(net_calculate ${net_mark[@]}) \
+$(music) \
+"
+# echo -e "\uf242 Battery: 0"
+        net_mark=($(net_sample))        # Obligatory byte snapshot for the next network delta calculation
+        cpu_mark="$(cat /proc/stat)"    # Obligatory cpu usage snapshot for the next cpu delta calculation
+        UTC=$(date +%s)
+        sleep 1
     done
 }
 
 feed_lemon | lemonbar -p \
 -u 1 \
--g 800x14+50+2 \
--o 0 \
+-g 600x14+40+2 \
 -F#FFFFFFFF -B#FF444444 \
+-o 0 \
 -f "DejaVu Sans Mono"-9 \
--f FontAwesome-9 \
+-o -3 \
+-f 'Font Awesome 5 Free:style=Solid:size=6' \
 | while read line; do eval "${line} &" ; done
 
 
-#UTC=0   # Forces widgets to render immedeately from start
-#while true; do
-    # Builds a list of active network interfaces
-    #[[ $(($UTC % 5)) -eq 0 ]] && net_if_array=($(ip -o -4 route show to default | awk '{print $5}'))
-    #net=$(net_calculate ${net_mark[@]}) # Network bandwidth
-    #net_mark=($(net_sample))    # Obligatory byte snapshot for the next network delta calculation
-    #cpu=$(cpu $cpu_mark)
-    #cpu_mark="$(cat /proc/stat)"    # Obligatory cpu usage snapshot for the next cpu delta calculation
-    #vol=$(vol)
-    #[[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem) # Memory
-    #[[ $(($UTC % 2)) -eq 0 ]] && music=$(music) # MPD data
-    #[[ $(($UTC % 30)) -eq 0 ]] && pac=$(pac)    # Pacman available updates
+# -f 'Font Awesome 5 Free:style=Regular'
+# -f 'Font Awesome 5 Brands' \
 
-# Indentation would add whitespace to output
-    #xsetroot -name "\
-#$pac \
-#$music \
-#$net \
-#$cpu \
-#"
-    #UTC=$(date +%s)
-    #sleep 1
-#echo \
-##$(date "+%H:%M") \
-#| lemonbar -p
-    
-#done

@@ -128,7 +128,7 @@ while true; do
     net_mark=($(net_sample))    # Obligatory byte snapshot for the next network delta calculation
     cpu=$(cpu $cpu_mark)
     cpu_mark="$(cat /proc/stat)"    # Obligatory cpu usage snapshot for the next cpu delta calculation
-    bat=$(bat)                  # Battery
+    bat=$(bat)                      # Battery
     vol=$(vol)
     [[ $(($UTC % 2)) -eq 0 ]] && mem=$(mem) # Memory
     [[ $(($UTC % 2)) -eq 0 ]] && music=$(music) # MPD data
