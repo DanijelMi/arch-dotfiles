@@ -62,7 +62,7 @@ capslock(){
 }
 
 vol(){
-    amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq
+  echo -en "$(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq)$(amixer get Master | tail -n 1 | grep -q off && echo M)"
 }
 
 pac(){
