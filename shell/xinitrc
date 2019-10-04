@@ -6,8 +6,6 @@
 # xset fp+ $HOME/.fonts &
 # xset fp rehash &
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
-# xrandr --setprovideroutputsource modesetting NVIDIA-0
-# xrandr --auto
 dbus-daemon --session &
 eval $(ssh-agent -s)
 dbus-update-activation-environment --systemd DISPLAY
@@ -29,25 +27,21 @@ export SSH_AUTH_SOCK
 #xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
 #xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
 
-start-pulseaudio-x11                        # ...start pulseaudio? :D
-setbg                                       # Wallpaper
-pgrep mpd >/dev/null || mpd &               # Music Server Daemon
-pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
-prgrep compton >/dev/null || compton &      # X compositor
-xset b off                                  # Turn off fucking BOOP
-unclutter -b                                # Auto-hide inactive cursor
-nm-applet &                                 # Network Manager applet
-xset r rate 230 35                          # Key repeat threshold and speed
+#start-pulseaudio-x11
+#pgrep mpd >/dev/null || mpd &               # Music Server Daemon
+#pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
+# prgrep compton >/dev/null || compton &      # X compositor
+# xset r rate 230 35                          # Key repeat threshold and speed
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
-xhost +local:
+#xhost +local:
 
 # Commands that do not work if the window manager is not already started, so we execute them after.
-execute_after() {
-    wmname LG3D                     # Makes java apps behave correctly
+#execute_after() {
+    #wmname LG3D                     # Makes java apps behave correctly
     #sxhkd &                         # Hotkey Daemon
-}
+#}
 
-(sleep 1 && execute_after) &
+#(sleep 1 && execute_after) &
 #exec dwm-loop
 exec bspwm

@@ -102,6 +102,7 @@ XF86Audio{Next,Prev,Play,Stop}
 
 # Close WM
 super + shift + Escape
+ pkill lemonbar ; \
  bspc quit
 
 # Close/Kill active window

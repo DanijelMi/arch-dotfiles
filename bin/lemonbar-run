@@ -136,6 +136,10 @@ net_calculate(){
     echo -en $output
 }
 
+workspace(){
+    echo -en "$(xprop -root _NET_CURRENT_DESKTOP | sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //')"
+}
+
 feed_lemon(){   # I'm not changing this function name
     while true; do
     # Builds a list of active network interfaces
@@ -156,7 +160,8 @@ $(vol) \
 %{F#E00}$(pac)%{F-} \
 $(bat)\uf244 \
 $(net_calculate ${net_mark[@]}) \
-$(music) \
+%{c}%{-u}$(workspace) \
+%{r}$(music) \
 "
 # echo -e "\uf242 Battery: 0"
         net_mark=($(net_sample))        # Obligatory byte snapshot for the next network delta calculation
@@ -168,8 +173,8 @@ $(music) \
 
 feed_lemon | lemonbar -p \
 -u 1 \
--g 600x14+40+2 \
--F#FFFFFFFF -B#FF444444 \
+-g 900x14+40+2 \
+-F#FFFFFFFF -B#75444444 \
 -o 0 \
 -f "DejaVu Sans Mono"-9 \
 -o -3 \
