@@ -37,4 +37,5 @@ export PATH="$PATH:$(du "$HOME/.custombin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 #if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   #exec startx
 #fi
+startx
 

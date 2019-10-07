@@ -1,22 +1,47 @@
 #!/usr/bin/env sh
-
+# Runs only if no previous instance exists
+run_one_only(){
+  pgrep $1 >/dev/null || "$@" &
+}
 #### AUTOSTART ####
 sxhkd &         # Keybind daemon
-compton &       # X Compositor
-# setbg &         # Set background image
-dunst &         # Notification daemon
-nitrogen --restore &  # Set background image
+run_one_only dunst
+run_one_only start-pulseaudio-x11
+run_one_only mpd
+run_one_only clipit
+run_one_only unclutter -b
+run_one_only nm-applet
+#pgrep sxhkd >/dev/null || sxhkd &         # Keybind daemon
+#pgrep dunst >/dev/null || dunst &         # Notification daemon
+#start-pulseaudio-x11
+#pgrep mpd >/dev/null || mpd &               # Music Server Daemon
+# pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
+# pgrep unclutter >/dev/null || unclutter -b  # Auto-hide inactive cursor
+# pgrep nm-applet >/dev/null || nm-applet &   # Network Manager applet
+xset b off                                  # Turn off fucking BOOP
+xset r rate 230 35                          # Key repeat threshold and speed
+# Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
+# that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
+xhost +local:
+export _JAVA_AWT_WM_NONREPARENTING=1  # Make Java apps work
+#wmname LG3D                           # Makes java apps behave correctly
 
-lemonbar-run &    # Ensure this script is located in $PATH
-# ./.config/bspwm/panel.sh &
+handle_monitors(){
+  autorandr -c   # Load saved xrandr configuration (Monitor layouts)
+  nitrogen --restore   # Set background image
+  run_one_only lemonbar-run   # Ensure this script is located in $PATH
+  run_one_only tint2
+  run_one_only compton       # X compositor
+  xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
+    bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
+  done
+}
+
+handle_monitors &
 
 
 #### MONITOR CONFIG ####
 # Find monitor names with xrandr -q
-xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
-  #echo $line
-  bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
-done
 # bspc monitor DisplayPort-0 -d 1 2 3
 # bspc monitor DisplayPort-1 -d 4 5 6
 # bspc monitor HDMI-A-0 -d 7 8 9 
