@@ -18,8 +18,6 @@ run_one_only nm-applet
 # pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
 # pgrep unclutter >/dev/null || unclutter -b  # Auto-hide inactive cursor
 # pgrep nm-applet >/dev/null || nm-applet &   # Network Manager applet
-xset b off                                  # Turn off fucking BOOP
-xset r rate 230 35                          # Key repeat threshold and speed
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
 xhost +local:
@@ -30,8 +28,8 @@ handle_monitors(){
   autorandr -c   # Load saved xrandr configuration (Monitor layouts)
   nitrogen --restore   # Set background image
   run_one_only lemonbar-run   # Ensure this script is located in $PATH
-  run_one_only tint2
-  run_one_only compton       # X compositor
+  tint2 &          # Taskbar
+  compton &        # X compositor
   xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
     bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
   done

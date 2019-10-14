@@ -1,10 +1,11 @@
 #!/bin/sh
 
-##### NEEDS STUDYING ###########
-#setxkbmap us &      # Set keyboard layout to us
+setxkbmap us &      # Set keyboard layout to us
 # font... Disabled until I figure out how this part works
 # xset fp+ $HOME/.fonts &
 # xset fp rehash &
+xset b off                                  # Turn off fucking BOOP
+xset r rate 230 35                          # Key repeat threshold and speed
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 dbus-daemon --session &
 eval $(ssh-agent -s)

@@ -1,7 +1,11 @@
 ### OPEN PROGRAM ###
-# Open rofi
+# Open rofi (combi mode)
 super + r
  rofi -show combi
+
+# Open rofi (SSH mode)
+super + shift + r
+ rofi -show ssh
 
 # Open web browser
 super + q
@@ -10,6 +14,12 @@ super + q
 # Open VIM/IDE
 super + {a, shift a}
  {$IDE_GUI, $TERMINAL -e vim}
+
+# Open scrcpy
+super alt p
+  scrcpy -b 99000000 -m 900
+
+# Start VNC virtual screen
 
 # Open file browser(TUI/GUI)
 super + {e, shift e}
@@ -25,10 +35,14 @@ super + {e, shift e}
 super p
  $TERMINAL -e ping 1.1.1.1 -i 0.2
  
-# Screen locker
+# Screen locker 1
 {control + alt + l, XF86ScreenSaver}
  $LOCKSCREEN
 
+# Screen locker 2
+{shift + control + alt + l, shift + XF86ScreenSaver}
+ lock-glitch
+ 
 # Keyboard layout
 super + alt + space
  rofi-keyboard
@@ -74,6 +88,11 @@ alt m ; {1,2,3}
 {XF86MonBrightnessUp, XF86MonBrightnessDown}
  xbacklight -{inc,dec} 20 -time 150 ; \
  dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
+super + alt + {button4,button5}
+ xbacklight -{inc,dec} 8 -time 50 ; \
+ dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
+
+
 
 ####### Volume #####
 XF86Audio{RaiseVolume,LowerVolume}
@@ -85,7 +104,7 @@ XF86AudioMute
  amixer get Master | tail -n 1 | grep off && echo yeeprer
 # Scroll Volume
 super {button4,button5}
- pactl set-sink-volume @DEFAULT_SINK@ {+4%,-4%} ; \
+ pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%} ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
 
 # Playback
@@ -133,13 +152,21 @@ super + alt + {h,j,k,l}
 super + g
  bspc node -s biggest.local
 
-# Win + {T,Shift + T,S} : Set window mode
+# Set window mode
 super + {t,shift + t,s,f}
  bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# Set the node flags
-super + ctrl + {x,y,z}
-	bspc node -g {locked,sticky,private}
+# Set locked node flag
+super + ctrl + x
+	bspc node -g locked
+	
+# Set sticky node flag
+super + ctrl + y
+	bspc node -g sticky
+
+# Set private node flag
+super + ctrl + z
+	bspc node -g private
 
 # Hide window
 super + v
