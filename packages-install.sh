@@ -28,6 +28,7 @@ iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 fzf         # Fuzzy file finder
 mpd         # Music player server daemon
+mpc         # CLI interface for mpd
 ncmpcpp     # MPD client
 alacritty   # Terminal emulator
 lightdm                 # Display/login manager
@@ -112,6 +113,7 @@ arandr          # GUI frontend for xrandr
 nitrogen        # Set desktop wallpaper
 x11vnc          # VNC Server
 tint2           # status bar
+polybar         # status bar
 lemonpanel      # DIY status bar
 wireguard-tools
 wireguard-dkms

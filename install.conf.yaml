@@ -28,6 +28,7 @@
     ~/.config/bspwm: bspwm
     ~/.config/conky: conky
     ~/.config/tint2: tint2
+    ~/.config/polybar: polybar
 
     ~/.alias_fn: shell/.alias_fn
     ~/.bashrc: shell/.bashrc
