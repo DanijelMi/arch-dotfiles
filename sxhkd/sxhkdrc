@@ -4,7 +4,7 @@ super + r
  rofi -show combi
 
 # Open rofi (SSH mode)
-super + shift + r
+super + shift + s
  rofi -show ssh
 
 # Open web browser
@@ -35,11 +35,11 @@ super + {e, shift e}
 super p
  $TERMINAL -e ping 1.1.1.1 -i 0.2
  
-# Screen locker 1
+# Screen locker
 {control + alt + l, XF86ScreenSaver}
  $LOCKSCREEN
 
-# Screen locker 2
+# Screen locker
 {shift + control + alt + l, shift + XF86ScreenSaver}
  lock-glitch
  
@@ -84,20 +84,11 @@ super w ; {k,r,g,m,c}
 alt m ; {1,2,3}
  firefox --new-window https://mail.google.com/mail/u/{0,1,2}
 
-# Brightness
-{XF86MonBrightnessUp, XF86MonBrightnessDown}
- xbacklight -{inc,dec} 20 -time 150 ; \
- dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
-super + alt + {button4,button5}
- xbacklight -{inc,dec} 8 -time 50 ; \
- dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
-
-
-
-####### Volume #####
+# Volume
 XF86Audio{RaiseVolume,LowerVolume}
  pactl set-sink-volume @DEFAULT_SINK@ {+10%,-10%} ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+
 XF86AudioMute
  pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
@@ -111,7 +102,26 @@ super {button4,button5}
 XF86Audio{Next,Prev,Play,Stop}
  mpc {next,prev,toggle,stop}
 
+# Brightness
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+ xbacklight -{inc,dec} 20 -time 150 ; \
+ dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
+super + alt + {button4,button5}
+ xbacklight -{inc,dec} 8 -time 50 ; \
+ dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
 
+###### Numpad media ######
+# Volume
+shift + {KP_Up,KP_Down}
+ pactl set-sink-volume @DEFAULT_SINK@ {+10%,-10%} ; \
+ dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+# Skip mpv
+shift + {KP_Home, KP_Prior} 
+ pgrep mpv >/dev/null && xdotool key --clearmodifiers --window $(xdotool search --class mpv) {Left,Right}
+# Play/pause mpv
+shift + KP_Begin
+ xdotool key --clearmodifiers --window $(xdotool search --limit 1 --name "Youtube - Mozilla Firefox") k || \
+ pgrep mpv >/dev/null && xdotool key --clearmodifiers --window $(xdotool search --class mpv) space
 
 ######## BSPWM-Specific binds #########
 
@@ -152,29 +162,45 @@ super + alt + {h,j,k,l}
 super + g
  bspc node -s biggest.local
 
-# Set window mode
-super + {t,shift + t,s,f}
- bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# Set window to tiled
+super + t
+ bspc node -t tiled
 
-# Set locked node flag
+# Set window to pseudo-tiled
+super + shift + t
+ bspc node -t pseudo_tiled
+
+# Set window to floating
+super + f
+ bspc node -t floating
+
+# Set window to fullscreen
+super + shift + f
+ bspc node -t fullscreen
+
+# Set window to locked
 super + ctrl + x
 	bspc node -g locked
 	
-# Set sticky node flag
+# Set window to sticky
 super + ctrl + y
 	bspc node -g sticky
 
-# Set private node flag
+# Set window to private
 super + ctrl + z
 	bspc node -g private
 
 # Hide window
-super + v
+super + n
  bspc node -g hidden
 
 # Unhide window
-super + shift + v
+super + shift + n
  bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
+
+# Rename desktop
+super + shift + r
+ RENAMEVAR=$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "rename") && bspc desktop focused -n "$RENAMEVAR"
 
 # Resize gaps
 super alt g : {k,j}
