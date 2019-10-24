@@ -11,23 +11,19 @@ run_one_only mpd
 run_one_only clipit
 run_one_only unclutter -b
 run_one_only nm-applet
-#pgrep sxhkd >/dev/null || sxhkd &         # Keybind daemon
-#pgrep dunst >/dev/null || dunst &         # Notification daemon
-#start-pulseaudio-x11
-#pgrep mpd >/dev/null || mpd &               # Music Server Daemon
-# pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
-# pgrep unclutter >/dev/null || unclutter -b  # Auto-hide inactive cursor
-# pgrep nm-applet >/dev/null || nm-applet &   # Network Manager applet
+run_one_only blueman-applet
+run_one_only polybar main
+
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
 xhost +local:
 export _JAVA_AWT_WM_NONREPARENTING=1  # Make Java apps work
-#wmname LG3D                           # Makes java apps behave correctly
+wmname LG3D                           # Makes java apps behave correctly
 
 handle_monitors(){
   autorandr -c   # Load saved xrandr configuration (Monitor layouts)
   nitrogen --restore   # Set background image
-  run_one_only lemonbar-run   # Ensure this script is located in $PATH
+  #run_one_only lemonbar-run   # Ensure this script is located in $PATH
   tint2 &          # Taskbar
   compton &        # X compositor
   xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
