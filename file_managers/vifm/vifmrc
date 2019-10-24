@@ -12,7 +12,7 @@ set history=100      " How many directories to store in the directory history.
 set followlinks      " Automatically resolve symbolic links on l or Enter.
 " set fastrun        " run partially entered commands e.g. :!Te instead of :!Terminal or :!Te<tab>
 set vimhelp          " Enable :help
-set runexec          " Run executable files on enter or l
+set norunexec          " Run executable files on enter or l
 colorscheme Default  " Selected color scheme
 set wildmenu         " Show list of matches on tab completion in command-line mode
 set wildstyle=popup  " Display completions in a form of popup with descriptions of the matches
@@ -251,7 +251,7 @@ filetype *.7z
 fileviewer *.7z 7z l %c
 
 " Office files
-filextype *.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
+filextype *.odt,*.ods,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx libreoffice %f &
 fileviewer *.doc catdoc %c
 fileviewer *.docx docx2txt.pl %f -
 
