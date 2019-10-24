@@ -31,7 +31,7 @@ mpd         # Music player server daemon
 ncmpcpp     # MPD client
 alacritty   # Terminal emulator
 lightdm                 # Display/login manager
-lightdm-slick-greeter	# Graphical style for lightdm
+lightdm-slick-greeter   # Graphical style for lightdm
 pcmanfm     # Lightweigh graphical file manager
 vifm        # Ranger alternative
 ffmpegthumbnailer   # Lightweight video thumbnailer for file managers
@@ -40,6 +40,7 @@ w3m         # Text based web browser and pager
 python-ueberzug # Aims to replace shitty w3m
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
+slop        # Small tool for screen-selection
 transmission-qt     # Torrent Client
 transmission-cli    # Torrent Client
 tmux        # Must-have
@@ -63,6 +64,7 @@ ttf-dejavu-sans-mono-powerline
 ttf-font-awesome    # Needed for vifm icons
 ttf-droid       # font
 stress          # lightweight cpu stresstesting tool
+libreoffice-fresh # Office suite
 code            # Visual Studio Code
 sxiv            # Suckless image viewer
 libinput        # Input configuration
@@ -108,3 +110,8 @@ xorg-xrandr     # Configure monitors in X
 autorandr       # Save and load configurations
 arandr          # GUI frontend for xrandr
 nitrogen        # Set desktop wallpaper
+x11vnc          # VNC Server
+tint2           # status bar
+lemonpanel      # DIY status bar
+wireguard-tools
+wireguard-dkms
