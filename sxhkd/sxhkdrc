@@ -72,6 +72,10 @@ super w ; {w,l}
  firefox --new-window {https://web.whatsapp.com,\
  https://www.linkedin.com,\}
 
+# Run custom scripts 0-4 for quick-dev
+super F{1,2,3,4,5}
+ cs-{0,1,2,3,4}
+
 # Open other apps
 super w ; {k,r,g,m,c}
  {keepassxc,\
