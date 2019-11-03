@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Add quick & dirty actions to bind to: 'Super + F1'
+
+
+bind1(){
+  notify-send "Dirty bind 1 executed"
+  vifm
+}
+
+bind2(){
+  notify-send "Dirty bind 2 executed"
+
+}
+
+bind3(){
+  notify-send "Dirty bind 3 executed"
+
+}
+
+bind4(){
+  notify-send "Dirty bind 4 executed"
+
+}
+
+bind5(){
+  notify-send "Dirty bind 5 executed"
+  #while inotifywait -m -e modify ~/notes ; do notify-send 'notes changed'; done
+  while inotifywait $HOME/notes
+    do
+    notify-send 'notes changed'
+  done
+}
+
+
+
+##### Backend not recommended for editing #####
+
+export -f bind1
+export -f bind2
+export -f bind3
+export -f bind4
+export -f bind5
+
+if [[ $1 -eq 1 ]]; then
+  $TERMINAL -e bash -c bind1
+fi
+
+if [[ $1 -eq 2 ]]; then
+  $TERMINAL -e bash -c bind2
+fi
+
+if [[ $1 -eq 3 ]]; then
+  $TERMINAL -e bash -c bind3
+fi
+
+if [[ $1 -eq 4 ]]; then
+  $TERMINAL -e bash -c bind4
+fi
+
+if [[ $1 -eq 5 ]]; then
+  $TERMINAL -e bash -c bind5
+fi

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Add quick & dirty actions to bind to: 'Super + F1'
-
-#alacritty -e echo test?
-#alacritty -e sleep 2
-alacritty -e rofi-sxhkd
