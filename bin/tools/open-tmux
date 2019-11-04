@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
-tmux new-session -s shared -d
-sudo systemctl start sshd
+# Starts ssh server over serveo
+echo "Make sure your ssh server is enabled"
 ssh -R danecollab:22:localhost:22 serveo.net    # Script hangs here until interrupted
-sudo systemctl stop sshd
-tmux kill-session -t shared
 
 # Connect with ssh -J serveo.net danijel@danecollab
