@@ -23,28 +23,41 @@
 
 # AUTOMATIC ATTEMPT
 
-V_MONITOR=VIRTUAL1
+# Using export instead of pure define in order to pass it to a subterminal/subshell
+export V_MONITOR="VIRTUAL1"
 
-# Create if the layout doesn't already exist
-xrandr | grep --null-data --quiet "$V_MONITOR.*480x960_60" || { \
-xrandr --newmode $(gtf 480 960 60 | tail -n2 | head -n1 | sed 's/^.*Modeline "/"/g') && \
-xrandr --addmode $V_MONITOR $(gtf 480 960 60 | tail -n2 | head -n1 | awk '{print $2}') ; }
+create_vmon(){
+  # Create if the layout doesn't already exist
+  echo "Creating layout..."
+  xrandr | grep --null-data --quiet "$V_MONITOR.*480x960_60" || { \
+  xrandr --newmode $(gtf 480 960 60 | tail -n2 | head -n1 | sed 's/^.*Modeline "/"/g') && \
+  xrandr --addmode $V_MONITOR $(gtf 480 960 60 | tail -n2 | head -n1 | awk '{print $2}') ; }
 
-# Create if the layout doesn't already exist
-xrandr | grep --null-data --quiet "$V_MONITOR.*960x480_60" || { \
-xrandr --newmode $(gtf 960 480 60 | tail -n2 | head -n1 | sed 's/^.*Modeline "/"/g') && \
-xrandr --addmode $V_MONITOR $(gtf 960 480 60 | tail -n2 | head -n1 | awk '{print $2}') ; }
+  # Create if the layout doesn't already exist
+  echo "Creating layout..."
+  xrandr | grep --null-data --quiet "$V_MONITOR.*960x480_60" || { \
+  xrandr --newmode $(gtf 960 480 60 | tail -n2 | head -n1 | sed 's/^.*Modeline "/"/g') && \
+  xrandr --addmode $V_MONITOR $(gtf 960 480 60 | tail -n2 | head -n1 | awk '{print $2}') ; }
 
-#xrandr --output $V_MONITOR --auto    # Places the screen in overlap, not recommended. Use the command below instead
+  #xrandr --output $V_MONITOR --auto    # Places the screen in overlap, not recommended. Use the command below instead
 
-# If layout exists, activate the virtual monitor and place it relative to an existing monitor
-xrandr | grep --null-data --quiet "$V_MONITOR.*960x480_60" || \
-xrandr --output $V_MONITOR --mode $(gtf 960 480 60 | tail -n2 | head -n1 | awk '{print $2}') --below eDP1
+  echo "Activating virtual layout..."
+  # If layout exists, activate the virtual monitor and place it relative to an existing monitor
+  xrandr | grep --null-data --quiet "$V_MONITOR.*960x480_60" && \
+  xrandr --output $V_MONITOR --mode $(gtf 960 480 60 | tail -n2 | head -n1 | awk '{print $2}') --below eDP1
 
-# Create a vnc session if one doesn't exist and bind it to the "$V_MONITOR" monitor
-xrandr | grep --quiet "$V_MONITOR connected" && { \
-pgrep x11vnc >/dev/null || \
-x11vnc -usepw -forever -nocursorshape -cursor arrow -arrow 1 -allow 192.168.42. -multiptr -clip xinerama$(xrandr --listmonitors | grep "$V_MONITOR" | cut -c2-2) ; }
+  # Create a vnc session if one doesn't exist and bind it to the "$V_MONITOR" monitor
+  echo "Creating a VNC server..."
+  sleep 2
+  xrandr | grep --quiet "$V_MONITOR connected" && { \
+  pgrep x11vnc >/dev/null || \ 
+  x11vnc -usepw -forever -nocursorshape -cursor arrow -arrow 1 -allow 192.168.42. -multiptr -clip xinerama$(xrandr --listmonitors | grep "$V_MONITOR" | cut -c2-2) ; }
+}
+
+# Exporting the function for use in the subterminal/subshell
+export -f create_vmon
+
+$TERMINAL -e bash -c create_vmon
 
 #Huawei mate 10 lite screen: 1080 x 2160 (18:9)
 
