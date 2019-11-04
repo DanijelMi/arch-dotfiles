@@ -4,15 +4,18 @@ run_one_only(){
   pgrep $1 >/dev/null || "$@" &
 }
 #### AUTOSTART ####
+libinput-gestures-setup start
 sxhkd &         # Keybind daemon
-run_one_only dunst
+conky &                  # Dynamic wallpaper info
+run_one_only dunst                  # Notification manager
 run_one_only start-pulseaudio-x11
-run_one_only mpd
-run_one_only clipit
-run_one_only unclutter -b
-run_one_only nm-applet
-run_one_only blueman-applet
-run_one_only polybar main
+run_one_only mpd                    # Music player server
+run_one_only clipit                 # Clipboard manager
+run_one_only unclutter -b           # Auto-hide cursor
+run_one_only nm-applet              # Network Manager
+run_one_only blueman-applet         # Bluetooth
+run_one_only polybar main           # Top bar
+run_one_only mpdas                  # MPD libre.fm scrobbler
 
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
