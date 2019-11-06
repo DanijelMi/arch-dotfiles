@@ -40,7 +40,7 @@ super p
  $LOCKSCREEN
 
 # Screen locker
-{shift + control + alt + l, shift + XF86ScreenSaver}
+{super + control + alt + l, super + XF86ScreenSaver}
  lock-glitch
  
 # Keyboard layout
@@ -57,7 +57,11 @@ super + alt + m
 
 # Open Screenshot tool
 super + Print
- bash -c $SCREENSHOT
+ pgrep flameshot >/dev/null || flameshot & ; flameshot gui &
+
+# Open Screenshot tool
+super + shift + Print
+ gif.sh &
 
 # Open custom script menu
 super + z 
@@ -72,9 +76,11 @@ super w ; {w,l}
  firefox --new-window {https://web.whatsapp.com,\
  https://www.linkedin.com,\}
 
-# Run custom scripts 0-4 for quick-dev
+# Run dirty-scripts for rapid testing
 super F{1,2,3,4,5}
- cs-{0,1,2,3,4}
+ dirty_binds {1,2,3,4,5}
+super F6
+ $TERMINAL -e $EDITOR $(which dirty_binds)
 
 # Open other apps
 super w ; {k,r,g,m,c}
@@ -157,10 +163,10 @@ super + {_,shift + }{h,j,k,l}
 
 # Resize tiled node
 super + alt + {h,j,k,l}
- {bspc node -z right -10 0 ; bspc node -z left 10 0,\
- bspc node -z bottom 0 10 ; bspc node -z top 0 -10,\
- bspc node -z bottom 0 -10 ; bspc node -z top 0 10,\
- bspc node -z right 10 0 ; bspc node -z left -10 0}	
+ {bspc node -z right -15 0 ; bspc node -z left 15 0,\
+ bspc node -z bottom 0 15 ; bspc node -z top 0 -15,\
+ bspc node -z bottom 0 -15 ; bspc node -z top 0 15,\
+ bspc node -z right 15 0 ; bspc node -z left -15 0}	
 
 # Win+G : Move active window to biggest space
 super + g
@@ -210,9 +216,9 @@ super + shift + r
 super alt g : {k,j}
  bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
 
-# Make split ratios equal
+# Make all nodes occupy same amount of area
 super + equal
-	bspc node @/ --equalize
+	bspc node @/ --balance
 
 # Ironically, this works implicitly and breaks otherwise
 # Win + LeftClick : Move window
@@ -225,11 +231,11 @@ super + {_,shift +} Tab
 
 # Move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+	bspc node -v {-50 0,0 50,0 -50,50 0}
 
 # Resize a floating window
 super + alt + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,bottom 0 20,bottom 0 -20,right 20 0}
+	bspc node -z {right -50 0,bottom 0 50,bottom 0 -50,right 50 0}
 
 # Flip node children orientation
 super + alt + r
@@ -238,3 +244,11 @@ super + alt + r
 # Flip current desktop with the last one
 super + alt + s
  bspc desktop -s last
+
+# Set WM to floating
+super alt f
+ bspc rule -a "*" state=floating
+
+# Set WM to tiling
+super alt t
+ bspc rule -a "*" state=tiled
