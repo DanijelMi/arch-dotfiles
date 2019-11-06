@@ -4,7 +4,7 @@ run_one_only(){
   pgrep $1 >/dev/null || "$@" &
 }
 #### AUTOSTART ####
-libinput-gestures-setup start
+fusuma -d
 sxhkd &         # Keybind daemon
 conky &                  # Dynamic wallpaper info
 run_one_only dunst                  # Notification manager

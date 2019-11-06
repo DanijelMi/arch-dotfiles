@@ -6,17 +6,16 @@
 # Then remove everything after # in each line, along with spaces before it
 # Then remove all spaces before the end of the line
 # TODO: add support for AUR packages via yay
-# YAY PACKAGES:
-# corrupter-git
-# betterlockscreen
-# st-luke-git
-# ttf-symbola       # Emoji support in st terminal
+# AUR PACKAGES:
+# corrupter-git       # Candied lock screen 
+# betterlockscreen    # Candied lock screen
+# fusuma              # Touchpad gestures support
 pacman -Syy  # Update mirrors
 sed -n '/^#*LIST PACKAGES FROM HERE ONWARDS.*$/,$p' $(realpath $0) | \
     sed -e "/^#/d" \
     -e "s/ *#.*//" \
     -e "s/ *$//"| \
-    sudo pacman -S --needed --noconfirm - 
+    sudo pacman -S --needed - 
 exit 0
 
 ##LIST PACKAGES FROM HERE ONWARDS
@@ -24,6 +23,9 @@ base
 base-devel
 firefox
 networkmanager
+tar         # Archiving tool
+pigz        # Multi-threading compression algorithm
+borg        # Tool for data backup with deduplication support
 iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 fzf         # Fuzzy file finder
@@ -51,6 +53,7 @@ xorg-xbacklight     # Adds control of backlight
 nm-connection-editor    # GUI for NetworkManager connections
 zathura             # Document reader
 zathura-pdf-mupdf   # Dependency for viewing PDFS, EPUBS, there are other alternatives
+nethogs     # See which processes are consuming network resources
 nfs-utils   # For NFS mounting
 samba       # For SMB client/server
 remmina     # Remote system control (RDP,VNC,SPICE,NX,XDMCP,SSH)
@@ -87,6 +90,7 @@ fuse            # Mount filesystems in userspace
 android-file-transfer   # Android MTP mount with FUSE wrapper
 rsync           # Beautiful tool.
 rclone          # For online storage services
+guetzli         # google lossy image compression
 dunst           # Notification server
 xorg-xev        # Find symkeys for keyboard
 sxhkd           # Hotkey daemon
@@ -115,5 +119,5 @@ x11vnc          # VNC Server
 tint2           # status bar
 polybar         # status bar
 lemonpanel      # DIY status bar
-wireguard-tools
-wireguard-dkms
+wireguard-tools # Wireguard VPN serv/client
+wireguard-dkms  # Wireguard VPN serv/client
