@@ -149,7 +149,7 @@ super + {_,shift +}c
  bspc node -{c,k}
 
 # Toggle Monocle mode
-super + m
+super + space
  bspc desktop -l next
 
 # Switch/move to workspace
@@ -157,16 +157,54 @@ super + {_,shift + }{1-9,0}
  bspc {desktop -f,node -d} focused:^{1-9,10}
 #bspc {desktop -f,node -d} '^{1-9,10}'
 
-# Focus/move node in direction
-super + {_,shift + }{h,j,k,l}
- bspc node -{f,s} {west,south,north,east}
+# Switch to monitor
+super + alt + {1-9}
+ bspc monitor --focus ^{1-9}
 
-# Resize tiled node
+# Switch to last node
+super + grave
+ bspc node --focus last
+
+# Switch to last desktop
+super + shift + grave
+ bspc node --focus last
+
+# Switch to last monitor
+super + alt + grave
+ bspc monitor --focus last
+
+# Move next/previous monitor
 super + alt + {h,j,k,l}
- {bspc node -z right -15 0 ; bspc node -z left 15 0,\
- bspc node -z bottom 0 15 ; bspc node -z top 0 -15,\
- bspc node -z bottom 0 -15 ; bspc node -z top 0 15,\
- bspc node -z right 15 0 ; bspc node -z left -15 0}	
+ bspc monitor --focus {west,south,north,east}
+
+# Focus/move node in direction
+#super + {_,shift + }{h,j,k,l}
+# bspc node -{f,s} {west,south,north,east} \
+
+# Focus node in direction
+super + {h,j,k,l}
+ bspc node -f {west,south,north,east}
+
+# Move node in direction
+super + shift + h
+ bspc node focused -v -50 0 || \
+ bspc node focused -s west 
+super + shift + j
+ bspc node focused -v 0 50 || \
+ bspc node focused -s south
+super + shift + k
+ bspc node focused -v 0 -50 || \
+ bspc node focused -s north 
+super + shift + l
+ bspc node focused -v 50 0 || \
+ bspc node focused -s east 
+
+# Resize node
+super + ctrl + {h,j,k,l}
+ bspc node -z {right -20 0 ; bspc node -z left 20 0,\
+ bottom 0 20 ; bspc node -z top 0 -20,\
+ bottom 0 -20 ; bspc node -z top 0 20,\
+ right 20 0 ; bspc node -z left -20 0}
 
 # Win+G : Move active window to biggest space
 super + g
@@ -208,9 +246,17 @@ super + n
 super + shift + n
  bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
 
+# Create desktop
+super + d ; c
+ CREATEVAR=$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Create") && bspc monitor -f --add-desktops "$CREATEVAR"
+
 # Rename desktop
-super + shift + r
- RENAMEVAR=$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "rename") && bspc desktop focused -n "$RENAMEVAR"
+super + d ; r
+ RENAMEVAR=$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename") && bspc desktop focused -n "$RENAMEVAR"
+
+# Delete desktop
+super + d ; d
+ bspc desktop -f --remove
 
 # Resize gaps
 super alt g : {k,j}
@@ -227,15 +273,11 @@ super + equal
 
 # Cycle between nodes
 super + {_,shift +} Tab 
-	bspc node -f {prev,next} .local
+	bspc node -f {next,prev} .local
 
 # Move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-50 0,0 50,0 -50,50 0}
-
-# Resize a floating window
-super + alt + {Left,Down,Up,Right}
-	bspc node -z {right -50 0,bottom 0 50,bottom 0 -50,right 50 0}
 
 # Flip node children orientation
 super + alt + r
