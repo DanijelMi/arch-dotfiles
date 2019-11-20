@@ -29,7 +29,7 @@
     ~/.config/conky: conky
     ~/.config/tint2: tint2
     ~/.config/polybar: polybar
-    ~/config/libinput-gestures.conf: libinput-gestures.conf
+    ~/.config/fusuma: fusuma
 
     ~/.alias_fn: shell/.alias_fn
     ~/.bashrc: shell/.bashrc

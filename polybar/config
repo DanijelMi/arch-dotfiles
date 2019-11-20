@@ -58,7 +58,9 @@ modules-right = cpu memory battery xkeyboard pulseaudio xbacklight date
 #tray-padding = 0
 #;tray-background = #0063ff
 
-#;wm-restack = bspwm
+# Restack the bar window and put it aboce the selected widnow manager's root
+# Fixes the issue were the bar is being drawn on top of fullscreen windows
+wm-restack = bspwm
 #;wm-restack = i3
 
 # Make window managers not reserve space for the polybar
@@ -312,36 +314,31 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
+# Dir names in /sys/class/power_supply/
 battery = BAT0
-adapter = ADP1
-full-at = 98
+adapter = AC
+full-at = 92
 
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #b0f716
+time-format = %H:%M
+label-charging = %percentage%%
+label-discharging = %time% %consumption%W %percentage%% 
+label-full = %percentage%%
+format-charging = <ramp-capacity> <label-charging>
+format-discharging = <label-discharging> <ramp-capacity>
+format-full = <ramp-capacity> <label-full>
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
 
-format-full-prefix = 
+format-charging-underline = #75d631
+format-discharging-underline = #f36620
+
+#format-full-prefix = 
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = I
-ramp-capacity-1 = D
-ramp-capacity-2 = K
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
