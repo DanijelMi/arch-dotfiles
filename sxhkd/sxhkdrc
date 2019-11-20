@@ -134,15 +134,14 @@ shift + KP_Begin
  pgrep mpv >/dev/null && xdotool key --clearmodifiers --window $(xdotool search --class mpv) space
 
 ######## BSPWM-Specific binds #########
-
-# Rotate node layout CW
-#super + r 
-	#bspc node @/ -R 90
-
 # Close WM
 super + shift + Escape
  pkill lemonbar ; \
  bspc quit
+
+# Suspend the system
+super + BackSpace
+ lock-glitch && systemctl suspend
 
 # Close/Kill active window
 super + {_,shift +}c
@@ -201,10 +200,14 @@ super + shift + l
 
 # Resize node
 super + ctrl + {h,j,k,l}
- bspc node -z {right -20 0 ; bspc node -z left 20 0,\
- bottom 0 20 ; bspc node -z top 0 -20,\
- bottom 0 -20 ; bspc node -z top 0 20,\
- right 20 0 ; bspc node -z left -20 0}
+ bspc node -z {right -30 0 ; bspc node -z left 30 0,\
+ bottom 0 30 ; bspc node -z top 0 -30,\
+ bottom 0 -30 ; bspc node -z top 0 30,\
+ right 30 0 ; bspc node -z left -30 0}
+super + ctrl + {minus,equal}
+ bspc node -z {right -50 0 ; bspc node -z left 50 0 ; bspc node -z bottom 0 -50 ; bspc node -z top 0 50, \
+ bottom 0 50 ; bspc node -z top 0 -50 ; bspc node -z right 50 0 ; bspc node -z left -50 0}
+ 
 
 # Win+G : Move active window to biggest space
 super + g
@@ -259,7 +262,7 @@ super + d ; d
  bspc desktop -f --remove
 
 # Resize gaps
-super alt g : {k,j}
+super ctrl g : {k,j}
  bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
 
 # Make all nodes occupy same amount of area
@@ -273,18 +276,20 @@ super + equal
 
 # Cycle between nodes
 super + {_,shift +} Tab 
-	bspc node -f {next,prev} .local
+	bspc node -f {next,prev}.local
 
 # Move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-50 0,0 50,0 -50,50 0}
 
 # Flip node children orientation
-super + alt + r
+super + shift + r
  bspc node @parent -R 90
+super + ctrl + r
+ bspc node @/ -R 90
 
-# Flip current desktop with the last one
-super + alt + s
+# Swap current desktop with the last one
+super + shift + s
  bspc desktop -s last
 
 # Set WM to floating
