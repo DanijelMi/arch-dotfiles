@@ -2,20 +2,20 @@ swipe:
   3:
     left:
       command: 'xdotool key alt+Right'
-      threshold: 0.7
-      interval: 0.3
+      threshold: 10.0
+      interval: 2.0
     right:
       command: 'xdotool key alt+Left'
-      threshold: 0.7
-      interval: 0.3
+      threshold: 10.0
+      interval: 2.0
     up:
       command: 'bspc desktop -f prev'
-      threshold: 0.7
-      interval: 0.3
+      threshold: 10.0
+      interval: 2.0
     down:
       command: 'bspc desktop -f next'
-      threshold: 0.7
-      interval: 0.3
+      threshold: 10.0
+      interval: 2.0
   4:
     left:
       command: 'bspc node -s west'
@@ -51,3 +51,6 @@ pinch:
   #interval:
   #swipe: 0.2
   #pinch: 0.1
+
+# threshold: is sensitivity to swipe/pinch. Default value is 1. If the swipe's threshold is 0.5, shorten swipe-length by half.
+# interval: is delay between swipes/pinches. Default value is 1. If the swipe's interval is 0.5, shorten swipe-interval by half to recognize a next swipe.

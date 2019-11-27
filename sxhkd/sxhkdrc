@@ -77,8 +77,10 @@ super w ; {w,l}
  https://www.linkedin.com,\}
 
 # Run dirty-scripts for rapid testing
-super F{1,2,3,4,5}
+super + F{1,2,3,4,5}
  dirty_binds {1,2,3,4,5}
+super + shift F{1,2,3,4,5}
+ dirty_binds {1,2,3,4,5} t
 super F6
  $TERMINAL -e $EDITOR $(which dirty_binds)
 
@@ -140,7 +142,7 @@ super + shift + Escape
  bspc quit
 
 # Suspend the system
-super + BackSpace
+super + shift + BackSpace
  lock-glitch && systemctl suspend
 
 # Close/Kill active window
@@ -186,16 +188,16 @@ super + {h,j,k,l}
 
 # Move node in direction
 super + shift + h
- bspc node focused -v -50 0 || \
+ bspc node focused -v -50 0 >/dev/null || \
  bspc node focused -s west 
 super + shift + j
- bspc node focused -v 0 50 || \
+ bspc node focused -v 0 50 >/dev/null || \
  bspc node focused -s south
 super + shift + k
- bspc node focused -v 0 -50 || \
+ bspc node focused -v 0 -50 >/dev/null || \
  bspc node focused -s north 
 super + shift + l
- bspc node focused -v 50 0 || \
+ bspc node focused -v 50 0 >/dev/null || \
  bspc node focused -s east 
 
 # Resize node

@@ -29,6 +29,7 @@ borg        # Tool for data backup with deduplication support
 iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 fzf         # Fuzzy file finder
+fasd        # Frecency-based terminal navigation
 mpd         # Music player server daemon
 mpc         # CLI interface for mpd
 ncmpcpp     # MPD client
@@ -95,6 +96,7 @@ dunst           # Notification server
 xorg-xev        # Find symkeys for keyboard
 sxhkd           # Hotkey daemon
 ncdu            # Storage analyzing TUI
+baobab          # Storage usage visualiser
 breeze-gtk      # Used theme for GTK
 lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux

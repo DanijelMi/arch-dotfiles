@@ -4,6 +4,7 @@ file_managers/vifm/vifminfo
 bin/vifmuber
 bin/dwm-init
 bin/dwm-status
+bin/dirty_actions
 qtile/__pycache__
 #
 # Ignore personal data
