@@ -38,9 +38,7 @@ ex (){
 h (){ curl cheat.sh/$1 ; }
 
 # Public IP
-publicip (){
-  curl ipinfo.io/"$@"
-}
+publicip (){ curl ipinfo.io/"$@" ; }
 
 # CLI pastebin
 upb (){
@@ -56,6 +54,13 @@ curl -fsSL -X POST \
 }
 
 # Fuzzy finder ripgrep
-ffc (){
-  rg . | fzf | sed 's/:.*$//g'
+ffc (){ rg . | fzf | sed 's/:.*$//g' ;}
+
+# Run command upon target file attribute change
+# Usage: iwatch DIR/FILE COMMAND : iwatch Downloads notify-send "New item downloaded"
+iwatch (){ 
+  FILE=$1 
+  shift 1 # Shifts all args to the left, making "$@" function as "all other args"
+  COMMAND="$@"
+  while inotifywait --quiet --event attrib $FILE ; do eval $COMMAND; done;
 }

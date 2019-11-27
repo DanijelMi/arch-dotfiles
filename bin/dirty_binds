@@ -1,56 +1,15 @@
 #!/usr/bin/env bash
 # Author: Danijel Milosevic
-# Add quick & dirty actions to bind to: 'Super + F1'
+# Add quick & dirty actions to bind to: 'Super + F1-F5'
+# And 'Super + Shift + F1-F5'
 
-bind1(){
-  notify-send "Dirty bind 1 executed"
-  vifm
-}
+# Imports the dirty commands
+source dirty_actions
+# Makes the functions visible to the subshell (for termbinds)
+export -f termbind1 termbind2 termbind3 termbind4 termbind5 
 
-bind2(){
-  notify-send "Dirty bind 2 executed"
-
-}
-
-bind3(){
-  notify-send "Dirty bind 3 executed"
-
-}
-
-bind4(){
-  notify-send "Dirty bind 4 executed"
-}
-
-bind5(){
-  notify-send "Dirty bind 5 executed"
-  #while inotifywait -m -e modify ~/notes ; do notify-send 'notes changed'; done
-  while inotifywait $HOME/notes
-    do
-    notify-send 'notes changed'
-  done
-}
-
-export -f bind1 bind2 bind3 bind4 bind5
-
-case $1 in
-  1)
-    $TERMINAL -e bash -c bind1   # Execute in a dedicated terminal
-    #bind1                        # Execute in background
-    ;;
-  2)
-    $TERMINAL -e bash -c bind2   # Execute in a dedicated terminal
-    #bind2                        # Execute in background
-    ;;
-  3)
-    $TERMINAL -e bash -c bind3   # Execute in a dedicated terminal
-    #bind3                        # Execute in background
-    ;;
-  4)
-    $TERMINAL -e bash -c bind4   # Execute in a dedicated terminal
-    #bind4                        # Execute in background
-    ;;
-  5)
-    $TERMINAL -e bash -c bind5   # Execute in a dedicated terminal
-    #bind5                        # Execute in background
-    ;;
-esac
+if [[ $2 == t ]]; then
+  $TERMINAL -e bash -c "termbind$1"    # Launches command in a new $terminal
+else
+  bind$1        # Launches command in background
+fi
