@@ -30,10 +30,11 @@ if [ "$?" = "1" ] ; then
 fi
  
 # Prune the repo of extra backups
-# borg prune -v $REPOSITORY --prefix '{hostname}-'         \
-#     --keep-daily=7                                       \
-#     --keep-weekly=4                                      \
-#     --keep-monthly=6                                     \
+borg prune -v $REPOSITORY --prefix '{hostname}-'         \
+    --keep-daily=7                                       \
+    --keep-weekly=4                                      \
+    --keep-monthly=6                                     \
+    --keep-yearly=1                                     \
 
 # Include the remaining device capacity in the log
 #df -hl | grep --color=never /dev/sdc

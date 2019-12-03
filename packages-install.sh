@@ -49,6 +49,7 @@ transmission-qt     # Torrent Client
 transmission-cli    # Torrent Client
 tmux        # Must-have
 gparted     # Graphical storage formatter
+mplayer
 smplayer    # Lightweight media player
 xorg-xbacklight     # Adds control of backlight
 nm-connection-editor    # GUI for NetworkManager connections
