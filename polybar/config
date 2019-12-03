@@ -156,17 +156,10 @@ label-empty-padding = 0
 
 [module/mpd]
 type = internal/mpd
-#format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-format-online = <label-song>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 35
-label-song-ellipsis = true
+format-playing = <label-song>
+format-paused =
+format-stopped =
+label-song-maxlen = 50
 
 [module/xbacklight]
 type = internal/xbacklight

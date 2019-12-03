@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
 # Runs on user login
 
+startx=false
+if which startx > /dev/null 2>&1
+then
+	case "$( tty )" in
+	(/dev/tty*)
+		printf 'Start X? (y/n): ' 1>&2
+		read reply || echo n 1>&2
+		case "$reply" in
+		([Yy]*) startx=true ;;
+		esac
+		;;
+	esac
+fi
+
 ####### EXPORTS ###########
 export EDITOR="nvim"
 export EDITOR_GUI="leafpad"
@@ -36,7 +50,9 @@ export PATH="$PATH:$(du "$HOME/.custombin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 #if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   #exec startx
 #fi
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  startx
-fi
+# if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+#   startx
+# fi
 
+# Hand off to X if requested
+"$startx" && exec startx

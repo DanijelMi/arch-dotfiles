@@ -185,6 +185,9 @@ nnoremap <leader>R :!$TERMINAL -e %:p<Enter>
 " Escalate to sudo and write
 cmap w!! w !sudo -A tee % >/dev/null
 
+" Fold with <Space>
+nnoremap <Space> za
+
 " Make transparency work
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
