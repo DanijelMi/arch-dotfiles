@@ -2,20 +2,20 @@ swipe:
   3:
     left:
       command: 'xdotool key alt+Right'
-      threshold: 10.0
-      interval: 2.0
+      threshold: 0.7
+      interval: 0.4
     right:
       command: 'xdotool key alt+Left'
-      threshold: 10.0
-      interval: 2.0
+      threshold: 0.7
+      interval: 0.4
     up:
-      command: 'bspc desktop -f prev'
-      threshold: 10.0
-      interval: 2.0
+      command: 'bspc desktop prev -f'
+      threshold: 0.7
+      interval: 0.4
     down:
-      command: 'bspc desktop -f next'
-      threshold: 10.0
-      interval: 2.0
+      command: 'bspc desktop next -f'
+      threshold: 0.7
+      interval: 0.4
   4:
     left:
       command: 'bspc node -s west'

@@ -4,8 +4,8 @@ super + r
  rofi -show combi
 
 # Open rofi (SSH mode)
-super + shift + s
- rofi -show ssh
+#super + shift + s
+# rofi -show ssh
 
 # Open web browser
 super + q
@@ -34,6 +34,14 @@ super + {e, shift e}
 # Open pinger
 super p
  $TERMINAL -e ping 1.1.1.1 -i 0.2
+
+# Open clipboard content in mpv
+super + y
+ mpv-fifo.sh &
+
+# Focus the special-purpose youtube player
+super + shift + y
+ xdotool windowactivate $(xdotool search --name "main_player")
  
 # Screen locker
 {control + alt + l, XF86ScreenSaver}
@@ -41,7 +49,7 @@ super p
 
 # Screen locker
 {super + control + alt + l, super + XF86ScreenSaver}
- lock-glitch
+ pactl set-sink-mute @DEFAULT_SINK@ 1 ; lock-glitch 
  
 # Keyboard layout
 super + alt + space
@@ -82,7 +90,7 @@ super + F{1,2,3,4,5}
 super + shift F{1,2,3,4,5}
  dirty_binds {1,2,3,4,5} t
 super F6
- $TERMINAL -e $EDITOR $(which dirty_binds)
+ $TERMINAL -e $EDITOR $(which dirty_actions)
 
 # Open other apps
 super w ; {k,r,g,m,c}
@@ -99,16 +107,16 @@ alt m ; {1,2,3}
 # Volume
 XF86Audio{RaiseVolume,LowerVolume}
  pactl set-sink-volume @DEFAULT_SINK@ {+10%,-10%} ; \
- dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+ dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
 
 XF86AudioMute
  pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
- dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+ dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
  amixer get Master | tail -n 1 | grep off && echo yeeprer
 # Scroll Volume
 super {button4,button5}
  pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%} ; \
- dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+ dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
 
 # Playback
 XF86Audio{Next,Prev,Play,Stop}
@@ -117,16 +125,21 @@ XF86Audio{Next,Prev,Play,Stop}
 # Brightness
 {XF86MonBrightnessUp, XF86MonBrightnessDown}
  xbacklight -{inc,dec} 20 -time 150 ; \
- dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
+ dunstify -r "71123" -a Brightness -u low -t 700 "Brightness: $(xbacklight -get | cut -d. -f1)" 
 super + alt + {button4,button5}
- xbacklight -{inc,dec} 8 -time 50 ; \
- dunstify -r "71123" -a Brightness -u low -t 700 "Brightness $(xbacklight -get | cut -d. -f1)" 
+ xbacklight -{inc,dec} 6 -time 50 ; \
+ dunstify -r "71123" -a Brightness -u low -t 700 "Brightness: $(xbacklight -get | cut -d. -f1)" 
+
+# Screen "Warmness"
+super + ctrl + {button4,button5,Return}
+ xrandr-gamma.sh {w,c,r}
+
 
 ###### Numpad media ######
 # Volume
 shift + {KP_Up,KP_Down}
  pactl set-sink-volume @DEFAULT_SINK@ {+10%,-10%} ; \
- dunstify -r "85102" -a Volume -u low -t 500 "Vol: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+ dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
 # Skip mpv
 shift + {KP_Home, KP_Prior} 
  pgrep mpv >/dev/null && xdotool key --clearmodifiers --window $(xdotool search --class mpv) {Left,Right}
@@ -168,7 +181,7 @@ super + grave
 
 # Switch to last desktop
 super + shift + grave
- bspc node --focus last
+ bspc desktop --focus last
 
 # Switch to last monitor
 super + alt + grave
@@ -230,18 +243,29 @@ super + f
 # Set window to fullscreen
 super + shift + f
  bspc node -t fullscreen
-
-# Set window to locked
+# Toggle node close immunity
 super + ctrl + x
 	bspc node -g locked
 	
-# Set window to sticky
+# Node persists on all desktops
 super + ctrl + y
 	bspc node -g sticky
 
-# Set window to private
+# Tries to keep the node in same tiling position/size.
 super + ctrl + z
 	bspc node -g private
+
+# Set node in below layer
+super + ctrl + s
+ bspc node -l below
+
+# Set node in normal layer
+super + s
+ bspc node -l normal
+
+# Set node in above layer
+super + shift + s
+ bspc node -l above
 
 # Hide window
 super + n

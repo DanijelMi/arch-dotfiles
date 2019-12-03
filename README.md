@@ -3,11 +3,7 @@
 TODO:  
 
 - [ ] fasd
-- [ ] libinput
 - [ ] mail client (mutt)
-- [ ] tmux
-- [ ] replace execution commands with xdg-open
-- [ ] make dunst not look retarded
 - [ ] Newsboat
 - [ ] Neofetch
 - [ ] Plank
@@ -38,6 +34,6 @@ To symlink all user-side config files, run:
  ./install
 ```
 
-For the exact mappings, see `install.conf.yaml` file.
+For the exact mappings, see `install.conf.yaml` file. 
 
 To install all the necessary programs (+ others I rely on), run ./packages-install.sh
