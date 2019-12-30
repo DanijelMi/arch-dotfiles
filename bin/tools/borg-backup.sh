@@ -42,5 +42,5 @@ borg prune -v $REPOSITORY --prefix '{hostname}-'         \
 borg list $REPOSITORY
  
 # Unset the password
-export BORG_PASSPHRASE=""
+unset BORG_PASSPHRASE
 exit 0

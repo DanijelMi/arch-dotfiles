@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+seconds=$1; 
+if [ -z "$seconds" ]; then
+  echo "Specify seconds, ex. $(basename $0) 20"
+  exit 1
+fi
+date1=$((`date +%s` + $seconds));
+while [ "$date1" -ge `date +%s` ]; do
+  echo -ne "$(date -u --date @$(($date1 - `date +%s` )) +%H:%M:%S)\r";
+done

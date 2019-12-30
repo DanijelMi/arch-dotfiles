@@ -48,6 +48,8 @@ slop        # Small tool for screen-selection
 transmission-qt     # Torrent Client
 transmission-cli    # Torrent Client
 tmux        # Must-have
+htop
+ksysguard
 gparted     # Graphical storage formatter
 mplayer
 smplayer    # Lightweight media player
@@ -69,6 +71,8 @@ ttf-dejavu      # font
 ttf-dejavu-sans-mono-powerline 
 ttf-font-awesome    # Needed for vifm icons
 ttf-droid       # font
+noto-fonts
+noto-fonts-emoji
 stress          # lightweight cpu stresstesting tool
 libreoffice-fresh # Office suite
 code            # Visual Studio Code
@@ -107,8 +111,9 @@ tlpui           # GUI frontend for tlp
 xorg-server-xephyr  # Run X-Server inside an X-Server
 mlocate         # adds locate
 speedcrunch     # The best calculator ever
-clipit          # Clipboard manager
+xclip          # Clipboard manager
 keepassxc       # Improved fork of Keepass in Qt5
+pinta           # Paint in linux
 unclutter       # Hides cursor when idle
 recoll          # Full text search tool, including file content
 inotify-tools   # I really should be using this more often

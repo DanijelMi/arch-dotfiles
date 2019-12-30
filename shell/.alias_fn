@@ -9,6 +9,8 @@ alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax hi
 alias crp="rsync --recursive --progress --size-only --inplace --verbose" # A better cp
 alias notes="$EDITOR $HOME/notes" # A better cp
 alias pacinstall="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S --noconfirm"
+alias aurinstall="yay -Slq | fzf -m --preview 'yay -Si {1}'| xargs -ro yay -S"
+alias ab="mpv --save-position-on-quit"
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
 
