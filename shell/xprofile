@@ -1,7 +1,6 @@
 setbg                                       # Set background
 pgrep sxhkd >/dev/null || sxhkd &           # Hotkey Daemon
 pgrep mpd >/dev/null || mpd &               # Music Server Daemon
-pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
 prgrep compton >/dev/null || compton &      # X compositor
 xset b off                                  # Turn off system beep
 unclutter -b                                # Auto-hide inactive cursor
@@ -9,4 +8,4 @@ nm-applet &                                 # Network Manager applet
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
 xhost +local:
-xset r rate 230 35                          # Key repeat threshold and speed
+#xset r rate 230 35                          # Key repeat threshold and speed
