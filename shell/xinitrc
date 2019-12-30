@@ -1,11 +1,5 @@
 #!/bin/sh
 
-setxkbmap us &      # Set keyboard layout to us
-# font... Disabled until I figure out how this part works
-# xset fp+ $HOME/.fonts &
-# xset fp rehash &
-xset b off                                  # Turn off fucking BOOP
-xset r rate 230 35                          # Key repeat threshold and speed
 export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
 dbus-daemon --session &
 eval $(ssh-agent -s)
@@ -16,10 +10,7 @@ export SSH_AUTH_SOCK
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
-# if [ "$(cat /etc/hostname)" = "atreides" ]; then
-  # xrandr --output HDMI-A-0 --primary --auto --left-of DVI-I-1
-# fi
-
+# ToDo: Research and potentially apply
 # setxkbmap -model "evdev" -rules "evdev" \
 #   -layout "us,pt" -variant "altgr-intl,sundeadkeys" \
 #   -option "grp:alt_shift_toggle" -option caps:swapescape -option terminate:ctrl_alt_bksp
@@ -28,21 +19,4 @@ export SSH_AUTH_SOCK
 #xmodmap -e "keycode 108 = Super_L"  # reassign Alt_R to Super_L
 #xmodmap -e "remove mod1 = Super_L"  # make sure X keeps it out of the mod1 group
 
-#start-pulseaudio-x11
-#pgrep mpd >/dev/null || mpd &               # Music Server Daemon
-#pgrep clipit >/dev/null || clipit -dn &     # Clipboard manager
-# prgrep compton >/dev/null || compton &      # X compositor
-# xset r rate 230 35                          # Key repeat threshold and speed
-# Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
-# that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
-#xhost +local:
-
-# Commands that do not work if the window manager is not already started, so we execute them after.
-#execute_after() {
-    #wmname LG3D                     # Makes java apps behave correctly
-    #sxhkd &                         # Hotkey Daemon
-#}
-
-#(sleep 1 && execute_after) &
-#exec dwm-loop
 exec bspwm

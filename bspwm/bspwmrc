@@ -3,14 +3,32 @@
 run_one_only(){
   pgrep $1 >/dev/null || "$@" &
 }
+
+setxkbmap us &      # Set keyboard layout to us
+xset b off              # Turn off system boop
+xset r rate 200 30      # Key repeat hold threshold and repeat frequency
+# font... Disabled until I figure out how this part works
+# xset fp+ $HOME/.fonts &
+# xset fp rehash &    # Reload fonts
+
+#ToDo: fix this "improved" function
+# run_one_only() {
+#  current_tty=$(ps $(pgrep Xorg) | tail -n1 | awk '{ print $2 }')
+#  process_tty=$(ps j $(pgrep -u $USER $1) | tail -n1 | awk '{print $5}')
+#  if [ "$current_tty" = "$process_tty" ]; then
+#   return 1   # Process already exists owned by the same user and in the same tty
+#  else
+#    "$@" &    # Process was not found, therefore run it
+#  fi
+#}
+
 #### AUTOSTART ####
-fusuma -d
-sxhkd &         # Keybind daemon
-conky &                  # Dynamic wallpaper info
+run_one_only fusuma -d
+run_one_only sxhkd &                # Keybind daemon
+run_one_only conky &                # Dynamic wallpaper info
 run_one_only dunst                  # Notification manager
-run_one_only start-pulseaudio-x11
+run_one_only start-pulseaudio-x11   # Sound server
 run_one_only mpd                    # Music player server
-run_one_only clipit                 # Clipboard manager
 run_one_only unclutter -b           # Auto-hide cursor
 run_one_only nm-applet              # Network Manager
 run_one_only blueman-applet         # Bluetooth
@@ -87,4 +105,3 @@ bspc config urgent_border_color 	"#dd2727"
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
-

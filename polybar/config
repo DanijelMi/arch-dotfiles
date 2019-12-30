@@ -14,9 +14,9 @@ alert = #bd2c40
 [bar/main]
 monitor = ${env:MONITOR:}
 #;monitor = ${env:MONITOR:HDMI-1}
-width = 70%
-height = 20
-offset-x = 30%
+width = 55%
+height = 25
+offset-x = 45%
 ;offset-y = 1%
 #radius = 6.0
 # Makes the center more adaptive to the fullness of other corners and their modules
@@ -50,9 +50,9 @@ font-5 = "Wuncon Siji:pixelsize=10;1"
 font-6 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-7 = siji:pixelsize=10;1
 
-modules-left = mpd
-modules-center = updates-arch-combined
-modules-right = cpu memory battery xkeyboard pulseaudio xbacklight date
+#modules-left =
+#modules-center =
+modules-right = mpd updates-arch-combined cpu memory battery xkeyboard pulseaudio xbacklight date
 
 #tray-position = right
 #tray-padding = 0
@@ -135,6 +135,34 @@ label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
+; Only show workspaces defined on the same output as the bar
+; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
+; Default: true
+pin-workspaces = true
+
+; Output mode flags after focused state label
+; Default: false
+inline-mode = true
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
 label-focused-underline= ${colors.primary}
@@ -189,18 +217,19 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 #format-prefix = ""
-format-prefix = ""
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #A026bbed
-label = %percentage:2%%
+label = %{A1:notify-send "Top cpu processes\: $(ps axch -o cmd\:15,%cpu --sort=-%cpu | head)":}%percentage:2%%%{A} 
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = ""
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #A0edb826
-label = %percentage_used%%
+format-underline = #A0ddeb12
+#label = %percentage_used%%
+label = %{A1:notify-send "Top memory processes\: $(ps axch -o cmd\:15,%mem --sort=-%mem | head)":}%percentage_used%%%{A} 
 
 [module/wlan]
 type = internal/network
@@ -263,8 +292,10 @@ format-volume = <label-volume> <bar-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted =  _____
-label-muted-foreground = #F00
+format-muted = <label-muted> <bar-volume>
+label-muted = %percentage%%
+label-muted-foreground = #FFF
+label-muted-background = #F00
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -398,8 +429,8 @@ pseudo-transparency = true
 # polybar-msg cmd hide/show/toggle(!)
 enable-ipc = true
 
-#[global/wm]
-#margin-top = 0
-#margin-bottom = 0
+[global/wm]
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini

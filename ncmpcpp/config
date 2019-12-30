@@ -152,7 +152,7 @@ header_visibility = yes
 header_window_color = yellow
 header_text_scrolling = yes
 titles_visibility = yes
-cyclic_scrolling = yes
+cyclic_scrolling = no
 lines_scrolled = 1
 
 #lyrics_fetchers = FETCHERS
@@ -203,8 +203,12 @@ color2 = red
 current_item_prefix = "$(white)$r"
 current_item_suffix = "$/r$(end)"
 alternative_ui_separator_color = magenta
-current_item_inactive_column_prefix = red
-current_item_inactive_column_suffix = red
+
+#current_item_inactive_column_prefix = red
+#current_item_inactive_column_suffix = red
+current_item_inactive_column_prefix = <
+current_item_inactive_column_suffix = >
+
 window_border_color = red
 active_window_border = magenta
 execute_on_song_change = "song-notify.sh"
