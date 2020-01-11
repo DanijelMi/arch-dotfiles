@@ -11,8 +11,6 @@
     ~/.config/vifm: file_managers/vifm
     ~/.config/pcmanfm: file_managers/pcmanfm
     ~/.config/rofi/config:  rofi/config
-    ~/.config/awesome:  awesome
-    ~/.config/qtile: qtile
     ~/.config/zathura/zathurarc: zathurarc
     ~/.config/sxiv: sxiv
     ~/.config/sxhkd: sxhkd
@@ -23,7 +21,7 @@
     ~/.config/betterlockscreenrc: betterlockscreenrc
     ~/.config/neofetch: neofetch
     ~/.config/fontconfig: fontconfig
-    ~/.config/compton.conf: compton.conf
+    ~/.config/picom: picom
     ~/.config/alacritty: alacritty
     ~/.config/bspwm: bspwm
     ~/.config/conky: conky
@@ -51,8 +49,6 @@
     # CUSTOM SCRIPTS
     ~/.custombin: bin
     ~/.custombin/vifmuber: file_managers/vifm/scripts/vifmrun
-    ~/.custombin/dwm-loop: dwm/dwm-loop.sh
-    ~/.custombin/dwm-status: dwm/dwm-status.sh
 
     ~/.config/user-dirs.dirs: user-dirs.dirs
     #~/.vim: vim

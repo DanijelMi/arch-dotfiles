@@ -4,9 +4,19 @@ run_one_only(){
   pgrep $1 >/dev/null || "$@" &
 }
 
-setxkbmap us &      # Set keyboard layout to us
+setxkbmap us &          # Set keyboard layout to us
 xset b off              # Turn off system boop
 xset r rate 200 30      # Key repeat hold threshold and repeat frequency
+/usr/share/X11/xkb/rules/base.lst
+# Sets the Compose key. Works similarly to Windows alt keys for inserting Unicode characters
+# Example: {compose} + ` + e   Full combination list here: /usr/share/X11/locale/en_US.UTF-8/Compose
+setxkbmap -option compose:ralt      
+setxkbmap -option keypad:pointerkeys                # shift + numlock enables using numpad as mouse keys
+setxkbmap -option caps:escape_shifted_capslock      # Sets capslock to ESC, shift+capslock acts as capslock
+#setxkbmap -option caps:escape                      # Sets capslock to ESC
+#setxkbmap -option caps:hyper                       # Sets capslock to a new unique modifier
+
+
 # font... Disabled until I figure out how this part works
 # xset fp+ $HOME/.fonts &
 # xset fp rehash &    # Reload fonts
@@ -45,7 +55,7 @@ handle_monitors(){
   autorandr -c   # Load saved xrandr configuration (Monitor layouts)
   nitrogen --restore   # Set background image
   tint2 &          # Taskbar
-  compton &        # X compositor
+  picom -b        # X compositor
   xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
     bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
   done

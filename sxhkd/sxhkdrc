@@ -196,6 +196,12 @@ super + {u,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
+# Focus the older or newer node in the focus history
+super + shift + {u,i}
+	bspc wm -h off; \
+	bspc desktop {older,newer} -f; \
+	bspc wm -h on
+
 # Switch to last node
 super + grave
  bspc node --focus last
