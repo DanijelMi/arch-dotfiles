@@ -26,7 +26,7 @@ export IDE_GUI="code"
 # export LOCKSCREEN="lock-glitch"
 export LOCKSCREEN="lock-better"
 export FILE="vifmuber"
-export FILE_GUI="pcmanfm"
+export FILE_GUI="thunar"
 export SUDO_ASKPASS=$HOME/.custombin/rofi-askpass # GUI for passwd prompt.. change with rofi pass?
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -54,5 +54,8 @@ export PATH="$PATH:$(du "$HOME/.custombin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 #   startx
 # fi
 
+# Rewrite question prompt
 # Hand off to X if requested
 "$startx" && exec startx
+
+[ -f ~/.alias_fn ] && source $HOME/.alias_fn  # Set aliases and functions

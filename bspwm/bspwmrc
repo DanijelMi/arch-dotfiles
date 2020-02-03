@@ -4,22 +4,6 @@ run_one_only(){
   pgrep $1 >/dev/null || "$@" &
 }
 
-setxkbmap us &          # Set keyboard layout to us
-xset b off              # Turn off system boop
-xset r rate 200 30      # Key repeat hold threshold and repeat frequency
-/usr/share/X11/xkb/rules/base.lst
-# Sets the Compose key. Works similarly to Windows alt keys for inserting Unicode characters
-# Example: {compose} + ` + e   Full combination list here: /usr/share/X11/locale/en_US.UTF-8/Compose
-setxkbmap -option compose:ralt      
-setxkbmap -option keypad:pointerkeys                # shift + numlock enables using numpad as mouse keys
-setxkbmap -option caps:escape_shifted_capslock      # Sets capslock to ESC, shift+capslock acts as capslock
-#setxkbmap -option caps:escape                      # Sets capslock to ESC
-#setxkbmap -option caps:hyper                       # Sets capslock to a new unique modifier
-
-
-# font... Disabled until I figure out how this part works
-# xset fp+ $HOME/.fonts &
-# xset fp rehash &    # Reload fonts
 
 #ToDo: fix this "improved" function
 # run_one_only() {
@@ -71,7 +55,6 @@ handle_monitors &
 # bspc monitor HDMI-A-0 -d 7 8 9 
 # bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
 
-
 #### BSPWM configuration ####
 #bspc config border_radius       8    # Needs custom build of bspwm to support this
 bspc config border_width         3
@@ -115,3 +98,25 @@ bspc config urgent_border_color 	"#dd2727"
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
+
+#### Keyboard configuration ####
+# TODO: Move this entire section to xinitrc or anywhere else, as it isn't strictly related to bspwm
+# Placing these commands at the start of this file might make them not work, keep it near the end
+
+setxkbmap us &          # Set keyboard layout to us
+xset b off              # Turn off system boop
+xset r rate 175 25      # Key repeat hold threshold and repeat frequency
+/usr/share/X11/xkb/rules/base.lst
+# Sets the Compose key. Works similarly to Windows alt keys for inserting Unicode characters
+# Example: {compose} + ` + e   Full combination list here: /usr/share/X11/locale/en_US.UTF-8/Compose
+setxkbmap -option compose:ralt      
+setxkbmap -option keypad:pointerkeys                # shift + numlock enables using numpad as mouse keys
+setxkbmap -option caps:escape_shifted_capslock      # Sets capslock to ESC, shift+capslock acts as capslock
+#setxkbmap -option caps:escape                      # Sets capslock to ESC
+#setxkbmap -option caps:hyper                       # Sets capslock to a new unique modifier
+
+
+# font... Disabled until I figure out how this part works
+# xset fp+ $HOME/.fonts &
+# xset fp rehash &    # Reload fonts
+
