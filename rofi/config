@@ -1,8 +1,24 @@
-rofi.theme: /usr/share/rofi/themes/gruvbox-dark.rasi
 rofi.font: hack 14
 rofi.width: 60
 rofi.lines: 10
 rofi.columns: 3
+
+rofi.fullscreen: false
+rofi.display-window: Switch 
+rofi.display-run: Run
+rofi.display-ssh: SSH
+rofi.display-drun: App
+rofi.display-combi: All
+rofi.separator-style: none
+
+rofi.color-enabled: true
+rofi.color-window: #BA273238, #A7A298, #1e2529
+! State:           bg         fg       bgalt      hlbg     hlfg
+rofi.color-normal: #00273238, #c1c1c1, #00273238, #394249, #ffffff
+rofi.color-active: #00273238, #80cbc4, #00273238, #394249, #80cbc4
+rofi.color-urgent: #00273238, #ff1844, #00273238, #00394249, #ff1844
+
+rofi.matching: fuzzy
 rofi.modi: drun,window,ssh,combi
 rofi.combi-modi: window,drun,ssh
 rofi.sidebar-mode: true
@@ -13,14 +29,14 @@ rofi.fixed-num-lines: false
 rofi.show-icons: true
 rofi.fake-transparency: true
 rofi.click-to-exit: true
-rofi.display-window: Switch 
-rofi.display-run: Run
-rofi.display-ssh: SSH
-rofi.display-drun: App
-rofi.display-combi: All
 rofi.combi-hide-mode-prefix: false
 rofi.filter: 
 rofi.drun-show-actions: true
+
+rofi.kb-remove-word-back: Control+w
+rofi.kb-clear-line: Control+u
+rofi.kb-remove-to-sol: 
+
 /*rofi.separator-style: "dash"*/
 /*rofi.dpi: -1*/
 /*rofi.threads: 0*/
@@ -60,12 +76,10 @@ rofi.drun-show-actions: true
 /*rofi.kb-move-word-forward: "Alt+f,Control+Right"*/
 /*rofi.kb-move-char-back: "Left,Control+b"*/
 /*rofi.kb-move-char-forward: "Right,Control+f"*/
-/*rofi.kb-remove-word-back: "Control+Alt+h,Control+BackSpace"*/
 /*rofi.kb-remove-word-forward: "Control+Alt+d"*/
 /*rofi.kb-remove-char-forward: "Delete,Control+d"*/
 /*rofi.kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h"*/
 /*rofi.kb-remove-to-eol: "Control+k"*/
-/*rofi.kb-remove-to-sol: "Control+u"*/
 /*rofi.kb-accept-entry: "Control+j,Control+m,Return,KP_Enter"*/
 /*rofi.kb-accept-custom: "Control+Return"*/
 /*rofi.kb-accept-alt: "Shift+Return"*/

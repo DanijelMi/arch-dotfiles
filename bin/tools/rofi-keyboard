@@ -6,7 +6,7 @@
 # Layouts available at immediate menu. It's a bash array, so an unescaped space
 # is a separator. Two possible formats: LAYOUT or LAYOUT:STYLE
 # To find these params, run the program first and select the "Other" option for the full list.
-MAIN_OPTIONS=(us rs rs:latin it de)  # Add default opts
+MAIN_OPTIONS=(us rs:latin rs it de)  # Add default opts
 
 ##### END CONFIG ##### (Although who am I to tell you)
 

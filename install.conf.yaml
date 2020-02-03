@@ -1,15 +1,15 @@
 - defaults:
     link:
-      force: true
-      relink: true
-      create: true
+      force: false  # Force removes the old target, file or folder, and forces a new link
+      relink: true # Removes the old target if it's a symlink
+      create: true # Create parent directories to the link as needed.
 
+# Cleans directories of broken symlinks
 - clean: ['~']
 
 - link:
     ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/vifm: file_managers/vifm
-    ~/.config/pcmanfm: file_managers/pcmanfm
     ~/.config/rofi/config:  rofi/config
     ~/.config/zathura/zathurarc: zathurarc
     ~/.config/sxiv: sxiv
@@ -55,4 +55,5 @@
     #~/.vimrc: vimrc
 
 - shell:
+    - chsh -s $(which zsh)
     - [git submodule update --init --recursive, Installing submodules]
