@@ -41,7 +41,7 @@ super + ctrl + e
 
 # Open pinger
 super p
- $TERMINAL -e ping 1.1.1.1 -i 0.2
+ $TERMINAL -e sh -c "while :; do ping -c 1 1.1.1.1 | head -n-4 | tail -n1 && ping -c 1 www.google.com | head -n-4 | tail -n1 && sleep 0.4; done"
 
 # Open clipboard content in mpv
 super + y
@@ -125,6 +125,9 @@ XF86AudioMute
 # Scroll Volume
 super {button4,button5}
  pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%} ; \
+ dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+super + button{6,7}
+ pactl set-sink-volume @DEFAULT_SINK@ {-1%,+1%} ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
 
 # Playback
@@ -338,7 +341,7 @@ super + d ; c
 
 # Rename desktop
 super + d ; r
- RENAMEVAR=$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename") && bspc desktop focused -n "$RENAMEVAR"
+ RENAMEVAR="$(echo "$(wmctrl -d | grep "  \* DG:" | cut -c -1) + 1" | bc)$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
 
 # Delete desktop
 super + d ; d

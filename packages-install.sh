@@ -36,7 +36,7 @@ ncmpcpp     # MPD client
 alacritty   # Terminal emulator
 lightdm                 # Display/login manager
 lightdm-slick-greeter   # Graphical style for lightdm
-pcmanfm     # Lightweigh graphical file manager
+thunar      # Lightweight graphical file manager
 vifm        # Ranger alternative
 ffmpegthumbnailer   # Lightweight video thumbnailer for file managers
 poppler     # pdf previews
@@ -45,6 +45,7 @@ python-ueberzug # Aims to replace shitty w3m
 neovim      # Vim but better
 pycharm-community-edition     # IDE for python
 slop        # Small tool for screen-selection
+tesseract-data-eng  # OCR tool
 transmission-qt     # Torrent Client
 transmission-cli    # Torrent Client
 tmux        # Must-have
@@ -62,6 +63,8 @@ nfs-utils   # For NFS mounting
 samba       # For SMB client/server
 remmina     # Remote system control (RDP,VNC,SPICE,NX,XDMCP,SSH)
 freerdp     # RDP support for remmina
+bluez       # Provides Bluetooth protocol stack
+bluez-utils # Gives bluetoothctl cli tool
 yay         # AUR package installer
 tig         # TUI git
 scrot       # CLI screenshot tool
@@ -81,7 +84,7 @@ libinput        # Input configuration
 xorg-xinput     # Change touchpad settings during runtime
 xorg-xhost      # Manage auth for X server
 xorg-xwininfo   # Get info for x various x windows
-xorg-xsetroot   # Change title of root Xwindow
+xorg-xsetroot   # Change title/cursor of root Xwindow
 xdotool         # Automation tool
 compton         # X Compositor
 i3lock          # Screen locker
@@ -119,6 +122,7 @@ recoll          # Full text search tool, including file content
 inotify-tools   # I really should be using this more often
 wmname          # Used to set "wmname LG3D"
 bspwm           # Binary space partition window manager
+autofs          # Automatic filesystem/network mounting
 xorg-xrandr     # Configure monitors in X
 autorandr       # Save and load configurations
 arandr          # GUI frontend for xrandr
