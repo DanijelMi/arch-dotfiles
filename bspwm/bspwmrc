@@ -112,6 +112,7 @@ xset r rate 175 25      # Key repeat hold threshold and repeat frequency
 setxkbmap -option compose:ralt      
 setxkbmap -option keypad:pointerkeys                # shift + numlock enables using numpad as mouse keys
 setxkbmap -option caps:escape_shifted_capslock      # Sets capslock to ESC, shift+capslock acts as capslock
+setxkbmap -layout us,rs -variant ,latin -option grp:alt_caps_toggle       # Set 2 main languages, switch between them with alt+caps
 #setxkbmap -option caps:escape                      # Sets capslock to ESC
 #setxkbmap -option caps:hyper                       # Sets capslock to a new unique modifier
 

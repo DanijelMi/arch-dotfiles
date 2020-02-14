@@ -185,11 +185,16 @@ super + space
 super + shift + space
  bspc node -f next.urgent
 
+# Select node in desktop
+super + ctrl + {1-9}
+ xdotool windowactivate $(xdotool search --desktop $(xdotool get_desktop) --name . | tac |  sed -n '{1-9}p' ) > /dev/null 2>&1
+
 # Switch/move to workspace
 super + {_,shift + }{1-9,0}
  bspc {desktop -f,node -d} focused:^{1-9,10}
 #bspc {desktop -f,node -d} '^{1-9,10}'
-Switch to monitor
+
+# Switch to monitor
 super + alt + {1-9}
  bspc monitor --focus ^{1-9}
 
@@ -199,7 +204,7 @@ super + {u,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# Focus the older or newer node in the focus history
+# Focus the older or newer desktop in the focus history
 super + shift + {u,i}
 	bspc wm -h off; \
 	bspc desktop {older,newer} -f; \
@@ -341,15 +346,21 @@ super + d ; c
 
 # Rename desktop
 super + d ; r
- RENAMEVAR="$(echo "$(wmctrl -d | grep "  \* DG:" | cut -c -1) + 1" | bc)$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
+ RENAMEVAR="$(expr $(xdotool get_desktop) + 1 )$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
+# RENAMEVAR="$(echo "$(wmctrl -d | grep "  \* DG:" | cut -c -1) + 1" | bc)$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
 
 # Delete desktop
 super + d ; d
  bspc desktop -f --remove
 
 # Resize gaps
-super ctrl g : {k,j}
- bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+#super + ctrl + g : {k,j}
+super + alt + ctrl button{6,7}
+ bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5 ))
+
+# Change target window transparency
+super + alt + ctrl button{4,5}
+ picom-trans -c {+,-}5
 
 # Make all nodes occupy same amount of area
 super + equal
