@@ -10,7 +10,13 @@
 - link:
     ~/.config/nvim/init.vim: neovim/init.vim
     ~/.config/vifm: file_managers/vifm
-    ~/.config/rofi/config:  rofi/config
+    ~/.config/wal: pywal
+
+    # Pywal
+    ~/.config/rofi/config: ~/.cache/wal/rofi-config
+    ~/.config/tint2/tint2rc: ~/.cache/wal/tint2
+    ~/.config/conky/conky.conf: ~/.cache/wal/conky.conf
+
     ~/.config/zathura/zathurarc: zathurarc
     ~/.config/sxiv: sxiv
     ~/.config/sxhkd: sxhkd
@@ -24,8 +30,6 @@
     ~/.config/picom: picom
     ~/.config/alacritty: alacritty
     ~/.config/bspwm: bspwm
-    ~/.config/conky: conky
-    ~/.config/tint2: tint2
     ~/.config/polybar: polybar
     ~/.config/fusuma: fusuma
 
@@ -50,10 +54,9 @@
     ~/.custombin: bin
     ~/.custombin/vifmuber: file_managers/vifm/scripts/vifmrun
 
-    ~/.config/user-dirs.dirs: user-dirs.dirs
+    #~/.config/user-dirs.dirs: user-dirs.dirs
     #~/.vim: vim
     #~/.vimrc: vimrc
 
 - shell:
-    - chsh -s $(which zsh)
     - [git submodule update --init --recursive, Installing submodules]

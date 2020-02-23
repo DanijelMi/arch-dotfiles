@@ -127,6 +127,7 @@ xorg-xrandr     # Configure monitors in X
 autorandr       # Save and load configurations
 arandr          # GUI frontend for xrandr
 nitrogen        # Set desktop wallpaper
+python-pywal    # Set color-scheme based on an image
 x11vnc          # VNC Server
 tint2           # status bar
 polybar         # status bar

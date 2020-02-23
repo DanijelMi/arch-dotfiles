@@ -1,0 +1,137 @@
+rofi.font: hack 14
+rofi.width: 60
+rofi.lines: 10
+rofi.columns: 3
+
+rofi.fullscreen: false
+rofi.display-window: Switch 
+rofi.display-run: Run
+rofi.display-ssh: SSH
+rofi.display-drun: App
+rofi.display-combi: All
+rofi.separator-style: none
+
+rofi.color-enabled: true
+rofi.color-window: #90{background.strip}, {color3}, {background}
+! State:           bg                     fg        bgalt                  hlbg       hlfg
+rofi.color-normal: #70{background.strip}, {color7}, #70{background.strip}, {color3},  {color4}
+rofi.color-active: #90{color3.strip},     {color7}, #00{background.strip}, {color3},  {color7}
+rofi.color-urgent: #90{color2.strip},     {color2}, #00{background.strip}, #00394249, {color2}
+
+/*rofi.color-window: #BA273238, #A7A298, #1e2529*/
+/*! State:           bg         fg       bgalt      hlbg     hlfg*/
+/*rofi.color-normal: #00273238, #c1c1c1, #00273238, #394249, #ffffff*/
+/*rofi.color-active: #00273238, #80cbc4, #00273238, #394249, #80cbc4*/
+/*rofi.color-urgent: #00273238, #ff1844, #00273238, #00394249, #ff1844*/
+
+rofi.matching: fuzzy
+rofi.modi: drun,window,ssh,combi
+rofi.combi-modi: window,drun,ssh
+rofi.sidebar-mode: true
+rofi.auto-select: false
+rofi.location: 0
+rofi.yoffset: -200
+rofi.fixed-num-lines: false
+rofi.show-icons: true
+rofi.fake-transparency: true
+rofi.click-to-exit: true
+rofi.combi-hide-mode-prefix: false
+rofi.filter: 
+rofi.drun-show-actions: true
+
+rofi.kb-remove-word-back: Control+w
+rofi.kb-clear-line: Control+u
+rofi.kb-remove-to-sol: 
+
+/*rofi.separator-style: "dash"*/
+/*rofi.dpi: -1*/
+/*rofi.threads: 0*/
+/*rofi.scroll-method: 0*/
+/*rofi.fake-background: "screenshot"*/
+/*rofi.max-history-size: 25*/
+
+
+/*rofi.cycle: false*/
+/*rofi.terminal: "rofi-sensible-terminal"*/
+/*rofi.ssh-client: "ssh"*/
+/*rofi.ssh-command: "{{terminal}} -e {{ssh-client}} {{host}}"*/
+/*rofi.run-command: "{{cmd}}"*/
+/*rofi.run-list-command: ""*/
+/*rofi.run-shell-command: "{{terminal}} -e {{cmd}}"*/
+/*rofi.window-command: "xkill -id {{window}}"*/
+/*rofi.window-match-fields: "all"*/
+/*rofi.icon-theme: */
+/*rofi.drun-match-fields: "name,generic,exec,categories"*/
+/*rofi.drun-display-format: "{{name}} [<span weight='light' size='small'><i>({{generic}})</i></span>]"*/
+/*rofi.disable-history: false*/
+/*rofi.sort: false*/
+/*rofi.sorting-method: */
+/*rofi.eh: 1*/
+/*rofi.parse-hosts: false*/
+/*rofi.parse-known-hosts: true*/
+/*rofi.matching: "normal"*/
+/*rofi.tokenize: true*/
+/*rofi.matching-negate-char: '-' /* unsupported */*/
+
+/*rofi.kb-primary-paste: "Control+V,Shift+Insert"*/
+/*rofi.kb-secondary-paste: "Control+v,Insert"*/
+/*rofi.kb-clear-line: "Control+w"*/
+/*rofi.kb-move-front: "Control+a"*/
+/*rofi.kb-move-end: "Control+e"*/
+/*rofi.kb-move-word-back: "Alt+b,Control+Left"*/
+/*rofi.kb-move-word-forward: "Alt+f,Control+Right"*/
+/*rofi.kb-move-char-back: "Left,Control+b"*/
+/*rofi.kb-move-char-forward: "Right,Control+f"*/
+/*rofi.kb-remove-word-forward: "Control+Alt+d"*/
+/*rofi.kb-remove-char-forward: "Delete,Control+d"*/
+/*rofi.kb-remove-char-back: "BackSpace,Shift+BackSpace,Control+h"*/
+/*rofi.kb-remove-to-eol: "Control+k"*/
+/*rofi.kb-accept-entry: "Control+j,Control+m,Return,KP_Enter"*/
+/*rofi.kb-accept-custom: "Control+Return"*/
+/*rofi.kb-accept-alt: "Shift+Return"*/
+/*rofi.kb-delete-entry: "Shift+Delete"*/
+/*rofi.kb-mode-next: "Shift+Right,Control+Tab"*/
+/*rofi.kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab"*/
+/*rofi.kb-row-left: "Control+Page_Up"*/
+/*rofi.kb-row-right: "Control+Page_Down"*/
+/*rofi.kb-row-up: "Up,Control+p,ISO_Left_Tab"*/
+/*rofi.kb-row-down: "Down,Control+n"*/
+/*rofi.kb-row-tab: "Tab"*/
+/*rofi.kb-page-prev: "Page_Up"*/
+/*rofi.kb-page-next: "Page_Down"*/
+/*rofi.kb-row-first: "Home,KP_Home"*/
+/*rofi.kb-row-last: "End,KP_End"*/
+/*rofi.kb-row-select: "Control+space"*/
+/*rofi.kb-screenshot: "Alt+S"*/
+/*rofi.kb-toggle-case-sensitivity: "grave,dead_grave"*/
+/*rofi.kb-toggle-sort: "Alt+grave"*/
+/*rofi.kb-cancel: "Escape,Control+g,Control+bracketleft"*/
+/*rofi.kb-custom-1: "Alt+1"*/
+/*rofi.kb-custom-2: "Alt+2"*/
+/*rofi.kb-custom-3: "Alt+3"*/
+/*rofi.kb-custom-4: "Alt+4"*/
+/*rofi.kb-custom-5: "Alt+5"*/
+/*rofi.kb-custom-6: "Alt+6"*/
+/*rofi.kb-custom-7: "Alt+7"*/
+/*rofi.kb-custom-8: "Alt+8"*/
+/*rofi.kb-custom-9: "Alt+9"*/
+/*rofi.kb-custom-10: "Alt+0"*/
+/*rofi.kb-custom-11: "Alt+exclam"*/
+/*rofi.kb-custom-12: "Alt+at"*/
+/*rofi.kb-custom-13: "Alt+numbersign"*/
+/*rofi.kb-custom-14: "Alt+dollar"*/
+/*rofi.kb-custom-15: "Alt+percent"*/
+/*rofi.kb-custom-16: "Alt+dead_circumflex"*/
+/*rofi.kb-custom-17: "Alt+ampersand"*/
+/*rofi.kb-custom-18: "Alt+asterisk"*/
+/*rofi.kb-custom-19: "Alt+parenleft"*/
+/*rofi.kb-select-1: "Super+1"*/
+/*rofi.kb-select-2: "Super+2"*/
+/*rofi.kb-select-3: "Super+3"*/
+/*rofi.kb-select-4: "Super+4"*/
+/*rofi.kb-select-5: "Super+5"*/
+/*rofi.kb-select-6: "Super+6"*/
+/*rofi.kb-select-7: "Super+7"*/
+/*rofi.kb-select-8: "Super+8"*/
+/*rofi.kb-select-9: "Super+9"*/
+/*rofi.kb-select-10: "Super+0"*/
