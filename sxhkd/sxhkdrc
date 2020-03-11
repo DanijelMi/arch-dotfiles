@@ -121,7 +121,6 @@ XF86Audio{RaiseVolume,LowerVolume}
 XF86AudioMute
  pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
- amixer get Master | tail -n 1 | grep off && echo yeeprer
 # Scroll Volume
 super {button4,button5}
  pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%} ; \
@@ -192,7 +191,6 @@ super + ctrl + {1-9}
 # Switch/move to workspace
 super + {_,shift + }{1-9,0}
  bspc {desktop -f,node -d} focused:^{1-9,10}
-#bspc {desktop -f,node -d} '^{1-9,10}'
 
 # Switch to monitor
 super + alt + {1-9}
@@ -240,7 +238,42 @@ super + brace{left,right}
 
 # Focus node in direction
 super + {h,j,k,l}
- bspc node -f {west,south,north,east}
+ bspc config pointer_follows_focus true ;\
+ bspc node -f {west,south,north,east} ;\ 
+ bspc config pointer_follows_focus false
+
+# Maximize node side size
+# Max bottom
+super + x ; j
+ source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $w $(($H-$y))
+# Max right
+super + x ; l
+ source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $(($W-$x)) $h
+# Max top
+super + x ; k
+ source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $w $(($h+$y)) ; \
+ xdotool windowmove $(xdotool getwindowfocus) $x 0 
+# Max left
+super + x ; h
+ source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0 $y ; \
+ xdotool windowsize $(xdotool getwindowfocus) $(($w+$x)) $h
+
+# Move float to top left
+super + x ; u
+ source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0 0 ; \
+ xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# Move float to top right
+super + x ; i
+ source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 50% 0% ; \
+ xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# Move float to bottom left
+super + x ; n
+ source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0% 50% ; \
+ xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# Move float to bottom right
+super + x ; m
+ source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 50% 50% ; \
+ xdotool windowsize $(xdotool getwindowfocus) 50% 50%
 
 # Move node in direction
 super + shift + h
@@ -263,10 +296,6 @@ super + shift + button{4,5}
  bspc node focused -v 0 {-15,15} >/dev/null
 
 # Resize node via touchpad
-#super + ctrl + button{4,5,6,7}
-# bspc node -z {bottom 0 -20,bottom 0 20,right -20 0,right 20 0}
-
-# Resize node via touchpad
 super + ctrl + button{4,5,6,7}
  bspc node -z {top 0 -20,bottom 0 20,left -20 0,right 20 0}
 super + ctrl + shift + button{4,5,6,7}
@@ -278,14 +307,7 @@ super + ctrl + button3
 super + ctrl + shift + button3
  for nodes in $(bspc query -N -d); do bspc node -g hidden=on $nodes ; done
 
-# Resize node
-#super + ctrl + {h,j,k,l}
-# bspc node -z {right -30 0 ; bspc node -z left 30 0,\
-# bottom 0 30 ; bspc node -z top 0 -30,\
-# bottom 0 -30 ; bspc node -z top 0 30,\
-# right 30 0 ; bspc node -z left -30 0}
-
-# Expand a window by moving one of its side outward
+# Resize: Expand a window by moving one of its side outward
 super + ctrl + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -60,right 60 0}
 
@@ -354,8 +376,10 @@ super + d ; d
  bspc desktop -f --remove
 
 # Resize gaps
-super + alt + ctrl button{6,7}
- bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5 ))
+super + alt + ctrl button6
+ bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 5 ))
+super + alt + ctrl button7
+ if [ $(bspc config -d focused window_gap) -gt 0 ] ; then ; bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 5 )) ; fi
 # Reset gaps to 0
 super + alt + ctrl button3
  bspc config -d focused window_gap 0
@@ -380,7 +404,9 @@ super + Home
 
 # Cycle between nodes
 super + {_,shift} + Tab 
-	bspc node -f {next,prev}.local
+ bspc config pointer_follows_focus true ;\
+ bspc node -f {next,prev}.local ;\ 
+ bspc config pointer_follows_focus false
 
 # Move a floating window
 super + {Left,Down,Up,Right}
@@ -393,8 +419,11 @@ super + ctrl + r
  bspc node @/ -R 90
 
 # Swap current desktop with the last one
-super + shift + s
+super + shift + s ; grave
  bspc desktop -s last
+# Swap current desktop with index
+super + shift + s ; {1-9}
+ bspc desktop -s ^{1-9}
 
 # Set WM to floating
 super alt f
@@ -410,7 +439,9 @@ super + shift + m
 
 # Hop to next marked node
 super + m
- bspc node --focus next.marked
+ bspc config pointer_follows_focus true ;\
+ bspc node --focus next.marked ;\ 
+ bspc config pointer_follows_focus false
 
 # Insert receptacle, or clear receptacles on current desktop (blank space)
 super + {_,shift} + b
