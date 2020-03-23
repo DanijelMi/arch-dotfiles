@@ -22,6 +22,9 @@ super alt p
 # Open bluetooth manager
 super + w ; b
  blueman-manager >/dev/null &
+# Open pulseaudio control
+super + w ; v
+ pavucontrol >/dev/null &
 
 # Start VNC virtual screen
 
@@ -41,7 +44,7 @@ super + ctrl + e
 
 # Open pinger
 super p
- $TERMINAL -e sh -c "while :; do ping -c 1 1.1.1.1 | head -n-4 | tail -n1 && ping -c 1 www.google.com | head -n-4 | tail -n1 && sleep 0.4; done"
+ $TERMINAL -e sh -c "advanced-ping.sh"
 
 # Open clipboard content in mpv
 super + y
@@ -198,23 +201,31 @@ super + alt + {1-9}
 
 # Focus the older or newer node in the focus history
 super + {i,o}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
+	bspc wm -h off; \ 
+  bspc config pointer_follows_focus true ;\ 
+	bspc node {older,newer} -f ;\ 
+  bspc config pointer_follows_focus false ;\ 
 	bspc wm -h on
 
 # Focus the older or newer desktop in the focus history
-super + shift + {i,o}
-	bspc wm -h off; \
-	bspc desktop {older,newer} -f; \
-	bspc wm -h on
+ super + shift + {i,o}
+ bspc wm -h off; \ 
+ bspc config pointer_follows_focus true ;\ 
+ bspc desktop {older,newer} -f; \
+ bspc config pointer_follows_focus false ;\ 
+ bspc wm -h on
 
 # Switch to last node
 super + grave
- bspc node --focus last
+ bspc config pointer_follows_focus true ;\ 
+ bspc node --focus last ;\ 
+ bspc config pointer_follows_focus false
 
 # Switch to last desktop
 super + shift + grave
- bspc desktop --focus last
+ bspc config pointer_follows_focus true ;\ 
+ bspc desktop --focus last;\ 
+ bspc config pointer_follows_focus false
 
 # Switch to last monitor
 super + alt + grave
