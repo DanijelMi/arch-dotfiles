@@ -196,7 +196,11 @@ nnoremap <leader>R :!$TERMINAL -e %:p<Enter>
 cmap w!! w !sudo -A tee % >/dev/null
 
 " Fold with <Space>
-nnoremap <Space> za
+" nnoremap <Space> za
+
+" buffer cycling
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 " Make transparency work
 highlight Normal ctermbg=none

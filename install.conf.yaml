@@ -16,6 +16,7 @@
     ~/.config/rofi/config: ~/.cache/wal/rofi-config
     ~/.config/tint2/tint2rc: ~/.cache/wal/tint2
     ~/.config/conky/conky.conf: ~/.cache/wal/conky.conf
+    ~/.config/dunst/dunstrc: ~/.cache/wal/dunstrc
 
     ~/.config/zathura/zathurarc: zathurarc
     ~/.config/sxiv: sxiv
@@ -25,7 +26,6 @@
     ~/.config/dunst: dunst
     ~/.config/newsboat: newsboat
     ~/.config/betterlockscreenrc: betterlockscreenrc
-    ~/.config/neofetch: neofetch
     ~/.config/fontconfig: fontconfig
     ~/.config/picom: picom
     ~/.config/alacritty: alacritty
@@ -45,9 +45,8 @@
     ~/.xinitrc: shell/xinitrc
 
     # GTK QT
-    ~/.config/gtk-3.0: gtk_qt/gtk-3.0
-    ~/.gtkrc-2.0: gtk_qt/gtk-2.0
-    ~/.config/Trolltech.conf: gtk_qt/qt/Trolltech.conf
+    #~/.config/gtk-3.0: gtk_qt/gtk-3.0
+    #~/.gtkrc-2.0: gtk_qt/gtk-2.0
 
     
     # CUSTOM SCRIPTS
@@ -60,3 +59,9 @@
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
+    - 
+      description: "Run test script"
+      command: "./packages-install.sh"
+      stdout: true
+      stderr: true
+      stdin: true

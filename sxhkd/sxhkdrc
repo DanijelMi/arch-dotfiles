@@ -8,8 +8,8 @@ super + r
 # rofi -show ssh
 
 # Open web browser
-super + q
- xdg-open http://
+super + {_,shift} + q
+ {xdg-open http://, firefox --private-window}
 
 # Open VIM/IDE
 super + {a, shift a}
@@ -22,6 +22,7 @@ super alt p
 # Open bluetooth manager
 super + w ; b
  blueman-manager >/dev/null &
+
 # Open pulseaudio control
 super + w ; v
  pavucontrol >/dev/null &
@@ -46,6 +47,10 @@ super + ctrl + e
 super p
  $TERMINAL -e sh -c "advanced-ping.sh"
 
+# Toggle compositor
+super + ctrl + p
+ pgrep -u $USER picom > /dev/null 2>&1 && pkill picom || picom --experimental-backends& 
+
 # Open clipboard content in mpv
 super + y
  mpv-fifo.sh &
@@ -55,20 +60,32 @@ super + shift + y
  xdotool windowactivate $(xdotool search --name "main_player")
  
 # Screen locker
-{control + alt + l, XF86ScreenSaver}
- $LOCKSCREEN
+{ctrl + alt + l, XF86ScreenSaver}
+ pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
+ $LOCKSCREEN& ;\
+ sleep 3 && xdg-screensaver activate
 
 # Screen locker
-{super + control + alt + l, super + XF86ScreenSaver}
- pactl set-sink-mute @DEFAULT_SINK@ 1 ; lock-glitch 
+{super + ctrl + alt + l, super + XF86ScreenSaver}
+ pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
+ lock-glitch& ;\
+ sleep 3 && xdg-screensaver activate
  
 # Keyboard layout
 super + alt + space
  rofi-keyboard
 
+# Pick emoji to clipboard
+super + ctrl + space
+ rofi-emoji.sh
+
 # Open terminal
 super + Return
- $TERMINAL
+ $TERMINAL&
+
+# Open transparent alacritty terminal
+super + shift + Return
+ alacritty_transparent&
 
 # Open list of sxhkd keybinds
 super + alt + m
@@ -80,14 +97,14 @@ super + Print
 
 # Open Screenshot tool
 super + shift + Print
- gif.sh &
+ screen_record.sh &
 
 # Open custom script menu
 super + z 
  rofi-select
 
 # Restart keybind daemon
-control alt k
+ctrl + alt + k
  pkill -SIGUSR1 sxhkd
 
 # Open communication apps
@@ -105,7 +122,7 @@ super F6
  $TERMINAL -e $EDITOR $(which dirty_actions)
 
 # Open other apps
-super w ; {k,r,g,m,c}
+super + w ; {k,r,g,m,c}
  {keepassxc,\
  firefox --new-window https://www.reddit.com,\
  firefox --new-window https://github.com,\
@@ -113,7 +130,7 @@ super w ; {k,r,g,m,c}
  speedcrunch}
 
 # Open Gmail
-alt m ; {1,2,3}
+alt + m ; {1,2,3}
  firefox --new-window https://mail.google.com/mail/u/{0,1,2}
 
 # Volume
@@ -148,6 +165,19 @@ super + alt + button{6,7}
 super + alt + button{4,5,3}
  xrandr-gamma.sh {c,w,r}
 
+
+###### Fusuma bindings ######
+# 3-finger movement
+super + {Left,Right}
+ xdotool key alt+{Left,Right}
+super + {Up,Down}
+ bspc desktop {prev,next} -f
+# 4-finger movement
+super + alt + {Left,Right}
+ bspc node -s {west,east}
+super + alt + {Up,Down}
+ bspc node -s {north,south}
+
 ###### Numpad media ######
 # Volume
 shift + {KP_Up,KP_Down}
@@ -172,7 +202,15 @@ super + shift + Escape
  pkill lemonbar ; \
  bspc quit
 
+# Activate screen-saver
+super + BackSpace
+ xdg-screensaver activate
+
 # Suspend the system
+super + alt + BackSpace
+ systemctl suspend
+
+# Suspend the system with lock
 super + shift + BackSpace
  lock-glitch && systemctl suspend
 
@@ -312,11 +350,25 @@ super + ctrl + button{4,5,6,7}
 super + ctrl + shift + button{4,5,6,7}
  bspc node -z {bottom 0 -20,top 0 20,right -20 0,left 20 0}
 
-# Hide/unhide all
-super + ctrl + button3
- for nodes in $(bspc query -N -n .hidden); do bspc node $nodes -g hidden=off ; done
-super + ctrl + shift + button3
+# Focus next/previous node
+super + {_, shift} + n
+ bspc config pointer_follows_focus true ;\
+ bspc node -f {next,prev}.local ;\ 
+ bspc config pointer_follows_focus false
+
+# Hide/unhide all nodes in a desktop
+super + ctrl + v
  for nodes in $(bspc query -N -d); do bspc node -g hidden=on $nodes ; done
+super + ctrl + shift + v
+ for nodes in $(bspc query -N -n .hidden); do bspc node $nodes -g hidden=off ; done
+
+# Hide focused node
+super + v
+ bspc node -g hidden
+
+# Unhide a node
+super + shift + v
+ bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
 
 # Resize: Expand a window by moving one of its side outward
 super + ctrl + {h,j,k,l}
@@ -344,7 +396,8 @@ super + shift + t
 
 # Set window to floating
 super + f
- bspc node -t floating
+ bspc node -t floating ;\
+ source center-node-on-cursor.sh
 
 # Set window to fullscreen
 super + shift + f
@@ -365,14 +418,6 @@ super + ctrl + z
 super + s ; {1,2,3}
  bspc node -l {below,normal,above}
  
-# Hide window
-super + n
- bspc node -g hidden
-
-# Unhide window
-super + shift + n
- bspc node {,$(bspc query -N -n .hidden | tail -n1)} -g hidden=off
-
 # Create desktop
 super + d ; c
  CREATEVAR=$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Create") && bspc monitor -f --add-desktops "$CREATEVAR"
@@ -392,7 +437,7 @@ super + alt + ctrl button6
 super + alt + ctrl button7
  if [ $(bspc config -d focused window_gap) -gt 0 ] ; then ; bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 5 )) ; fi
 # Reset gaps to 0
-super + alt + ctrl button3
+super + alt + ctrl + button3
  bspc config -d focused window_gap 0
 
 # Change target window transparency
@@ -403,10 +448,17 @@ super + alt + ctrl button{4,5}
 super + equal
 	bspc node @/ --balance
 
+# Reset node sizes to original hierarchy
+super + ctrl + button3
+ bspc node @/ --equalize
+
 # Cycle through wallpaper and theme
 super + Home
-  wal --iterative -i ~/Personal/wallpapers/ ; \
-  killall -SIGUSR1 tint2
+  wal --iterative -i $WALLPAPER_DIR ; \
+  killall -SIGUSR1 tint2 ; \
+  pkill dunst ; dunst& ; \
+  source ~/.cache/wal/colors.sh ; \
+  betterlockscreen -u $wallpaper
 
 # Ironically, this works implicitly and breaks otherwise
 # Win + LeftClick : Move window
@@ -415,13 +467,7 @@ super + Home
 
 # Cycle between nodes
 super + {_,shift} + Tab 
- bspc config pointer_follows_focus true ;\
- bspc node -f {next,prev}.local ;\ 
- bspc config pointer_follows_focus false
-
-# Move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-50 0,0 50,0 -50,50 0}
+ bspc node @/ -C {forward, backward}
 
 # Flip node children orientation
 super + shift + r
