@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 # Runs on user login
 
-startx=false
-if which startx > /dev/null 2>&1
-then
-	case "$( tty )" in
-	(/dev/tty*)
-		printf 'Start X? (y/n): ' 1>&2
-		read reply || echo n 1>&2
-		case "$reply" in
-		([Yy]*) startx=true ;;
-		esac
-		;;
-	esac
-fi
+#startx=true
+#if which startx > /dev/null 2>&1 ; then
+	#case "$( tty )" in
+	#(/dev/tty*)
+		#printf 'Start X? (Y/n): ' 1>&2
+		#read reply || echo n 1>&2
+		#case "$reply" in
+		#([Nn]*) startx=false ;;
+		#esac
+		#;;
+	#esac
+#fi
 
 ####### EXPORTS ###########
 export EDITOR="nvim"
@@ -23,11 +22,10 @@ export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
 export IDE_GUI="code"
-# export LOCKSCREEN="lock-glitch"
 export LOCKSCREEN="lock-better"
 export FILE="vifmuber"
 export FILE_GUI="thunar"
-export SUDO_ASKPASS=$HOME/.custombin/rofi-askpass # GUI for passwd prompt.. change with rofi pass?
+export SUDO_ASKPASS=$HOME/.custombin/rofi-askpass
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -38,24 +36,31 @@ export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export SSH_KEY_PATH="~/.ssh/rsa_id" # ssh
 export LANG=en_US.UTF-8             # You may need to manually set your language environment
 export MANPATH="$MANPATH:/usr/local/man"
-export ZIM_HOME=${HOME}/arch-dotfiles/shell/zimfw # Default zim location
+export ZIM_HOME=$HOME/arch-dotfiles/shell/zimfw # Default zim location
+export WALLPAPER_DIR=$HOME/arch-dotfiles/wallpapers
 # export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
 # Adds `~/.local/bin/` and all subdirectories to $PATH
 export PATH="$PATH:$(du "$HOME/.custombin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
-# Need to understand this..
-#typeset -gU cdpath fpath mailpath path
+# Set aliases and functions
+[ -f ~/.alias_fn ] && source $HOME/.alias_fn  
 
-#if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  #exec startx
-#fi
-# if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-#   startx
-# fi
-
-# Rewrite question prompt
+startx=false
+if which startx > /dev/null 2>&1 ; then
+  case "$( tty )" in
+  (/dev/tty*)
+    while :; do    # Breaking out only if valid answer given
+      printf 'Start X? (Y/n): ' # ZSH can't combine this with read -p "Prompt string" cuz zsh read behaves differently
+      read choice
+      case "$choice" in 
+        [Yy] | [Yy][Ee][Ss] | "" ) startx=true ; break ;;
+        [Nn] | [Nn][Oo] ) startx=false ; break ;;
+        * ) echo "Invalid input" ;;
+      esac
+    done
+  esac
+fi
 # Hand off to X if requested
 "$startx" && exec startx
 
-[ -f ~/.alias_fn ] && source $HOME/.alias_fn  # Set aliases and functions

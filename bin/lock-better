@@ -10,5 +10,4 @@ greet_text(){
     fi
 }
 # Lock screen and trim the status text so it does not break the 31 character limit
-#betterlockscreen -l dimblur -t "$(greet_text | cut -c -31)"
 betterlockscreen -l -t "$(greet_text | cut -c -31)"
