@@ -20,6 +20,19 @@ if xdotool search --name "$MPV_IPC_NAME" ; then
   printf "%s\n" "loadfile \"$(xclip -o -selection "clipboard")\" append-play" > $FIFO_PIPE
 else   # Create a new mpv instance
   notify-send "launching mpv"
+
+  # Need to see why this commented out section stopped working, check earlier version through git
+  #mpv --title="$MPV_IPC_NAME" \
+  #--keepaspect \
+  #--autofit-larger=100%x100% \
+  #--ytdl-raw-options="yes-playlist=" \
+  #--idle=yes \
+  #--save-position-on-quit \
+  #--keep-open=yes \
+  #--player-operation-mode=pseudo-gui \
+  #--input-file \
+  #/tmp/mpv-fifo $(xclip -o -selection "clipboard")
+
   mpv --title="$MPV_IPC_NAME" \
   --keepaspect \
   --autofit-larger=100%x100% \
@@ -28,6 +41,5 @@ else   # Create a new mpv instance
   --save-position-on-quit \
   --keep-open=yes \
   --player-operation-mode=pseudo-gui \
-  --input-file \
-  /tmp/mpv-fifo $(xclip -o -selection "clipboard")
+  $(xclip -o -selection "clipboard")
 fi
