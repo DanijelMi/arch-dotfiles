@@ -51,7 +51,8 @@ create_vmon(){
   sleep 2
   xrandr | grep --quiet "$V_MONITOR connected" && { \
   pgrep x11vnc >/dev/null || \ 
-  x11vnc -usepw -forever -nocursorshape -cursor arrow -arrow 1 -allow 192.168.42. -multiptr -clip xinerama$(xrandr --listmonitors | grep "$V_MONITOR" | cut -c2-2) ; }
+  #x11vnc -usepw -forever -nocursorshape -cursor arrow -arrow 1 -allow 192.168.42. -multiptr -clip xinerama$(xrandr --listmonitors | grep "$V_MONITOR" | cut -c2-2) ; }
+  x11vnc -forever -nocursorshape -cursor arrow -arrow 1 -multiptr -clip xinerama$(xrandr --listmonitors | grep "$V_MONITOR" | cut -c2-2) ; }
 }
 
 # Exporting the function for use in the subterminal/subshell

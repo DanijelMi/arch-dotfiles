@@ -18,8 +18,8 @@ run_one_only(){
 
 #### AUTOSTART ####
 run_one_only fusuma -d
-run_one_only sxhkd &                # Keybind daemon
-run_one_only conky &                # Dynamic wallpaper info
+run_one_only sxhkd                  # Keybind daemon
+run_one_only conky                  # Dynamic wallpaper info
 run_one_only dunst                  # Notification manager
 run_one_only start-pulseaudio-x11   # Sound server
 run_one_only mpd                    # Music player server
@@ -27,7 +27,6 @@ run_one_only unclutter -b           # Auto-hide cursor
 run_one_only nm-applet              # Network Manager
 run_one_only blueman-applet         # Bluetooth
 run_one_only polybar main           # Top bar
-run_one_only mpdas                  # MPD libre.fm scrobbler
 
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
@@ -38,9 +37,9 @@ wmname LG3D                           # Makes java apps behave correctly
 handle_monitors(){
   autorandr -c   # Load saved xrandr configuration (Monitor layouts)
   #nitrogen --restore   # Set background image
-  wal -i $HOME/Personal/wallpapers
-  tint2 &         # Taskbar
-  picom -b        # X compositor
+  wal -i $WALLPAPER_DIR
+  run_one_only tint2         # Taskbar
+  run_one_only picom -b --experimental-backends        # X compositor
   xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
     bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
   done

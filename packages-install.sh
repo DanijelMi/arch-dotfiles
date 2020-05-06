@@ -10,6 +10,8 @@
 # corrupter-git       # Candied lock screen 
 # betterlockscreen    # Candied lock screen
 # fusuma              # Touchpad gestures support
+# barrier             # fork of Synergy, virtual Keyboard+Mouse switch
+
 pacman -Syy  # Update mirrors
 sed -n '/^#*LIST PACKAGES FROM HERE ONWARDS.*$/,$p' $(realpath $0) | \
     sed -e "/^#/d" \
@@ -86,6 +88,7 @@ xorg-xhost      # Manage auth for X server
 xorg-xwininfo   # Get info for x various x windows
 xorg-xsetroot   # Change title/cursor of root Xwindow
 xdotool         # Automation tool
+xdg-utils       # includes xdg-screensaver, assists with desktop integration tasks
 compton         # X Compositor
 i3lock          # Screen locker
 youtube-dl      # Get stuff from yt and similar sites

@@ -1,0 +1,10 @@
+http://stevelosh.com/blog/2012/10/the-homely-mutt/
+https://pbrisbin.com/posts/mutt_gmail_offlineimap/
+https://pbrisbin.com/posts/two_accounts_in_mutt/
+https://hobo.house/2015/09/09/take-control-of-your-email-with-mutt-offlineimap-notmuch/
+http://baptiste-wicht.com/posts/2014/07/a-mutt-journey-my-mutt-configuration.html
+
+dotfiles:
+https://github.com/alexpearce/dotfiles/tree/master/mail
+https://github.com/pbrisbin/dotfiles/tree/master/tag-mail-recipient
+https://github.com/grawlinson/dotfiles/tree/master/mail

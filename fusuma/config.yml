@@ -1,49 +1,49 @@
 swipe:
   3:
     left:
-      command: 'xdotool key alt+Right'
+      command: 'xdotool key super+Right'
       threshold: 0.7
       interval: 0.4
     right:
-      command: 'xdotool key alt+Left'
+      command: 'xdotool key super+Left'
       threshold: 0.7
       interval: 0.4
     up:
-      command: 'bspc desktop prev -f'
+      command: 'xdotool key super+Up'
       threshold: 0.7
       interval: 0.4
     down:
-      command: 'bspc desktop next -f'
+      command: 'xdotool key super+Down'
       threshold: 0.7
       interval: 0.4
   4:
     left:
-      command: 'bspc node -s west'
+      command: 'xdotool key super+alt+Left'
       threshold: 0.7
       interval: 0.4
     right:
-      command: 'bspc node -s east'
+      command: 'xdotool key super+alt+Right'
       threshold: 0.7
       interval: 0.4
     up:
-      command: 'bspc node -s north'
+      command: 'xdotool key super+alt+Up'
       threshold: 0.7
       interval: 0.4
     down:
-      command: 'bspc node -s south'
+      command: 'xdotool key super+alt+Down'
       threshold: 0.7
       interval: 0.4
-pinch:
-  2:
-    in:
-      command: 'xdotool key ctrl+equal'
-      threshold: 0.05
-      interval: 0.2
-    out:
-      command: 'xdotool key ctrl+minus'
-      threshold: 0.05
-      interval: 0.2
-
+#pinch:
+#2:
+#in:
+#command: 'xdotool key ctrl+equal'
+#threshold: 0.05
+#interval: 0.2
+#out:
+#command: 'xdotool key ctrl+minus'
+#threshold: 0.05
+#interval: 0.2
+#
       #threshold:
   #swipe: 5
   #pinch: 1

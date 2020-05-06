@@ -1,21 +1,15 @@
 #!/usr/bin/env bash
-# Modification of Luke Smiths emoji script
+# List of emojis taken from Luke Smith
 
-xclip -h >/dev/null || exit  # Exit if xclip does not exist
+which xclip &> /dev/null || exit # Exit if xclip does not exist
 
 # Code moved to a function which is called after the long string assignment
 main () {
     chosen=$(echo "$EMOJI" | rofi -dmenu -i -l 20 -fn Monospace-18)
-
     [ "$chosen" != "" ] || exit                 # Exit if nothing is selected
-
     c=$(echo "$chosen" | sed "s/ .*//")
     echo "$c" | tr -d '\n' | xclip -selection clipboard
     notify-send "'$c' copied to clipboard." &
-
-    s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
-    echo "$s" | tr -d '\n' | xclip
-    notify-send "'$s' copied to primary." &
 }
 
 EMOJI="😀 grinning face; U+1F600

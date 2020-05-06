@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # Author: Danijel Milosevic
-# Not the most complicated, but definitely my proudest work
 
 alacritty \
---config-file <(cat ~/.config/alacritty/alacritty.yml | sed "s/.*background: '0x000000'/    background: '0x$((RANDOM%4))$((RANDOM%10))$((RANDOM%4))$((RANDOM%10))$((RANDOM%4))$((RANDOM%10))'/") \
+--config-file <(cat ~/.config/alacritty/alacritty.yml |\
+sed "s/.*background: '0x000000'/    background: '0x$((RANDOM%3))$((RANDOM%10))$((RANDOM%3))$((RANDOM%10))$((RANDOM%3))$((RANDOM%10))'/") \
 --no-live-config-reload \
 "$@"
-
 # Passing $@ arguments forward, for example "-e ping 1.1.1.1"

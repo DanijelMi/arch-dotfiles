@@ -6,8 +6,8 @@
 `.profile` = Executes when a bash login shell is invoked  
 
 ### Other
-`.xprofile` = Executes at the beginning of the X user session. Sourced by display managers  
-`.Xresources` = WIP  
+`.xprofile` = Executes at the beginning of X user session. Sourced by display managers  
+`.Xresources` = Holds global variables for aesthetic purposes. Some programs support reading it.
 
 ### ZSH
 
