@@ -1,9 +1,24 @@
 #!/usr/bin/env bash
 # 'sox' package needed for boops
 #sleep_time=1
-printf '\nChange interval: +-*/   Invert boop condition: i   Disable boop: b\n\n'
+printf '\nChange interval: +-*/   Invert boop condition: i   Enable boop: b\n\n'
 boop_condition=0     # Flag setting if boop on succesful(0) ping or failed(1) ping
-boop_on=1            # Flag if boop should work at all (1 means yes)
+boop_on=0            # Flag if boop should work at all (1 means yes)
+
+pingcheck(){
+  ipcheck=$(ping -c 1 1.1.1.1)
+  test $? == 0
+  ipcheck_success=$?
+  if [[ $ipcheck_success -eq $boop_condition ]] && [[ boop_on -eq 1 ]]; then play -V -r 48000 -n synth 0.02 sin 1000 vol 1dB >/dev/null 2>&1 ; fi
+  echo -e "$ipcheck" | head -n 2 | tail -n 1
+  if [[ $ipcheck_success -eq 0 ]]; then
+    dnscheck=$(ping -c 1 www.google.com )
+    test $? == 0
+    dnscheck_success=$?
+    if [[ $dnscheck_success -eq $boop_condition ]] && [[ boop_on -eq 1 ]]; then play -V -r 48000 -n synth 0.02 sin 500 vol 1dB >/dev/null 2>&1 ; fi
+    echo -e "$dnscheck" | head -n 2 | tail -n 1
+  fi
+}
 
 while :; do 
   if [ -z $sleep_time ]; then sleep_time=1 
@@ -29,20 +44,11 @@ while :; do
     delta=0
     continue
   else
-    ipcheck=$(ping -c 1 1.1.1.1)
-    test $? == 0
-    ipcheck_success=$?
-    if [[ $ipcheck_success -eq $boop_condition ]] && [[ boop_on -eq 1 ]]; then play -V -r 48000 -n synth 0.02 sin 1000 vol 1dB >/dev/null 2>&1 ; fi
-    echo -e "$ipcheck" | head -n 2 | tail -n 1
-    if [[ $ipcheck_success -eq 0 ]]; then
-      dnscheck=$(ping -c 1 www.google.com )
-      test $? == 0
-      dnscheck_success=$?
-      if [[ $dnscheck_success -eq $boop_condition ]] && [[ boop_on -eq 1 ]]; then play -V -r 48000 -n synth 0.02 sin 500 vol 1dB >/dev/null 2>&1 ; fi
-      echo -e "$dnscheck" | head -n 2 | tail -n 1
-    fi
+    pingcheck&
     continue
   fi
   sleep_time=$(echo $sleep_time + $delta | bc)
   echo "Interval: $sleep_time seconds"
 done
+
+
