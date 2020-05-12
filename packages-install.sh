@@ -52,6 +52,7 @@ transmission-qt     # Torrent Client
 transmission-cli    # Torrent Client
 tmux        # Must-have
 htop
+bashtop     # System stats dashboard
 ksysguard
 gparted     # Graphical storage formatter
 mplayer

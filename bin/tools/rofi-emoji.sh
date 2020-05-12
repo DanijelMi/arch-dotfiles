@@ -3,16 +3,42 @@
 
 which xclip &> /dev/null || exit # Exit if xclip does not exist
 
-# Code moved to a function which is called after the long string assignment
+# All of logic which is called after the long str assignment
 main () {
     chosen=$(echo "$EMOJI" | rofi -dmenu -i -l 20 -fn Monospace-18)
     [ "$chosen" != "" ] || exit                 # Exit if nothing is selected
-    c=$(echo "$chosen" | sed "s/ .*//")
+    c=$(echo "$chosen" | sed "s/;;.*//")
+    #[ $chosen == $c ] && c=$(echo "$chosen" | sed "s/ .*//")
+    #[ "$chosen" == "$c" ] && echo a
+    [ "$chosen" == "$c" ] && c=$(echo "$chosen" | sed "s/ .*//")
     echo "$c" | tr -d '\n' | xclip -selection clipboard
     notify-send "'$c' copied to clipboard." &
 }
 
-EMOJI="😀 grinning face; U+1F600
+EMOJI="¯\_(ツ)_/¯ ;; shrug
+( ͡° ͜ʖ ͡°) ;; lenny
+( ͠° ͟ʖ ͡°) ;; lenny angry
+( ͡~ ͜ʖ ͡°) ;; lenny wink
+( ͡ʘ ͜ʖ ͡ʘ) ;; lenny stare
+( ͡o ͜ʖ ͡o) ;; lenny stare
+(° ͜ʖ °) ;; lenny smile
+( ‾ʖ̫‾) ;; lenny asian
+( ಠ ͜ʖಠ) ;; lenny delighted
+( ͡° ʖ̯ ͡°) ;; lenny sad
+( ͡ಥ ͜ʖ ͡ಥ) ;; lenny crying
+༼  ͡° ͜ʖ ͡° ༽ ;; lenny large
+(▀̿Ĺ̯▀̿ ̿) ;; lenny glasses
+(ง ͠° ͟ل͜ ͡°)ง ;; lenny fight
+(͡ ͡° ͜ つ ͡͡°) ;; lenny nose
+[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅] ;; lenny money
+(✿❦ ͜ʖ ❦) ;; lenny dazzle
+ᕦ( ͡° ͜ʖ ͡°)ᕤ ;; lenny strong
+( ͡° ͜ʖ ͡°)╭∩╮ ;; lenny flip bird
+¯\_( ͡° ͜ʖ ͡°)_/¯ ;; lenny shrug
+(╯ ͠° ͟ʖ ͡°)╯┻━┻ ;; lenny table flip
+( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°) ;; lenny army
+ಠ_ಠ ;; wtf
+😀 grinning face; U+1F600
 😃 grinning face with big eyes; U+1F603
 😄 grinning face with smiling eyes; U+1F604
 😁 beaming face with smiling eyes; U+1F601
