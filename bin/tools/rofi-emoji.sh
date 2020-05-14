@@ -48,6 +48,7 @@ EMOJI="¯\_(ツ)_/¯ ;; shrug
 😂 face with tears of joy; U+1F602
 🙂 slightly smiling face; U+1F642
 🙃 upside-down face; U+1F643
+🙃 upside-down face; U+1F643
 😉 winking face; U+1F609
 😊 smiling face with smiling eyes; U+1F60A
 😇 smiling face with halo; U+1F607
