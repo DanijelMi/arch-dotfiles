@@ -246,7 +246,7 @@ super + {i,o}
 	bspc wm -h on
 
 # Focus the older or newer desktop in the focus history
- super + shift + {i,o}
+super + shift + {i,o}
  bspc wm -h off; \ 
  bspc config pointer_follows_focus true ;\ 
  bspc desktop {older,newer} -f; \
@@ -275,7 +275,15 @@ super + alt + {h,j,k,l}
 
 # Focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+ bspc desktop -f {prev,next}.local
+
+# Same as above but with mouse xbuttons
+super + button{9,8}
+ bspc desktop -f {prev,next}.local
+
+# Move the focused node to the next/previous desktop in the current monitor
+super + shift + bracket{left,right}
+ bspc node -d {prev,next}.local
 
 # Focus the next/previous monitor
 super + brace{left,right}
@@ -351,7 +359,7 @@ super + ctrl + shift + button{4,5,6,7}
  bspc node -z {bottom 0 -20,top 0 20,right -20 0,left 20 0}
 
 # Focus next/previous node
-super + {_, shift} + n
+super + {_,shift} + Tab 
  bspc config pointer_follows_focus true ;\
  bspc node -f {next,prev}.local ;\ 
  bspc config pointer_follows_focus false
@@ -424,21 +432,44 @@ super + d ; c
 
 # Rename desktop
 super + d ; r
- RENAMEVAR="$(expr $(xdotool get_desktop) + 1 )$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
-# RENAMEVAR="$(echo "$(wmctrl -d | grep "  \* DG:" | cut -c -1) + 1" | bc)$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
+ bspc desktop focused -n "$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")"
+ # This variant appends number
+ #RENAMEVAR="$(expr $(xdotool get_desktop) + 1 )$(rofi -location 2 -yoffset 1 -bw 2 -dmenu -width 200 -p "Rename")" && bspc desktop focused -n "$RENAMEVAR"
 
 # Delete desktop
 super + d ; d
  bspc desktop -f --remove
 
+# Swap current desktop with the last one
+super + d ; s ; s
+ bspc desktop -s last
+# Swap current desktop with index
+#super + shift + s ; {1-9}
+super + d ; s ; {1-9}
+ bspc desktop -s ^{1-9}
+
 # Resize gaps
-super + alt + ctrl button6
- bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 5 ))
-super + alt + ctrl button7
- if [ $(bspc config -d focused window_gap) -gt 0 ] ; then ; bspc config -d focused window_gap $((`bspc config -d focused window_gap` - 5 )) ; fi
+super + KP_Add
+ g="$(bspc config -d focused window_gap)" ; \
+ bspc config -d focused window_gap $((${g} + 2 )) ; \
+ for p in bottom left right; do ; bspc config -d focused "{$p}""_padding" "$(( -$g / 2 ))" ; done
+
+super + KP_Subtract
+ g="$(bspc config -d focused window_gap)" ; \
+ [ ${g} -gt 0 ] && \
+ bspc config -d focused window_gap $((${g} - 2 )) ; \
+ for p in bottom left right; do ; bspc config -d focused "{$p}""_padding" "$(( -( $g - 2 ) / 2 ))" ; done 
+
+# Resize window borders
+super + alt + KP_Add
+ bspc config -d focused border_width $((`bspc config -d focused border_width` + 1 ))
+
+super + alt + KP_Subtract
+ if [ $(bspc config -d focused border_width) -gt 0 ] ; then ; bspc config -d focused border_width $((`bspc config -d focused border_width` - 1 )) ; fi
+
 # Reset gaps to 0
-super + alt + ctrl + button3
- bspc config -d focused window_gap 0
+#super + alt + ctrl + button3
+#bspc config -d focused window_gap 0
 
 # Change target window transparency
 super + alt + ctrl button{4,5}
@@ -458,6 +489,10 @@ super + Home
   killall -SIGUSR1 tint2 ; \
   pkill dunst ; dunst& ; \
   source ~/.cache/wal/colors.sh ; \
+  bspc config normal_border_color "$color1" ; \
+  bspc config active_border_color "$color2" ; \
+  bspc config focused_border_color "$color6" ; \
+  bspc config presel_feedback_color "$color1" ; \
   betterlockscreen -u $wallpaper
 
 # Ironically, this works implicitly and breaks otherwise
@@ -466,7 +501,7 @@ super + Home
  #bspc pointer -g {move,resize_corner}
 
 # Cycle between nodes
-super + {_,shift} + Tab 
+super + {_, shift} + n
  bspc node @/ -C {forward, backward}
 
 # Flip node children orientation
@@ -475,16 +510,13 @@ super + shift + r
 super + ctrl + r
  bspc node @/ -R 90
 
-# Swap current desktop with the last one
-super + shift + s ; grave
- bspc desktop -s last
-# Swap current desktop with index
-super + shift + s ; {1-9}
- bspc desktop -s ^{1-9}
-
 # Set WM to floating
-super alt f
- bspc rule -a "*" state=floating
+super + alt + f
+ bspc rule -l | grep -q '\*:\* => state=floating' || bspc rule -a "*" state=floating
+
+# Set WM to tiling
+super + alt + t
+ bspc rule -r ^$(bspc rule -l | grep -m 1 -n '\*:\* => state=floating' | cut -f1 -d:)
 
 # Set WM to tiling
 super alt t

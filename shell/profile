@@ -2,8 +2,7 @@
 # Runs on user login
 
 #startx=true
-#if which startx > /dev/null 2>&1 ; then
-	#case "$( tty )" in
+#if which startx > /dev/null 2>&1 ; then #case "$( tty )" in
 	#(/dev/tty*)
 		#printf 'Start X? (Y/n): ' 1>&2
 		#read reply || echo n 1>&2
@@ -40,8 +39,17 @@ export ZIM_HOME=$HOME/arch-dotfiles/shell/zimfw # Default zim location
 export WALLPAPER_DIR=$HOME/arch-dotfiles/wallpapers
 # export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
+# Perl stuff
+PATH="/home/danijel/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/danijel/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/danijel/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/danijel/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/danijel/perl5"; export PERL_MM_OPT;
+
 # Adds `~/.local/bin/` and all subdirectories to $PATH
 export PATH="$PATH:$(du "$HOME/.custombin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+
+#export DRI_PRIME=1    # Force discrete gpu to be used globally
 
 # Set aliases and functions
 [ -f ~/.alias_fn ] && source $HOME/.alias_fn  
