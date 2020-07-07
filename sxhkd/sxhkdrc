@@ -451,14 +451,19 @@ super + d ; s ; {1-9}
 # Resize gaps
 super + KP_Add
  g="$(bspc config -d focused window_gap)" ; \
- bspc config -d focused window_gap $((${g} + 2 )) ; \
- for p in bottom left right; do ; bspc config -d focused "{$p}""_padding" "$(( -$g / 2 ))" ; done
+ bspc config -d focused window_gap $(( $g + 2 ))
+ #g="$(bspc config -d focused window_gap)" ; \
+ #bspc config -d focused window_gap $((${g} + 2 )) ; \
+ #for p in bottom left right; do ; bspc config -d focused "{$p}""_padding" "$(( -$g / 2 ))" ; done
 
 super + KP_Subtract
  g="$(bspc config -d focused window_gap)" ; \
  [ ${g} -gt 0 ] && \
- bspc config -d focused window_gap $((${g} - 2 )) ; \
- for p in bottom left right; do ; bspc config -d focused "{$p}""_padding" "$(( -( $g - 2 ) / 2 ))" ; done 
+ bspc config -d focused window_gap $(( $g - 2 ))
+ #g="$(bspc config -d focused window_gap)" ; \
+ #[ ${g} -gt 0 ] && \
+ #bspc config -d focused window_gap $((${g} - 2 )) ; \
+ #for p in bottom left right; do ; bspc config -d focused "{$p}""_padding" "$(( -( $g - 2 ) / 2 ))" ; done 
 
 # Resize window borders
 super + alt + KP_Add
@@ -488,6 +493,7 @@ super + Home
   wal --iterative -i $WALLPAPER_DIR ; \
   killall -SIGUSR1 tint2 ; \
   pkill dunst ; dunst& ; \
+  sleep 2 ; \
   source ~/.cache/wal/colors.sh ; \
   bspc config normal_border_color "$color1" ; \
   bspc config active_border_color "$color2" ; \
