@@ -115,6 +115,7 @@ redshift        # F.lux for linux
 geoclue         # Used by redshift to get lat/lon for dimming
 tlp             # Power Management
 tlpui           # GUI frontend for tlp
+festival        # TTS engine
 xorg-server-xephyr  # Run X-Server inside an X-Server
 mlocate         # adds locate
 speedcrunch     # The best calculator ever

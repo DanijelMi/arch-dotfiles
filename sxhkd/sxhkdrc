@@ -47,6 +47,10 @@ super + ctrl + e
 super p
  $TERMINAL -e sh -c "advanced-ping.sh"
 
+# TTS clipboard content
+super + alt + v
+ festival --tts <(xclip -o)
+
 # Toggle compositor
 super + ctrl + p
  pgrep -u $USER picom > /dev/null 2>&1 && pkill picom || picom --experimental-backends& 
@@ -361,7 +365,7 @@ super + ctrl + shift + button{4,5,6,7}
 # Focus next/previous node
 super + {_,shift} + Tab 
  bspc config pointer_follows_focus true ;\
- bspc node -f {next,prev}.local ;\ 
+ bspc node -f {next,prev}.window.local ;\ 
  bspc config pointer_follows_focus false
 
 # Hide/unhide all nodes in a desktop

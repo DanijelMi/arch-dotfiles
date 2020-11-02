@@ -57,7 +57,7 @@ handle_monitors &
 #bspc config border_radius       8    # Needs custom build of bspwm to support this
 bspc config border_width         0
 bspc config window_gap           0
-bspc config top_padding          20
+bspc config top_padding          25
 bspc config bottom_padding       0
 bspc config left_padding         0
 bspc config right_padding        0
