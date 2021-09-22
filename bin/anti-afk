@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Cuz Away Status = bad employee! >:(
+
+LENGTH=4	# 1/360th of circumference in pixels. Radius is (LENGTH*360)/(2*Pi)
+DELAY=0.005	# Speed
+while true; do
+    for ANGLE in $(seq 1 360); do
+        xdotool mousemove_relative --sync --polar $ANGLE $LENGTH
+        sleep $DELAY
+    done
+done
