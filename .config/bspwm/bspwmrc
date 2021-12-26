@@ -1,0 +1,117 @@
+#!/usr/bin/env sh
+# Runs only if no previous instance exists
+run_one_only(){
+  pgrep $1 >/dev/null || "$@" &
+}
+
+#ToDo: fix this "improved" function
+# Checks not only if it exists already, but which X server instance
+# run_one_only() {
+#  current_tty=$(ps $(pgrep Xorg) | tail -n1 | awk '{ print $2 }')
+#  process_tty=$(ps j $(pgrep -u $USER $1) | tail -n1 | awk '{print $5}')
+#  if [ "$current_tty" = "$process_tty" ]; then
+#   return 1   # Process already exists owned by the same user and in the same tty
+#  else
+#    "$@" &    # Process was not found, therefore run it
+#  fi
+#}
+
+#### AUTOSTART ####
+# run_one_only fusuma -d
+run_one_only sxhkd                  # Keybind daemon
+# run_one_only conky                  # Dynamic wallpaper info
+run_one_only dunst                  # Notification manager
+run_one_only redshift-gtk             # Night Light
+# run_one_only compton             # X compositor
+# run_one_only start-pulseaudio-x11   # Sound server
+# run_one_only mpd                    # Music player server
+# run_one_only unclutter -b           # Auto-hide cursor
+# run_one_only nm-applet              # Network Manager
+# run_one_only blueman-applet         # Bluetooth
+# run_one_only polybar main           # Top bar
+
+xset b off                                  # Turn off system beep
+xset r rate 230 35                          # Key repeat threshold and speed
+# unclutter -b                                # Auto-hide inactive cursor
+# Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
+# that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
+# xhost +local:
+# export _JAVA_AWT_WM_NONREPARENTING=1  # Make Java apps work
+# Disabled hoping that the command above will be enough
+#wmname LG3D                           # In case Java apps still don't behave
+
+handle_monitors(){
+  autorandr -c   # Load saved xrandr configuration (Monitor layouts)
+  wal -i $WALLPAPER_DIR
+  run_one_only tint2         # Taskbar
+  #run_one_only picom -b --experimental-backends        # X compositor
+  xrandr -q | grep '^[a-zA-Z0-9]* connected' | awk '{ print $1 }' | while read -r line ; do
+    bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
+  done
+}
+bspc monitor -d I II III IV V VI VII VIII IX X
+# handle_monitors &
+
+#### MONITOR CONFIG ####
+# Find monitor names with xrandr -q
+# bspc monitor DisplayPort-0 -d 1 2 3
+# bspc monitor DisplayPort-1 -d 4 5 6
+# bspc monitor HDMI-A-0 -d 7 8 9 
+# bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+
+#### BSPWM configuration ####
+#bspc config border_radius       8    # Needs custom build of bspwm to support this
+bspc config border_width         0
+bspc config window_gap           0
+bspc config top_padding          25
+bspc config bottom_padding       0
+bspc config left_padding         0
+bspc config right_padding        0
+bspc config single_monocle       false
+bspc config click_to_focus       true
+bspc config split_ratio          0.50
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+bspc config focus_follows_pointer true
+bspc config history_aware_focus  true
+bspc config click_to_focus any
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+bspc config remove_disabled_monitors true
+bspc config merge_overlapping_monitors true
+xsetroot -cursor_name left_ptr    # Sets a default cursor
+
+#### BSPWM COLORING ####
+# . "${HOME}/.cache/wal/colors.sh" # source the colors.
+# bspc config normal_border_color "$color1"
+# bspc config active_border_color "$color2"
+# bspc config focused_border_color "$color6"
+# bspc config presel_feedback_color "$color1"
+
+# Initiate a background subshell that forces a focus each time a new node is focused.
+# While seeming redundant, it enables hover-focused floating nodes to get layered up
+# Disabled for now - causing very weird WM behaviour glitches
+#$(bspc subscribe node_focus | while read -r line; do bspc node focused -f ; done)& 
+
+#### Keyboard configuration ####
+# TODO: Move this entire section to xinitrc or anywhere else, as it isn't strictly related to bspwm
+# Placing these commands at the start of this file might make them not work, keep it near the end
+# (sleep 20 &&
+  # setxkbmap us          # Set keyboard layout to us
+  # xset b off            # Turn off system boop
+  # xset r rate 175 25    # Key repeat hold threshold and repeat frequency
+  # /usr/share/X11/xkb/rules/base.lst
+  # Sets the Compose key. Works similarly to Windows alt keys for inserting Unicode characters
+  # Example: {compose} + ` + e   Full combination list here: /usr/share/X11/locale/en_US.UTF-8/Compose
+  # setxkbmap -option compose:ralt      
+  # setxkbmap -option keypad:pointerkeys                # shift + numlock enables using numpad as mouse keys
+  # setxkbmap -option caps:escape_shifted_capslock      # Sets capslock to ESC, shift+capslock acts as capslock
+  # setxkbmap -layout us,rs -variant ,latin -option grp:alt_caps_toggle       # Set 2 main languages, switch between them with alt+caps
+# ) &
+
+# font... Disabled until I figure out how this part works
+# xset fp+ $HOME/.fonts $    # Append path to fonts
+# xset fp rehash &           # Reload fonts
