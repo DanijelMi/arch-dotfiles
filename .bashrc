@@ -1,3 +1,5 @@
+# If not running interactively, don't do anything
+[[ $- != *i*  ]] && return
 shopt -s expand_aliases # Makes you see what aliases actually do
 shopt -s checkwinsize   # rechecks window size after each executed command
 shopt -s extglob        # Extended globbing, allowing inverse globs

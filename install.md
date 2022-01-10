@@ -62,27 +62,39 @@ sudo systemctl enable --now NetworkManager
 sudo pacman -S --noconfirm neovim tmux
 
 ## Graphic environment bspwm
-sudo pacman -S --noconfirm libxcb xcb-util xcb-util-wm xcb-util-keysyms sxhkd bspwm xorg xorg-init rofi arandr
+sudo pacman -S --noconfirm libxcb xcb-util xcb-util-wm xcb-util-keysyms sxhkd bspwm xorg xorg-xinit rofi arandr alacritty xwallpaper xdo wmname xscreensaver
 supply dotfiles for bspwm and sxhkd
 make bspwmrc executable
 launch bspwn through .xinitrc with startx
 
 sudo pacman -S --noconfirm gtkmm gtkmm3 gtk2
 sudo pacman -S --noconfirm xf86-input-vmmouse xf86-video-vmware mesa
-sudo pacman -S --noconfirm dunst redshift rofi
+sudo pacman -S --noconfire libnotify dunst redshift rofi tint2 nitrogen
+sudo pacman -S --noconfirm speedcrunch
+
+## dev
+sudo pacman -S --noconfirm code docker docker-compose terraform ansible git
+systemctl start docker
+sudo usermod -aG docker $USER
 
 ## openssh
 sudo pacman -S --noconfirm openssh
 Create new or add existing SSH keys
 
-## dev
-sudo pacman -S --noconfirm git
+## File
+sudo pacman -S --noconfirm leafpad pcmanfm-qt gvfs
+sudo pacman -S --noconfirm lxappearance
+sudo pacman -S --noconfirm arc-icon-theme arc-gtk-theme pop-gtk-theme   # Themes used by gtk2 and gtk3 configs
+yay -S fontmatrix
+
 
 ## misc
-sudo pacman -S --noconfirm htop leafpad pcmanfm-qt
+sudo pacman -S --noconfirm conky unclutter htop nodejs xdotool xclip youtube-dl bc
+sudo pacman -S --noconfirm signal-desktop discord viber wireguard-tools ddcutil
+yay -S ferdi viber
 
 ## Web
-sudo pacman -S --noconfirm firefox
+sudo pacman -S --noconfirm firefox chromium
 
 ## Vmware
 sudo pacman -S --noconfirm open-vm-tools
@@ -110,21 +122,49 @@ redshift
 sxhkd
 zathura
 rofi
+picom
+conky
+fontconfig
 
 .bashrc
 .alias_fn
 .profile > .bash_profile
 .xinitrc
 
+.local/bin
+.local/wallpaper
+
+~/.gtkrc-2.0
+~/.config/gtk-3.0/settings.ini
+
 ## PDF
 sudo pacman -S --noconfirm zathura zathura-pdf-mupdf
 
+## Audio
+sudo pacman -S  pulseaudio pulseaudio-alsa pulseaudio-equalizer pamixer alsa pavucontrol alsa-utils
+open pavucontrol, tweak settings
+reboot
+??? profit
 
+## Compositor
+sudo yay -S picom picom-conf
 
+## Partition stuff
+sudo pacman -S fuse ntfs-3g parted gparted
+yay -S unetbootin
 
+## Clipboard/screenshot
+sudo pacman -S flameshot
 
+## GPU AMD
+/etc/pacman.conf
+uncomment core extra community multilib
+sudo pacman -Syu
+sudo pacman -S --needed lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader
+sudo pacman -S steam
+sudo pacman -S xf86-video-amdgpu mesa lib32-mesa
+sudo pacman -S amdvlk
+sudo pacman -S lib32-fontconfig ttf-liberation wqy-zenhei
 
-
-
-
-
+## Media
+sudo pacman -S --noconfirm mpv vlc

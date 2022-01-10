@@ -16,7 +16,8 @@ scrolling:
 # Font configuration (changes require restart)
 font:
   normal:
-    family: monospace
+    family: FiraMono
+    style: Medium
   size: 10.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
@@ -32,18 +33,19 @@ draw_bold_text_with_bright_colors: true
 #
 # The bell is rung every time the BEL control character is received.
 bell:
-  duration: 1000
-  color: '#205f2f'
+  duration: 200
+  color: '#202020'
 
   #   command:
   #     program: notify-send
   #     args: ["Hello, World!"]
   #
-  command: 
-    program: notify-send
-    args: ["Bell"]
 
-background_opacity: 0.7
+background_opacity: 0.8
+  
+colors:
+  primary:
+    background: '#1d1f21'
 
 selection:
   # When set to `true`, selected text will be copied to the primary clipboard.
@@ -52,7 +54,7 @@ selection:
 # Allow terminal applications to change Alacritty's window title.
 window.dynamic_title: true
 
-live_config_reload: true
+live_config_reload: false
 
 # Send ESC (\x1b) before characters when alt is pressed.
 alt_send_esc: true

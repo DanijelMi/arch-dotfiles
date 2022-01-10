@@ -19,16 +19,22 @@ run_one_only(){
 #### AUTOSTART ####
 # run_one_only fusuma -d
 run_one_only sxhkd                  # Keybind daemon
-# run_one_only conky                  # Dynamic wallpaper info
+run_one_only conky                  # Dynamic wallpaper info
 run_one_only dunst                  # Notification manager
-run_one_only redshift-gtk             # Night Light
-# run_one_only compton             # X compositor
+run_one_only redshift-gtk           # Night Light
+run_one_only picom                  # X compositor
+run_one_only nitrogen --restore     # Set wallpaper
 # run_one_only start-pulseaudio-x11   # Sound server
 # run_one_only mpd                    # Music player server
-# run_one_only unclutter -b           # Auto-hide cursor
+run_one_only unclutter -b             # Auto-hide cursor
 # run_one_only nm-applet              # Network Manager
 # run_one_only blueman-applet         # Bluetooth
-# run_one_only polybar main           # Top bar
+run_one_only tint2                    # Top bar
+
+# Fix layering issue of tint2: https://github.com/baskerville/bspwm/issues/1005
+if pgrep -x "tint2" > /dev/null ; then
+xdo above -t "$(xdo id -N Bspwm -n root | sort | head -n 1)" $(xdo id -n tint2)
+fi
 
 xset b off                                  # Turn off system beep
 xset r rate 230 35                          # Key repeat threshold and speed
@@ -36,9 +42,9 @@ xset r rate 230 35                          # Key repeat threshold and speed
 # Give priv for non-network local connects to ACL, bypassing the dumbass python xlib
 # that is refusing to establish a connection to local X serv on behalf of ueberzug(vifm)
 # xhost +local:
-# export _JAVA_AWT_WM_NONREPARENTING=1  # Make Java apps work
+export _JAVA_AWT_WM_NONREPARENTING=1  # Make Java apps work
 # Disabled hoping that the command above will be enough
-#wmname LG3D                           # In case Java apps still don't behave
+wmname LG3D                           # In case Java apps still don't behave
 
 handle_monitors(){
   autorandr -c   # Load saved xrandr configuration (Monitor layouts)
@@ -49,7 +55,7 @@ handle_monitors(){
     bspc monitor $line -d 1 2 3 4 5 6 7 8 9 0
   done
 }
-bspc monitor -d I II III IV V VI VII VIII IX X
+# bspc monitor -d I II III IV V VI VII VIII IX X
 # handle_monitors &
 
 #### MONITOR CONFIG ####
@@ -63,7 +69,7 @@ bspc monitor -d I II III IV V VI VII VIII IX X
 #bspc config border_radius       8    # Needs custom build of bspwm to support this
 bspc config border_width         0
 bspc config window_gap           0
-bspc config top_padding          25
+bspc config top_padding          0
 bspc config bottom_padding       0
 bspc config left_padding         0
 bspc config right_padding        0

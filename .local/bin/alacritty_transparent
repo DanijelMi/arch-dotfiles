@@ -4,6 +4,5 @@
 alacritty \
 --config-file <(cat ~/.config/alacritty/alacritty.yml |\
 sed "s/.*background_opacity: .*/background_opacity: 0\.0/") \
---no-live-config-reload \
 "$@"
 # Passing $@ arguments forward, for example "-e ping 1.1.1.1"

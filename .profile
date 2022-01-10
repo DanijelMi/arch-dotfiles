@@ -4,19 +4,19 @@
 ####### EXPORTS ###########
 export EDITOR="nvim"
 export EDITOR_GUI="leafpad"
-export TERMINAL="alacritty"
+export TERMINAL="alacritty_rainbow"
 export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
 export IDE_GUI="code"
 export LOCKSCREEN="lock-better"
 # export FILE="vifmuber"
-export FILE_GUI="pcmanfm-qt"
+export FILE_GUI="pcmanfm"
 export SUDO_ASKPASS=$HOME/.custombin/rofi-askpass
 export LOCAL_BIN=$HOME/.local/bin/
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 #export XDG_CURRENT_DESKTOP=XFCE
 #export XDG_CONFIG_DIRS=/etc/xdg

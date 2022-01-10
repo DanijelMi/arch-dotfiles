@@ -31,13 +31,10 @@ borg        # Tool for data backup with deduplication support
 iw          # Network interface monitoring
 rofi        # Program launcher, switcher, replacement to dmenu
 fzf         # Fuzzy file finder
-fasd        # Frecency-based terminal navigation
 mpd         # Music player server daemon
 mpc         # CLI interface for mpd
 ncmpcpp     # MPD client
 alacritty   # Terminal emulator
-lightdm                 # Display/login manager
-lightdm-slick-greeter   # Graphical style for lightdm
 thunar      # Lightweight graphical file manager
 vifm        # Ranger alternative
 ffmpegthumbnailer   # Lightweight video thumbnailer for file managers
@@ -112,7 +109,6 @@ baobab          # Storage usage visualiser
 breeze-gtk      # Used theme for GTK
 lxappearance    # Used to configure GTK/QT themes
 redshift        # F.lux for linux
-geoclue         # Used by redshift to get lat/lon for dimming
 tlp             # Power Management
 tlpui           # GUI frontend for tlp
 festival        # TTS engine
@@ -135,7 +131,4 @@ nitrogen        # Set desktop wallpaper
 python-pywal    # Set color-scheme based on an image
 x11vnc          # VNC Server
 tint2           # status bar
-polybar         # status bar
-lemonpanel      # DIY status bar
 wireguard-tools # Wireguard VPN serv/client
-wireguard-dkms  # Wireguard VPN serv/client

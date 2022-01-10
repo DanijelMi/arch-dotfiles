@@ -12,47 +12,42 @@ super + {_,shift} + q
  {xdg-open http://, firefox --private-window}
 
 # Open VIM/IDE
-super + {a, shift a}
- {$IDE_GUI, $TERMINAL -e vim}
+super + {a, shift a, ctrl a}
+ {$TERMINAL -e $EDITOR, $EDITOR_GUI, $IDE_GUI} 
 
 # Open scrcpy
-super alt p
-  scrcpy -b 99000000 -m 900
+# super alt p
+#   scrcpy -b 99000000 -m 900
 
 # Open bluetooth manager
-super + w ; b
- blueman-manager >/dev/null &
+# super + w ; b
+#  blueman-manager >/dev/null &
 
 # Open pulseaudio control
-super + w ; v
- pavucontrol >/dev/null &
+# super + w ; v
+#  pavucontrol >/dev/null &
 
 # Start VNC virtual screen
 
-# Open file browser(TUI/GUI)
+# Open file browser(GUI/TUI)
 super + {e, shift e}
- {$TERMINAL -e $FILE,\
- $FILE_GUI}
+ {$FILE_GUI, \
+ $TERMINAL -e $FILE,\}
 
 # Open storage use analyzer
-super + ctrl + e
- filelight &
-
-# Open text editor(TUI/GUI)
-#super + {t, shift t}
-# {$TERMINAL -e $EDITOR,\
-# $EDITOR_GUI}
+# super + ctrl + e
+#  filelight &
 
 # Open pinger
-super p
- $TERMINAL -e sh -c "advanced-ping.sh"
+# super p
+#  $TERMINAL -e sh -c "advanced-ping.sh"
 
 # TTS clipboard content
-super + alt + v
- festival --tts <(xclip -o)
+# super + alt + v
+#  festival --tts <(xclip -o)
 
 # Toggle compositor
-super + ctrl + p
+super + alt + p
  pgrep -u $USER picom > /dev/null 2>&1 && pkill picom || picom --experimental-backends& 
 
 # Open clipboard content in mpv
@@ -64,16 +59,16 @@ super + shift + y
  xdotool windowactivate $(xdotool search --name "main_player")
  
 # Screen locker
-{ctrl + alt + l, XF86ScreenSaver}
- pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
- $LOCKSCREEN& ;\
- sleep 3 && xdg-screensaver activate
+# {ctrl + alt + l, XF86ScreenSaver}
+#  pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
+#  $LOCKSCREEN& ;\
+#  sleep 3 && xdg-screensaver activate
 
 # Screen locker
-{super + ctrl + alt + l, super + XF86ScreenSaver}
- pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
- lock-glitch& ;\
- sleep 3 && xdg-screensaver activate
+# {super + ctrl + alt + l, super + XF86ScreenSaver}
+#  pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
+#  lock-glitch& ;\
+#  sleep 3 && xdg-screensaver activate
  
 # Keyboard layout
 super + alt + space
@@ -97,25 +92,25 @@ super + alt + m
 
 # Open Screenshot tool
 super + Print
- pgrep flameshot >/dev/null || flameshot & ; flameshot gui &
+ flameshot gui &
 
 # Open Screenshot tool
-super + shift + Print
- screen_record.sh &
+# super + shift + Print
+#  screen_record.sh &
 
 # Open custom script menu
 super + z 
  rofi-select
 
 # Restart keybind daemon
-ctrl + alt + k
- pkill -SIGUSR1 sxhkd
+super + alt + k
+ pkill -SIGUSR1 sxhkd && notify-send "Keybinds reloaded"
 
-# Open communication apps
-super w ; {w,l,n}
- {firefox --new-window https://web.whatsapp.com,\
- firefox --new-window https://www.linkedin.com,\
- $TERMINAL -e newsboat}
+# # Open communication apps
+# super w ; {w,l,n}
+#  {firefox --new-window https://web.whatsapp.com,\
+#  firefox --new-window https://www.linkedin.com,\
+#  $TERMINAL -e newsboat}
 
 # Run dirty-scripts for rapid testing
 super + F{1,2,3,4,5}
@@ -126,12 +121,12 @@ super F6
  $TERMINAL -e $EDITOR $(which dirty_actions)
 
 # Open other apps
-super + w ; {k,r,g,m,c}
- {keepassxc,\
- firefox --new-window https://www.reddit.com,\
- firefox --new-window https://github.com,\
- pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp),\
- speedcrunch}
+# super + w ; {k,r,g,m,c}
+#  {keepassxc,\
+#  firefox --new-window https://www.reddit.com,\
+#  firefox --new-window https://github.com,\
+#  pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp),\
+#  speedcrunch}
 
 # Open Gmail
 alt + m ; {1,2,3}
@@ -166,8 +161,8 @@ super + alt + button{6,7}
  dunstify -r "71123" -a Brightness -u low -t 700 "Brightness: $(xbacklight -get | cut -d. -f1)" 
 
 # Screen "Warmness"
-super + alt + button{4,5,3}
- xrandr-gamma.sh {c,w,r}
+# super + alt + button{4,5,3}
+#  xrandr-gamma.sh {c,w,r}
 
 
 ###### Fusuma bindings ######
@@ -203,7 +198,6 @@ shift + KP_{Left,Right}
 ######## BSPWM-Specific binds #########
 # Close WM
 super + shift + Escape
- pkill lemonbar ; \
  bspc quit
 
 # Activate screen-saver
@@ -215,8 +209,8 @@ super + alt + BackSpace
  systemctl suspend
 
 # Suspend the system with lock
-super + shift + BackSpace
- lock-glitch && systemctl suspend
+# super + shift + BackSpace
+#  lock-glitch && systemctl suspend
 
 # Close/Kill active window
 super + {_,shift +}c
@@ -288,6 +282,11 @@ super + button{9,8}
 # Move the focused node to the next/previous desktop in the current monitor
 super + shift + bracket{left,right}
  bspc node -d {prev,next}.local
+#
+# Move focused node to next/previous monitor
+super + alt + bracket{left,right}
+ bspc node -f --to-monitor {prev,next}
+
 
 # Focus the next/previous monitor
 super + brace{left,right}
@@ -303,64 +302,64 @@ super + {h,j,k,l}
  bspc node -f {west,south,north,east} ;\ 
  bspc config pointer_follows_focus false
 
-# Maximize node side size
-# Max bottom
-super + x ; j
- source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $w $(($H-$y))
-# Max right
-super + x ; l
- source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $(($W-$x)) $h
-# Max top
-super + x ; k
- source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $w $(($h+$y)) ; \
- xdotool windowmove $(xdotool getwindowfocus) $x 0 
-# Max left
-super + x ; h
- source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0 $y ; \
- xdotool windowsize $(xdotool getwindowfocus) $(($w+$x)) $h
+# # Maximize node side size
+# # Max bottom
+# super + x ; j
+#  source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $w $(($H-$y))
+# # Max right
+# super + x ; l
+#  source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $(($W-$x)) $h
+# # Max top
+# super + x ; k
+#  source window-position.sh && xdotool windowsize $(xdotool getwindowfocus) $w $(($h+$y)) ; \
+#  xdotool windowmove $(xdotool getwindowfocus) $x 0 
+# # Max left
+# super + x ; h
+#  source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0 $y ; \
+#  xdotool windowsize $(xdotool getwindowfocus) $(($w+$x)) $h
 
-# Move float to top left
-super + x ; u
- source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0 0 ; \
- xdotool windowsize $(xdotool getwindowfocus) 50% 50%
-# Move float to top right
-super + x ; i
- source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 50% 0% ; \
- xdotool windowsize $(xdotool getwindowfocus) 50% 50%
-# Move float to bottom left
-super + x ; n
- source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0% 50% ; \
- xdotool windowsize $(xdotool getwindowfocus) 50% 50%
-# Move float to bottom right
-super + x ; m
- source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 50% 50% ; \
- xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# # Move float to top left
+# super + x ; u
+#  source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0 0 ; \
+#  xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# # Move float to top right
+# super + x ; i
+#  source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 50% 0% ; \
+#  xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# # Move float to bottom left
+# super + x ; n
+#  source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 0% 50% ; \
+#  xdotool windowsize $(xdotool getwindowfocus) 50% 50%
+# # Move float to bottom right
+# super + x ; m
+#  source window-position.sh && xdotool windowmove $(xdotool getwindowfocus) 50% 50% ; \
+#  xdotool windowsize $(xdotool getwindowfocus) 50% 50%
 
-# Move node in direction
-super + shift + h
- bspc node focused -v -50 0 >/dev/null || \
- bspc node focused -s west 
-super + shift + j
- bspc node focused -v 0 50 >/dev/null || \
- bspc node focused -s south
-super + shift + k
- bspc node focused -v 0 -50 >/dev/null || \
- bspc node focused -s north 
-super + shift + l
- bspc node focused -v 50 0 >/dev/null || \
- bspc node focused -s east 
+## Move node in direction
+# super + shift + h
+#  bspc node focused -v -50 0 >/dev/null || \
+#  bspc node focused -s west 
+# super + shift + j
+#  bspc node focused -v 0 50 >/dev/null || \
+#  bspc node focused -s south
+# super + shift + k
+#  bspc node focused -v 0 -50 >/dev/null || \
+#  bspc node focused -s north 
+# super + shift + l
+#  bspc node focused -v 50 0 >/dev/null || \
+#  bspc node focused -s east 
 
 # Move node via touchpad
-super + shift + button{6,7}
- bspc node focused -v {-15,15} 0 >/dev/null
-super + shift + button{4,5}
- bspc node focused -v 0 {-15,15} >/dev/null
+# super + shift + button{6,7}
+#  bspc node focused -v {-15,15} 0 >/dev/null
+# super + shift + button{4,5}
+#  bspc node focused -v 0 {-15,15} >/dev/null
 
 # Resize node via touchpad
-super + ctrl + button{4,5,6,7}
- bspc node -z {top 0 -20,bottom 0 20,left -20 0,right 20 0}
-super + ctrl + shift + button{4,5,6,7}
- bspc node -z {bottom 0 -20,top 0 20,right -20 0,left 20 0}
+# super + ctrl + button{4,5,6,7}
+#  bspc node -z {top 0 -20,bottom 0 20,left -20 0,right 20 0}
+# super + ctrl + shift + button{4,5,6,7}
+#  bspc node -z {bottom 0 -20,top 0 20,right -20 0,left 20 0}
 
 # Focus next/previous node
 super + {_,shift} + Tab 
@@ -445,12 +444,13 @@ super + d ; d
  bspc desktop -f --remove
 
 # Swap current desktop with the last one
-super + d ; s ; s
+super + d ; s
  bspc desktop -s last
+#
 # Swap current desktop with index
 #super + shift + s ; {1-9}
-super + d ; s ; {1-9}
- bspc desktop -s ^{1-9}
+# super + d ; s ; {1-9}
+#  bspc desktop -s ^{1-9}
 
 # Resize gaps
 super + KP_Add
@@ -474,7 +474,8 @@ super + alt + KP_Add
  bspc config -d focused border_width $((`bspc config -d focused border_width` + 1 ))
 
 super + alt + KP_Subtract
- if [ $(bspc config -d focused border_width) -gt 0 ] ; then ; bspc config -d focused border_width $((`bspc config -d focused border_width` - 1 )) ; fi
+ bspc config -d focused border_width $((`bspc config -d focused border_width` - 1 ))
+#  if [ $(bspc config -d focused border_width) -gt 0 ] ; then ; bspc config -d focused border_width $((`bspc config -d focused border_width` - 1 )) ; fi
 
 # Reset gaps to 0
 #super + alt + ctrl + button3
@@ -493,22 +494,17 @@ super + ctrl + button3
  bspc node @/ --equalize
 
 # Cycle through wallpaper and theme
-super + Home
-  wal --iterative -i $WALLPAPER_DIR ; \
-  killall -SIGUSR1 tint2 ; \
-  pkill dunst ; dunst& ; \
-  sleep 2 ; \
-  source ~/.cache/wal/colors.sh ; \
-  bspc config normal_border_color "$color1" ; \
-  bspc config active_border_color "$color2" ; \
-  bspc config focused_border_color "$color6" ; \
-  bspc config presel_feedback_color "$color1" ; \
-  betterlockscreen -u $wallpaper
-
-# Ironically, this works implicitly and breaks otherwise
-# Win + LeftClick : Move window
-#super + button{1-2}
- #bspc pointer -g {move,resize_corner}
+# super + Home
+#   wal --iterative -i $WALLPAPER_DIR ; \
+#   killall -SIGUSR1 tint2 ; \
+#   pkill dunst ; dunst& ; \
+#   sleep 2 ; \
+#   source ~/.cache/wal/colors.sh ; \
+#   bspc config normal_border_color "$color1" ; \
+#   bspc config active_border_color "$color2" ; \
+#   bspc config focused_border_color "$color6" ; \
+#   bspc config presel_feedback_color "$color1" ; \
+#   betterlockscreen -u $wallpaper
 
 # Cycle between nodes
 super + {_, shift} + n
@@ -517,6 +513,8 @@ super + {_, shift} + n
 # Flip node children orientation
 super + shift + r
  bspc node @parent -R 90
+
+# Flip desktop children orientation
 super + ctrl + r
  bspc node @/ -R 90
 
@@ -528,9 +526,9 @@ super + alt + f
 super + alt + t
  bspc rule -r ^$(bspc rule -l | grep -m 1 -n '\*:\* => state=floating' | cut -f1 -d:)
 
-# Set WM to tiling
-super alt t
- bspc rule -a "*" state=tiled
+# # Set WM to tiling
+# super alt t
+#  bspc rule -a "*" state=tiled
 
 # Toggle node mark
 super + shift + m
