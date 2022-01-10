@@ -11,6 +11,8 @@ alias notes="$EDITOR $HOME/notes" # A better cp
 alias pacinstall="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S --noconfirm"
 alias aurinstall="yay -Slq | fzf -m --preview 'yay -Si {1}'| xargs -ro yay -S"
 alias ab="mpv --save-position-on-quit"
+alias hdmi1="sudo ddcutil -d 2 setvcp 60 0x11"
+alias hdmi2="sudo ddcutil -d 2 setvcp 60 0x12"
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
 
