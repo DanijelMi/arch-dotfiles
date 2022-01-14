@@ -38,6 +38,7 @@ EMOJI="¯\_(ツ)_/¯ ;; shrug
 (╯ ͠° ͟ʖ ͡°)╯┻━┻ ;; lenny table flip
 ( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°) ;; lenny army
 ಠ_ಠ ;; wtf
+ඞ ;; sus + U+0D9F
 😀 grinning face; U+1F600
 😃 grinning face with big eyes; U+1F603
 😄 grinning face with smiling eyes; U+1F604
