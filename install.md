@@ -125,6 +125,7 @@ rofi
 picom
 conky
 fontconfig
+polybar
 
 .bashrc
 .alias_fn

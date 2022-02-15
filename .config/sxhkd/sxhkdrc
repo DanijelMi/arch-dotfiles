@@ -196,10 +196,6 @@ shift + KP_{Left,Right}
  mpc {prev,next}
 
 ######## BSPWM-Specific binds #########
-# Close WM
-super + shift + Escape
- bspc quit
-
 # Activate screen-saver
 super + BackSpace
  xdg-screensaver activate
@@ -222,6 +218,11 @@ super + space
 
 super + shift + space
  bspc node -f next.urgent
+
+# Switch to notification
+super + Escape
+ bspc node -f next.window.urgent
+
 
 # Select node in desktop
 super + ctrl + {1-9}
@@ -425,9 +426,13 @@ super + ctrl + y
 super + ctrl + z
 	bspc node -g private
 
-# Set node layer
-super + s ; {1,2,3}
- bspc node -l {below,normal,above}
+# # Set node layer
+# super + s ; {1,2,3}
+#  bspc node -l {below,normal,above}
+
+# App switcher
+super + s
+ rofi -config $HOME/.config/rofi/search.rasi -show
  
 # Create desktop
 super + d ; c

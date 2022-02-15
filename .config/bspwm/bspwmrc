@@ -29,7 +29,7 @@ run_one_only nitrogen --restore     # Set wallpaper
 run_one_only unclutter -b             # Auto-hide cursor
 # run_one_only nm-applet              # Network Manager
 # run_one_only blueman-applet         # Bluetooth
-run_one_only tint2                    # Top bar
+$HOME/.config/polybar/launch.sh       # Polybar
 
 # Fix layering issue of tint2: https://github.com/baskerville/bspwm/issues/1005
 if pgrep -x "tint2" > /dev/null ; then
