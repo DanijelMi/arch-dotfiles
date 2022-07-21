@@ -15,10 +15,6 @@ super + {_,shift} + q
 super + {a, shift a, ctrl a}
  {$TERMINAL -e $EDITOR, $EDITOR_GUI, $IDE_GUI} 
 
-# Open scrcpy
-# super alt p
-#   scrcpy -b 99000000 -m 900
-
 # Open bluetooth manager
 # super + w ; b
 #  blueman-manager >/dev/null &
@@ -26,8 +22,6 @@ super + {a, shift a, ctrl a}
 # Open pulseaudio control
 # super + w ; v
 #  pavucontrol >/dev/null &
-
-# Start VNC virtual screen
 
 # Open file browser(GUI/TUI)
 super + {e, shift e}
@@ -59,16 +53,10 @@ super + shift + y
  xdotool windowactivate $(xdotool search --name "main_player")
  
 # Screen locker
-# {ctrl + alt + l, XF86ScreenSaver}
-#  pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
-#  $LOCKSCREEN& ;\
-#  sleep 3 && xdg-screensaver activate
-
-# Screen locker
-# {super + ctrl + alt + l, super + XF86ScreenSaver}
-#  pactl set-sink-mute @DEFAULT_SINK@ 1 ;\
-#  lock-glitch& ;\
-#  sleep 3 && xdg-screensaver activate
+{ctrl + alt + l, XF86ScreenSaver}
+ pactl set-sink-mute @DEFAULT_SINK@ 1 ; \
+ i3lock -c 222222 ;\
+ sleep 3 && xdg-screensaver activate
  
 # Keyboard layout
 super + alt + space
@@ -81,10 +69,6 @@ super + ctrl + space
 # Open terminal
 super + Return
  $TERMINAL&
-
-# Open transparent alacritty terminal
-super + shift + Return
- alacritty_transparent&
 
 # Open list of sxhkd keybinds
 super + alt + m
@@ -120,18 +104,6 @@ super + shift F{1,2,3,4,5}
 super F6
  $TERMINAL -e $EDITOR $(which dirty_actions)
 
-# Open other apps
-# super + w ; {k,r,g,m,c}
-#  {keepassxc,\
-#  firefox --new-window https://www.reddit.com,\
-#  firefox --new-window https://github.com,\
-#  pgrep mpd >/dev/null && $TERMINAL -e ncmpcpp || (mpd && $TERMINAL -e ncmpcpp),\
-#  speedcrunch}
-
-# Open Gmail
-alt + m ; {1,2,3}
- firefox --new-window https://mail.google.com/mail/u/{0,1,2}
-
 # Volume
 XF86Audio{RaiseVolume,LowerVolume}
  pactl set-sink-volume @DEFAULT_SINK@ {+10%,-10%} ; \
@@ -159,11 +131,6 @@ XF86Audio{Next,Prev,Play,Stop}
 super + alt + button{6,7}
  xbacklight -{dec,inc} 6 -time 50 ; \
  dunstify -r "71123" -a Brightness -u low -t 700 "Brightness: $(xbacklight -get | cut -d. -f1)" 
-
-# Screen "Warmness"
-# super + alt + button{4,5,3}
-#  xrandr-gamma.sh {c,w,r}
-
 
 ###### Fusuma bindings ######
 # 3-finger movement
@@ -198,7 +165,7 @@ shift + KP_{Left,Right}
 ######## BSPWM-Specific binds #########
 # Activate screen-saver
 super + BackSpace
- xdg-screensaver activate
+ sleep 1 ; xdg-screensaver activate
 
 # Suspend the system
 super + alt + BackSpace
@@ -497,19 +464,6 @@ super + equal
 # Reset node sizes to original hierarchy
 super + ctrl + button3
  bspc node @/ --equalize
-
-# Cycle through wallpaper and theme
-# super + Home
-#   wal --iterative -i $WALLPAPER_DIR ; \
-#   killall -SIGUSR1 tint2 ; \
-#   pkill dunst ; dunst& ; \
-#   sleep 2 ; \
-#   source ~/.cache/wal/colors.sh ; \
-#   bspc config normal_border_color "$color1" ; \
-#   bspc config active_border_color "$color2" ; \
-#   bspc config focused_border_color "$color6" ; \
-#   bspc config presel_feedback_color "$color1" ; \
-#   betterlockscreen -u $wallpaper
 
 # Cycle between nodes
 super + {_, shift} + n

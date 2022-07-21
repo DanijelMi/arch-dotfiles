@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-# Runs on user login
+#!/bin/bash
 
 ####### EXPORTS ###########
 export EDITOR="nvim"
@@ -9,36 +8,21 @@ export PAGER="less"
 export READER="zathura"
 export WEB_BROWSER="firefox"
 export IDE_GUI="code"
-export LOCKSCREEN="lock-better"
-# export FILE="vifmuber"
-export FILE_GUI="pcmanfm"
+export FILE_GUI="thunar"
 export SUDO_ASKPASS=$HOME/.custombin/rofi-askpass
 export LOCAL_BIN=$HOME/.local/bin/
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export QT_QPA_PLATFORMTHEME="gtk2"	# Have QT use gtk2 theme.
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 #export XDG_CURRENT_DESKTOP=XFCE
 #export XDG_CONFIG_DIRS=/etc/xdg
 
-# export SSH_KEY_PATH="~/.ssh/rsa_id" # ssh
 # export LANG=en_US.UTF-8             # You may need to manually set your language environment
-# export MANPATH="$MANPATH:/usr/local/man"
-# export ZIM_HOME=$HOME/arch-dotfiles/shell/zimfw # Default zim location
-# export WALLPAPER_DIR=$HOME/arch-dotfiles/wallpapers
-# export ARCHFLAGS="-arch x86_64"   # Compilation flags
 
-# Perl stuff
-# PATH="/home/danijel/perl5/bin${PATH:+:${PATH}}"; export PATH;
-# PERL5LIB="/home/danijel/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-# PERL_LOCAL_LIB_ROOT="/home/danijel/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-# PERL_MB_OPT="--install_base \"/home/danijel/perl5\""; export PERL_MB_OPT;
-# PERL_MM_OPT="INSTALL_BASE=/home/danijel/perl5"; export PERL_MM_OPT;
+# export WALLPAPER_DIR=$HOME/arch-dotfiles/wallpapers
 
 # Adds `~/.local/bin/` and all further subdirectories to $PATH
 export PATH="$PATH:$(du "$LOCAL_BIN" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
-
-#export DRI_PRIME=1    # Force discrete gpu to be used globally
 
 # Set aliases and functions
 [ -f ~/.alias_fn ] && source $HOME/.alias_fn  

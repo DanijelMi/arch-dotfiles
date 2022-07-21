@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Contextual file extractor
 
 #--------| Aliases |-------------
 alias ll='ls -l --color=auto --group-directories-first'
@@ -7,16 +6,13 @@ alias ls='ls -hN --color=auto --group-directories-first'
 alias grep="grep --color=auto" # Color grep - highlight desired sequence.
 alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
 alias crp="rsync --recursive --progress --size-only --inplace --verbose" # A better cp
-alias notes="$EDITOR $HOME/notes" # A better cp
 alias pacinstall="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S --noconfirm"
 alias aurinstall="yay -Slq | fzf -m --preview 'yay -Si {1}'| xargs -ro yay -S"
-alias ab="mpv --save-position-on-quit"
-alias hdmi1="sudo ddcutil -d 2 setvcp 60 0x11"
-alias hdmi2="sudo ddcutil -d 2 setvcp 60 0x12"
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
 
-
 #--------| Functions |-----------
+
+# Contextual file extractor
 ex (){
   if [ -f $1 ] ; then
     case $1 in
@@ -44,19 +40,6 @@ h (){ curl cheat.sh/$1 ; }
 # Public IP
 publicip (){ curl ipinfo.io/"$@" ; }
 
-# CLI pastebin
-upb (){
-curl -fsSL -X POST \
---url https://paste.ubuntu.com \
---output /dev/null \
---write-out "%{url_effective}\n" \
---data-urlencode "content@${PASTEBIN_CONTENT:-/dev/stdin}" \
---data "poster=${PASTEBIN_POSTER:-`whoami`@`hostname`}" \
---data "syntax=${PASTEBIN_SYNTAX:-text}" \
---data "expiration=${PASTEBIN_EXPIRATION:-day}" \
-< "$@"
-}
-
 # Fuzzy finder ripgrep
 ffc (){ rg . | fzf | sed 's/:.*$//g' ;}
 
@@ -68,9 +51,3 @@ iwatch (){
   COMMAND="$@"
   while inotifywait --quiet --event attrib $FILE ; do eval $COMMAND; done;
 }
-
-# Common settings
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-# (cat ~/.cache/wal/sequences &)

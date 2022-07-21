@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Author: Danijel Milosevic
 # Not the most complicated, but definitely my proudest work
 
 alacritty \

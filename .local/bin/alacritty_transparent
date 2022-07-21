@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# Author: Danijel Milosevic
 
 alacritty \
 --config-file <(cat ~/.config/alacritty/alacritty.yml |\
