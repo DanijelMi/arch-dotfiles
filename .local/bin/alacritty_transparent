@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-alacritty \
---config-file <(cat ~/.config/alacritty/alacritty.yml |\
-sed "s/.*background_opacity: .*/background_opacity: 0\.0/") \
-"$@"
-# Passing $@ arguments forward, for example "-e ping 1.1.1.1"

@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Starts ssh server over serveo
-echo "Make sure your ssh server is enabled"
-ssh -R danecollab:22:localhost:22 serveo.net    # Script hangs here until interrupted
-
-# Connect with ssh -J serveo.net danijel@danecollab
