@@ -1,0 +1,11 @@
+#!/bin/bash 
+# Author: Danijel Milosevic
+# Dependencies: tesseract-data-eng imagemagick scrot xclip
+SRC_IMG=/tmp/tesseract_ocr_image.png        # Location of temporary image
+
+scrot -s -f $SRC_IMG -q 100    # Select image and temporarily store
+# Modify image to improve ocr
+mogrify -set units PixelsPerInch -density 300 -modulate 100,0 -resize 200% $SRC_IMG
+#tesseract -l eng --dpi 300 $SRC_IMG stdout | xclip -sel clipboard
+tesseract -l eng --dpi 300 $SRC_IMG stdout
+rm $SRC_IMG
