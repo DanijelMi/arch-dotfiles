@@ -15,26 +15,10 @@ super + {_,shift} + q
 super + {a, shift a, ctrl a}
  {$TERMINAL -e $EDITOR, $EDITOR_GUI, $IDE_GUI} 
 
-# Open bluetooth manager
-# super + w ; b
-#  blueman-manager >/dev/null &
-
-# Open pulseaudio control
-# super + w ; v
-#  pavucontrol >/dev/null &
-
 # Open file browser(GUI/TUI)
 super + {e, shift e}
  {$FILE_GUI, \
  $TERMINAL -e $FILE,\}
-
-# Open storage use analyzer
-# super + ctrl + e
-#  filelight &
-
-# Open pinger
-# super p
-#  $TERMINAL -e sh -c "advanced-ping.sh"
 
 # TTS clipboard content
 # super + alt + v
@@ -90,12 +74,6 @@ super + z
 super + alt + k
  pkill -SIGUSR1 sxhkd && notify-send "Keybinds reloaded"
 
-# # Open communication apps
-# super w ; {w,l,n}
-#  {firefox --new-window https://web.whatsapp.com,\
-#  firefox --new-window https://www.linkedin.com,\
-#  $TERMINAL -e newsboat}
-
 # Run dirty-scripts for rapid testing
 super + F{1,2,3,4,5}
  dirty_binds {1,2,3,4,5}
@@ -104,14 +82,16 @@ super + shift F{1,2,3,4,5}
 super F6
  $TERMINAL -e $EDITOR $(which dirty_actions)
 
-# Volume
+# Volume up/down
 XF86Audio{RaiseVolume,LowerVolume}
  pactl set-sink-volume @DEFAULT_SINK@ {+10%,-10%} ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
 
+# Volume mute toggle
 XF86AudioMute
  pactl set-sink-mute @DEFAULT_SINK@ toggle ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
+
 # Scroll Volume
 super {button4,button5}
  pactl set-sink-volume @DEFAULT_SINK@ {+3%,-3%} ; \
@@ -119,10 +99,6 @@ super {button4,button5}
 super + button{6,7}
  pactl set-sink-volume @DEFAULT_SINK@ {-1%,+1%} ; \
  dunstify -r "85102" -a Volume -u low -t 500 "Volume: $(amixer get Master | sed -n 's/^.*\[\([0-9]\+\)%.*$/\1/p'| uniq) $(amixer get Master | tail -n 1 | grep -q off && echo Muted)"
-
-# Playback
-XF86Audio{Next,Prev,Play,Stop}
- mpc {next,prev,toggle,stop}
 
 # Brightness
 {XF86MonBrightnessDown, XF86MonBrightnessUp}
@@ -183,19 +159,15 @@ super + {_,shift +}c
 super + space
  bspc desktop -l next
 
-super + shift + space
- bspc node -f next.urgent
-
 # Switch to notification
 super + Escape
  bspc node -f next.window.urgent
-
 
 # Select node in desktop
 super + ctrl + {1-9}
  xdotool windowactivate $(xdotool search --desktop $(xdotool get_desktop) --name . | tac |  sed -n '{1-9}p' ) > /dev/null 2>&1
 
-# Switch/move to workspace
+# Switch/move to desktop
 super + {_,shift + }{1-9,0}
  bspc {desktop -f,node -d} focused:^{1-9,10}
 
@@ -250,15 +222,18 @@ super + button{9,8}
 # Move the focused node to the next/previous desktop in the current monitor
 super + shift + bracket{left,right}
  bspc node -d {prev,next}.local
-#
+
 # Move focused node to next/previous monitor
 super + alt + bracket{left,right}
  bspc node -f --to-monitor {prev,next}
-
+ 
+# Move focused desktop to next/previous monitor
+super + alt + shift + bracket{left,right}
+ bspc desktop -f --to-monitor {prev,next}
 
 # Focus the next/previous monitor
-super + brace{left,right}
-	bspc monitor -f {prev,next}
+#super + brace{left,right}
+#	bspc monitor -f {prev,next}
 
 # Focus/move node in direction
 #super + {_,shift + }{h,j,k,l}
@@ -361,7 +336,7 @@ super + ctrl + {minus,equal}
  bspc node -z {right -50 0 ; bspc node -z left 50 0 ; bspc node -z bottom 0 -50 ; bspc node -z top 0 50, \
  bottom 0 50 ; bspc node -z top 0 -50 ; bspc node -z right 50 0 ; bspc node -z left -50 0}
  
-# Win+G : Move active window to biggest space
+# Move active window to biggest/smallest area slot
 super + {_, shift} + g
  bspc node -s {biggest,smallest}.local
 
@@ -443,10 +418,10 @@ super + KP_Subtract
 
 # Resize window borders
 super + alt + KP_Add
- bspc config -d focused border_width $((`bspc config -d focused border_width` + 1 ))
+ bspc config border_width $((`bspc config border_width` + 1 ))
 
 super + alt + KP_Subtract
- bspc config -d focused border_width $((`bspc config -d focused border_width` - 1 ))
+ bspc config border_width $((`bspc config border_width` - 1 ))
 #  if [ $(bspc config -d focused border_width) -gt 0 ] ; then ; bspc config -d focused border_width $((`bspc config -d focused border_width` - 1 )) ; fi
 
 # Reset gaps to 0
@@ -484,10 +459,6 @@ super + alt + f
 # Set WM to tiling
 super + alt + t
  bspc rule -r ^$(bspc rule -l | grep -m 1 -n '\*:\* => state=floating' | cut -f1 -d:)
-
-# # Set WM to tiling
-# super alt t
-#  bspc rule -a "*" state=tiled
 
 # Toggle node mark
 super + shift + m

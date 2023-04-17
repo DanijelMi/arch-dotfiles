@@ -1,0 +1,97 @@
+#!/bin/bash
+# Custom CLI wrapper for managing monitors through xrandr and ddcutil
+# Most useful for VFIO users
+# You may need to modprobe i2c-dev (and ideally figure out to have it done each time during boot)
+
+argparse(){
+    VALID_ARGS=$(getopt -o p:d:i:hb: --long profile:,display:,input:,help,brightness: -- "$@")
+    if [[ $? -ne 0 ]]; then
+        exit 1;
+    fi
+    eval set -- "$VALID_ARGS"
+    while [ : ]; do
+        case "$1" in
+            -p | --profile)
+                mon_profile="$2"
+                shift 2
+                ;;
+            -d | --display)
+                mon_display="$2"
+                shift 2
+                ;;
+            -i | --input)
+                mon_input="$2"
+                shift 2
+                ;;
+            -h | --help)
+                helpscreen
+                ;;
+            -b | --brightness)
+                mon_brightness="$2"
+                shift 2
+                ;;
+            --) shift; 
+                break 
+                ;;
+        esac
+    done
+}
+
+helpscreen() {
+    scriptname=$(basename $0)
+    echo "Usage: $scriptname [ -p | --profile ]
+               [ -d | --display ]
+               [ -i | --input  ]
+               [ -b | --brightness  ]"
+    printf "$scriptname -p 1   "
+    printf "$scriptname -d2 -i 1   "
+    printf "$scriptname -b +5   "
+    printf "$scriptname --display 2 --input 1 --profile 2"
+    printf "\n"
+    exit 2
+}
+
+## xrandr preset commands are generated through arandr tool (Layout > Save As)
+xrandr_profile(){
+    if [[ "$1" == 1 ]]; then
+        xrandr --output DP-1 --off --output DP-2 --off --output DP-3 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --off --output DVI-D-1 --off
+        echo "One monitor" # Optional note
+    elif [[ "$1" == 2 ]]; then
+        xrandr --output DP-1 --off --output DP-2 --off --output DP-3 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI-1 --mode 2560x1440 --pos 1920x0 --rotate normal --output DVI-D-1 --off
+        echo "Two monitors" # Optional note
+    else
+        echo "Invalid profile"
+        return 1
+    fi
+}
+
+# Switch between two input sources
+# Find out which address means what instruction with: ddcutil capabilities --display 1
+ddcutil_profile(){
+    local display=$1
+    local input_preset=$2
+    if [[ "$input_preset" == 1 ]]; then
+        ddcutil --display $display setvcp 60 0x11
+    elif [[ "$input_preset" == 2 ]]; then
+        ddcutil --display $display setvcp 60 0x12
+    else
+        echo "Invalid profile"
+        return 1
+    fi
+}
+
+# TODO: add contextual, per-monitor brightness control via ddcutil (and possible some X magic to find currently focused monitor)
+ddcutil_brightness(){
+    ddcutil --display $X_DETECTED_MONITOR setvcp 10 + $mon_brightness
+}
+
+argparse "$@"
+
+if [ -n "$mon_profile" ]; then
+    xrandr_profile "$mon_profile"
+fi
+
+if [ -n "$mon_display" ] && [ -n "$mon_input" ]; then
+    ddcutil_profile $mon_display $mon_input
+fi
+

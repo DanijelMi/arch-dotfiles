@@ -5,27 +5,23 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" PUT ALL PLUGINS BETWEEN plug#begin AND plug#end
-" NAMES ARE 'AUTHOR/REPO_NAME' ON GITHUB REPO
-
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'google/vim-searchindex'       " / Search pattern count
+Plug 'Yggdroot/indentLine'          " Visual indicator of line indent level
+Plug 'scrooloose/nerdtree'          " File tree navigation
+Plug 'Xuyuanp/nerdtree-git-plugin'  " Git marks in nerdtree
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'       " Shows signs for line modifications if file is in a git repo
-Plug 'Yggdroot/indentLine'          " Visual indicator of line indent level
-Plug 'google/vim-searchindex'       " / Search pattern count
 Plug 'tomtom/tcomment_vim'          " comment line with gc
-Plug 'jiangmiao/auto-pairs'         " Generate brackets in pairs
 Plug 'vim-airline/vim-airline'      " Pretty, lightweight status line
 Plug 'vim-airline/vim-airline-themes'      " Themes for airline status line
-Plug 'elzr/vim-json'                " JSON highlighting
-Plug 'tpope/vim-fugitive'           " Git controls inside vim    NOT USED
-Plug 'vim-syntastic/syntastic'      " Syntax checking client
-Plug 'vimwiki/vimwiki'              " Documentation experiment    NOT USED
-Plug 'scrooloose/nerdtree'          " File tree navigation
-Plug 'Xuyuanp/nerdtree-git-plugin'  " Git marks in nerdtree
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'elzr/vim-json'                " JSON highlighting
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'jiangmiao/auto-pairs'         " Generate brackets in pairs
+"Plug 'tpope/vim-fugitive'           " Git controls inside vim    NOT USED
+"Plug 'vim-syntastic/syntastic'      " Syntax checking client
 " Plug 'gabrielelana/vim-markdown'    " Markdown (github) highligher
     
 call plug#end()
@@ -55,13 +51,6 @@ let g:fzf_tags_command = 'ctags -R'    " [Tags] Command to generate tags file
 
 "let g:fzf_commands_expect = 'alt-enter,ctrl-x'   " [Commands] --expect expression for directly executing the command
 
-" Command for git grep
-" - fzf#vim#grep(command, with_column, [options], [fullscreen])
-"command! -bang -nargs=* GGrep
-  "\ call fzf#vim#grep(
-  "\   'git grep --line-number '.shellescape(<q-args>), 0,
-  "\   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
-"
 " Override Colors command. You can safely do this in your .vimrc as fzf.vim
 " will not override existing commands.
 command! -bang Colors
@@ -122,8 +111,7 @@ set mouse=a             " Allow mouse interaction
 set nocompatible        " Allow non-vi features
 autocmd BufEnter * silent! lcd %:p:h  " Always change dir to the file being edited
 set backspace=indent,eol,start	" Backspace over indentation, line breaks, and insertion start
-set noerrorbells        " Kills the fucking system beep
-set visualbell          " Replaces audio beep with visual flash. Another method to kill fucking beep
+set noerrorbells        " Kills system beep
 set wildmenu            " Display command line's tab complete options as a menu
 set wildmode=longest:full,full
 set autoread            " Enables option of re-reading files if modified inside Vim
@@ -157,13 +145,12 @@ set ruler               " Always show cursor position
 set autoindent			" uses the indent from the previous line
 set expandtab			  " Convert tabs to spaces
 set shiftround			" When shifting lines, round the indentation to nearest multiple of "shiftwidth"
-set shiftwidth=2		" When shifting, indent it X spaces
+set shiftwidth=2		" When shifting, indent it N spaces
 set smarttab			  " Insert "tabstop" number of spaces with TAB
 set tabstop=2 			" Indent using X spaces
 
 " LINE DISPLAY
 set number			        " show line number
-set relativenumber  		" show relative line number
 set cursorline          " Highlight the line currently under cursor
 set linebreak           " Avoid wrapping a line in the midde of a word
 set wrap                " Enable line wrapping (wrap/nowrap)
@@ -182,29 +169,36 @@ set foldmethod=indent    " Fold based on indentation levels
 set foldnestmax=3        " Only fold up to three nested levels
 
 " FASTER WINDOW-SWITCHING
-noremap <C-H> <C-W>h
-noremap <C-J> <C-W>j
-noremap <C-K> <C-W>k
-noremap <C-L> <C-W>l
-
-" Execute current file
-"nnoremap <F9> :!%:p
-nnoremap <leader>r :!%:p<Enter>
-nnoremap <leader>R :!$TERMINAL -e %:p<Enter>
-
-" Escalate to sudo and write
-cmap w!! w !sudo -A tee % >/dev/null
-
-" Fold with <Space>
-" nnoremap <Space> za
-
-" buffer cycling
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+  noremap <C-h> <C-w>h | " Instead of Ctrl-W + h, we can just do Ctrl-h
+  noremap <C-j> <C-w>j
+  noremap <C-k> <C-w>k
+  noremap <C-l> <C-w>l
 
 " Make transparency work
-highlight Normal ctermbg=none
-highlight NonText ctermbg=none
+  highlight Normal ctermbg=none
+  highlight NonText ctermbg=none
 " Make it work when changing colorschemes on the fly as well
-au ColorScheme * hi Normal ctermbg=none guibg=none
-au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
+  au ColorScheme * hi Normal ctermbg=none guibg=none
+  au ColorScheme myspecialcolors hi Normal ctermbg=red guibg=red
+
+" Run file binds
+  vmap <F8> y:exec "!bash -c '" . @" . "'"<CR> | " Run selection as bash command
+  nnoremap <F9> :!%:p |             " F9 to execute current file, prompt for enter or additional args
+  nnoremap <leader>r :!%:p<Enter> | " Same as above but with enter
+  nnoremap <leader>R :!$TERMINAL -e %:p<Enter> | " Same as above but in new terminal
+
+" VIMRC binds
+  nnoremap confe :e $MYVIMRC<CR> |      " ESC + confe to edit vimrc
+  nnoremap confr :source $MYVIMRC<CR> | " ESC + confr to reload vimrc
+
+" Base64
+  vnoremap <leader>b64d c<c-r>=system('base64 --decode', @")<cr><esc>
+  vnoremap <leader>b64e c<c-r>=system('base64', @")<cr><esc>
+  
+
+cmap w!! w !sudo -A tee % >/dev/null |  " Escalate to sudo and write file by typing :w!!
+" nnoremap <Space> za | Fold with <Space>
+
+" buffer cycling
+  nnoremap <Tab> :bnext<CR>
+  nnoremap <S-Tab> :bprevious<CR>

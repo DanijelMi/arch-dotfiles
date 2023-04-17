@@ -9,6 +9,13 @@ alias crp="rsync --recursive --progress --size-only --inplace --verbose" # A bet
 alias pacinstall="pacman -Slq | fzf -m --preview 'pacman -Si {1}' | xargs -r sudo pacman -S --noconfirm"
 alias aurinstall="yay -Slq | fzf -m --preview 'yay -Si {1}'| xargs -ro yay -S"
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d" # Use neovim for vim if present.
+alias keybinds="bindkey -L | sed 's/\^\([A-Za-z]\)/ctrl-\1/g' | sed 's/\^M-\([A-Za-z]\)/alt-\1/g'"
+
+# devops stuff
+alias tf=terraform
+alias tg=terragrunt
+alias k=kubectl
+alias netshoot="kubectl run netshoot-danij --rm -it --tty --image=nicolaka/netshoot"
 
 #--------| Functions |-----------
 

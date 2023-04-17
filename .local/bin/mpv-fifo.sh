@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Author: Danijel Milosevic
-# License: Beerware
 # Wrapper script that launches MPV to play clipboard (xclip) contents. Main intended use is for youtube.
 # If an specifically-named MPV instance already exists, then just add the content in the queue instead of launching a new one
 

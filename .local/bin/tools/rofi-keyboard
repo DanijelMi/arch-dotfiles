@@ -5,10 +5,10 @@
 ##### CONFIG ######
 # Layouts available at immediate menu. It's a bash array, so an unescaped space
 # is a separator. Two possible formats: LAYOUT or LAYOUT:STYLE
-# To find these params, run the program first and select the "Other" option for the full list.
+# To find lang params, run program first and select "Other" for full list.
 MAIN_OPTIONS=(us rs:latin rs it de)  # Add default opts
 
-##### END CONFIG ##### (Although who am I to tell you)
+##### END CONFIG #####
 
 MAIN_GUI="rofi -dmenu -width 25 -i -p Quick_layouts"    # Rofi settings
 KB_LAYOUTS=/usr/share/X11/xkb/rules/base.lst    # File that holds all available layouts
